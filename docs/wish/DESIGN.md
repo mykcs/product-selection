@@ -1,11 +1,7 @@
-# Wish design — Apple purchase comparison
+# Wish design — Product selection
 
-The project is intentionally small.
+The project is intentionally small and covers Osprey backpacks, Apple Watch, iPhone and Mac. [README](../../README.md) owns the current scope and route list.
 
-Each product route should answer:
-1. which exact configuration is being compared;
-2. what current official prices/availability say;
-3. what dated exchange-rate/tax assumptions are used;
-4. what the practical purchase implication is.
+Each product route should explain the relevant choice: intended use, model/configuration, or practical purchase implication. Regional purchase comparisons should state their configuration, currency, tax and dated exchange-rate assumptions; Osprey routes support use-case selection and series browsing without inventing fit guarantees or local prices.
 
-Wish holds the durable decision goal. Current Apple facts belong in the route/source evidence and must be refreshed when guidance changes. Dev explains how the static site is maintained.
+Wish holds the durable decision goal. Current Apple and Osprey facts belong in the route/source evidence and must be refreshed when guidance changes. Dated evidence remains a snapshot; Osprey catalogue prices have one owner, `osprey/series/catalog.json`. Dev explains how the static site is maintained.
