@@ -5,4 +5,4 @@
 - Superseded intent: [`ARCHIVE.md`](ARCHIVE.md)
 - Shared lifecycle: https://github.com/mykcs/.agents/blob/main/docs/agents/WISH_PROTOCOL.md
 
-Wish records the durable purchase-comparison goal. Current Apple prices, availability, configurations and specifications remain time-sensitive facts that must be re-verified from official sources.
+Wish records the durable product-selection goal for Osprey backpacks, Apple Watch, iPhone and Mac. [README](../../README.md) owns current scope. Current product facts require official sources; dated prices and exchange rates remain snapshots rather than live quotes.

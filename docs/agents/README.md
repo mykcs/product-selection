@@ -29,6 +29,10 @@ Treat:
 - current product availability, prices, specs and education-store state as external/live facts that must be refreshed;
 - dated exchange rates and dated Osprey US prices as snapshots, not timeless truth.
 
+## Human navigation
+
+[Project Wiki](https://github.com/mykcs/product-selection/wiki) and [Wish and Dev](https://github.com/mykcs/product-selection/wiki/Wish-and-Dev) provide public reader navigation. Repository README, Wish/Dev and route/source evidence remain authoritative; Wiki is a reader projection.
+
 ## Agent continuity
 
 Shared cross-tool Agent architecture and handoff semantics live in:
