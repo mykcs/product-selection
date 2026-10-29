@@ -1,5 +1,7 @@
 # Repository Agent instructions
 
+Shared operating policy: follow [the central AGENTS.md](https://github.com/mykcs/.agents/blob/main/AGENTS.md) and [Capability Routing](https://github.com/mykcs/.agents/blob/main/docs/dev/CAPABILITY_ROUTING.md) for authorization reuse, tool fallbacks and engineering completion. This repository retains its scoped scientific, resource, privacy and release requirements.
+
 This is a small static multi-category product selection site (Apple devices and Osprey backpacks). Keep the Agent surface thin.
 
 ## Read first
