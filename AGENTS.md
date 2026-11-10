@@ -36,3 +36,7 @@ For a changed route:
 - verify internal links affected by the change;
 - verify external purchase/source links when they are part of the task;
 - after deployment work, verify the actual public route rather than assuming repository merge equals Production success.
+
+## Current | 多 Agent 接手
+
+新 Agent 先读 [Current](docs/agents/current/README.md)，重新核对 GitHub 的实时 Issues、PR 和默认分支；Current 只负责恢复上下文，不取代现有 Wish/Dev、科研或发布规则。
