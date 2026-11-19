@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<link rel="stylesheet" href="/assets/site.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="小鹰 Osprey 背包系列目录：按照系列浏览 18 个常见家族，逐一了解用途、代表产品、美国官网参考价格与产品链接。">
@@ -8,86 +9,82 @@
 <style>
 :root{color-scheme:light;--bg:#f5f6f3;--paper:#fff;--ink:#1e2921;--sub:#626c63;--line:#dde4dc;--moss:#35654a;--moss-strong:#244734;--tint:#eff5ee;--gold:#b4bfa2}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft Yahei",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
 button,input{font:inherit}
 a{color:var(--moss);text-decoration:none}
 a:hover{text-decoration:underline}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #78ab82;outline-offset:3px}
-.wrap{max-width:1170px;padding:0 24px;margin:auto}
-.top{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:25px 0;font-size:13px}
-.top a{font-weight:700}
+.top{display:flex;justify-content:space-between;gap:var(--space-5);align-items:center;padding:var(--space-6) 0;font-size:var(--text-caption)}
+.top a{font-weight:var(--weight-heading)}
 .crumb{color:var(--sub)}
-.eyebrow{font-size:12px;letter-spacing:.145em;font-weight:800;color:var(--moss)}
-.hero{padding:61px 0 31px}
-.hero h1{font-size:clamp(43px,6.7vw,77px);letter-spacing:-.068em;line-height:1.06;margin:11px 0 18px;font-weight:750}
-.lead{max-width:685px;font-size:18px;line-height:1.7;color:var(--sub);margin:0}
-.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:23px}
-.meta span{display:inline-flex;align-items:center;gap:6px;background:#eaf0e7;color:#3e5946;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:650}
-.paths{display:grid;grid-template-columns:1fr 1fr;gap:13px;padding:19px 0 35px}
-.path{display:block;background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:23px 26px;color:var(--ink);transition:transform .2s,box-shadow .2s}
+.eyebrow{color:var(--moss)}
+.lead{color:var(--sub);margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)}
+.meta span{display:inline-flex;align-items:center;gap:var(--space-3);background:#eaf0e7;color:#3e5946;padding:var(--space-3) var(--space-4);border-radius:999px;font-size:var(--text-caption);font-weight:var(--weight-strong)}
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);padding:var(--space-5) 0 var(--space-7)}
+.path{display:block;background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:var(--space-6) var(--space-6);color:var(--ink);transition:transform .2s,box-shadow .2s}
 .path:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 12px 32px rgba(25,48,28,.08)}
 .path.active{background:var(--moss-strong);color:#fff;border-color:var(--moss-strong)}
-.path .head{display:flex;justify-content:space-between;gap:12px;align-items:center}
-.path .label{font-size:20px;letter-spacing:-.035em;font-weight:750}
-.path .arrow{font-size:20px}
-.path .desc{font-size:13px;display:block;margin-top:5px;color:var(--sub)}
+.path .head{display:flex;justify-content:space-between;gap:var(--space-4);align-items:center}
+.path .label{font-size:var(--text-title);letter-spacing:var(--tracking-heading);font-weight:var(--weight-heading)}
+.path .arrow{font-size:var(--text-title)}
+.path .desc{font-size:var(--text-caption);display:block;margin-top:var(--space-2);color:var(--sub)}
 .path.active .desc{color:#d2e3d5}
-.section-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin:9px 0 19px}
-.section-intro h2{font-size:30px;letter-spacing:-.05em;margin:0 0 2px}
-.section-intro p{margin:0;color:var(--sub);font-size:14px}
-.counter{font-size:13px;color:var(--sub);white-space:nowrap}
-.tools{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:13px;padding:16px 0 23px}
-.filters{display:flex;gap:7px;flex-wrap:wrap}
-.filter{cursor:pointer;background:transparent;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:9px 13px;font-weight:660;font-size:13px}
+.section-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--space-5);margin:var(--space-3) 0 var(--space-5)}
+.section-intro h2{font-size:var(--text-section);letter-spacing:var(--tracking-tight);margin:0 0 var(--space-1)}
+.section-intro p{margin:0;color:var(--sub);font-size:var(--text-small)}
+.counter{font-size:var(--text-caption);color:var(--sub);white-space:nowrap}
+.tools{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);padding:var(--space-5) 0 var(--space-6)}
+.filters{display:flex;gap:var(--space-3);flex-wrap:wrap}
+.filter{cursor:pointer;background:transparent;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:var(--space-3) var(--space-4);font-weight:var(--weight-heading);font-size:var(--text-caption)}
 .filter[aria-pressed="true"]{color:white;background:var(--moss-strong);border-color:var(--moss-strong)}
 .filter:hover:not([aria-pressed="true"]){border-color:var(--moss);color:var(--moss)}
-.search{background:var(--paper);border:1px solid var(--line);border-radius:999px;min-width:207px;max-width:100%;padding:10px 15px;font-size:13px;color:var(--ink)}
+.search{background:var(--paper);border:1px solid var(--line);border-radius:999px;min-width:var(--width-control);max-width:100%;padding:var(--space-4) var(--space-5);font-size:var(--text-caption);color:var(--ink)}
 .search::placeholder{color:#909990}
-.browser{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);align-items:start;gap:19px}
-.families{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.family{min-width:0;background:var(--paper);text-align:left;border:1px solid var(--line);border-radius:21px;padding:19px 18px 17px;min-height:174px;cursor:pointer;color:var(--ink);transition:background .18s,border-color .18s,transform .18s}
+.browser{display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);align-items:start;gap:var(--space-5)}
+.families{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)}
+.family{min-width:0;background:var(--paper);text-align:left;border:1px solid var(--line);border-radius:21px;padding:var(--space-5) var(--space-5) var(--space-5);min-height:174px;cursor:pointer;color:var(--ink);transition:background .18s,border-color .18s,transform .18s}
 .family:hover{border-color:#8aa88d;transform:translateY(-1px)}
 .family[aria-pressed="true"]{border-color:var(--moss);background:#edf4ed;box-shadow:inset 0 0 0 1px var(--moss)}
-.family .category{font-size:11px;text-transform:uppercase;letter-spacing:.045em;color:var(--moss);font-weight:750}
-.family .name{display:block;margin:12px 0 7px;font-size:20px;line-height:1.16;letter-spacing:-.047em;font-weight:760;overflow-wrap:anywhere}
-.family .tagline{display:block;color:var(--sub);font-size:12px;line-height:1.5}
-.family .from{display:flex;align-items:end;justify-content:space-between;gap:7px;margin-top:21px;padding-top:11px;border-top:1px solid var(--line)}
-.family .from span{font-size:12px;color:var(--sub)}
-.family .from strong{font-weight:750;font-size:17px;letter-spacing:-.03em;color:var(--ink);white-space:nowrap}
-.detail{position:sticky;top:16px;background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:27px 28px;min-width:0;scroll-margin-top:20px;box-shadow:0 16px 54px rgba(29,50,29,.055)}
-.detail .step{font-size:11px;font-weight:750;letter-spacing:.12em;color:var(--moss)}
-.detail h3{font-size:clamp(27px,3vw,37px);letter-spacing:-.06em;line-height:1.15;margin:8px 0 12px;overflow-wrap:anywhere}
-.detail .intro{font-size:14px;color:var(--sub);margin:0;line-height:1.68}
-.why{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:19px 0 21px}
-.why>div{border-radius:13px;background:var(--tint);padding:13px}
-.why .hint{font-size:11px;font-weight:760;color:var(--moss)}
-.why p{font-size:12px;color:var(--ink);margin:5px 0 0;line-height:1.55}
-.subhead{display:flex;justify-content:space-between;align-items:baseline;gap:7px;margin:22px 0 12px}
-.subhead h4{font-size:16px;letter-spacing:-.035em;margin:0}
-.subhead span{font-size:11px;color:var(--sub)}
-.product{padding:15px 0;border-top:1px solid var(--line)}
-.producthead{display:flex;justify-content:space-between;align-items:baseline;gap:11px}
-.product h5{font-size:16px;letter-spacing:-.03em;margin:0;line-height:1.3;overflow-wrap:anywhere}
-.product .price{font-size:22px;line-height:1.1;letter-spacing:-.055em;font-weight:780;color:var(--ink);white-space:nowrap}
-.product .volume{font-size:11px;color:var(--moss);font-weight:730;margin:5px 0 7px}
-.product p{font-size:12px;line-height:1.7;margin:0 0 10px;color:var(--sub)}
-.product a{font-size:12px;font-weight:740}
-.detail-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:17px;margin-top:8px}
-.series-link{font-size:13px;font-weight:730}
-.back-to-list{display:none;cursor:pointer;border:0;background:none;color:var(--moss);font-size:13px;font-weight:700;padding:6px 0}
-.note{margin:25px 0 20px;padding:19px 22px;border:1px solid var(--line);border-radius:19px;background:var(--paper)}
-.note h3{font-size:16px;letter-spacing:-.03em;margin:0 0 5px}
-.note p{font-size:12px;line-height:1.75;color:var(--sub);margin:0}
-.footer{font-size:12px;color:var(--sub);padding:12px 0 80px}
-.empty{grid-column:1/-1;border-radius:20px;padding:28px 22px;background:var(--paper);color:var(--sub);font-size:14px}
-.skeleton{padding:30px;border-radius:24px;background:var(--paper);color:var(--sub)}
+.family .category{font-size:var(--text-caption);text-transform:uppercase;letter-spacing:var(--tracking-label);color:var(--moss);font-weight:var(--weight-heading)}
+.family .name{display:block;margin:var(--space-4) 0 var(--space-3);font-size:var(--text-title);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:var(--weight-heading);overflow-wrap:anywhere}
+.family .tagline{display:block;color:var(--sub);font-size:var(--text-caption);line-height:var(--leading-control)}
+.family .from{display:flex;align-items:end;justify-content:space-between;gap:var(--space-3);margin-top:var(--space-6);padding-top:var(--space-4);border-top:1px solid var(--line)}
+.family .from span{font-size:var(--text-caption);color:var(--sub)}
+.family .from strong{font-weight:var(--weight-heading);font-size:var(--text-lead);letter-spacing:var(--tracking-heading);color:var(--ink);white-space:nowrap}
+.detail{position:sticky;top:16px;background:var(--paper);border:1px solid var(--line);border-radius:26px;min-width:0;scroll-margin-top:20px;box-shadow:0 16px 54px rgba(29,50,29,.055)}
+.detail .step{font-size:var(--text-caption);font-weight:var(--weight-heading);letter-spacing:var(--tracking-label);color:var(--moss)}
+.detail h3{font-size:var(--text-section);letter-spacing:var(--tracking-tight);line-height:var(--leading-tight);margin:var(--space-3) 0 var(--space-4);overflow-wrap:anywhere}
+.detail .intro{font-size:var(--text-small);color:var(--sub);margin:0;line-height:var(--leading-body)}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);margin:var(--space-5) 0 var(--space-6)}
+.why>div{border-radius:13px;background:var(--tint);padding:var(--space-4)}
+.why .hint{font-size:var(--text-caption);font-weight:var(--weight-heading);color:var(--moss)}
+.why p{font-size:var(--text-caption);color:var(--ink);margin:var(--space-2) 0 0;line-height:var(--leading-body)}
+.subhead{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-3);margin:var(--space-6) 0 var(--space-4)}
+.subhead h4{font-size:var(--text-body);letter-spacing:var(--tracking-heading);margin:0}
+.subhead span{font-size:var(--text-caption);color:var(--sub)}
+.product{padding:var(--space-5) 0;border-top:1px solid var(--line)}
+.producthead{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-4)}
+.product h5{font-size:var(--text-body);letter-spacing:var(--tracking-heading);margin:0;line-height:var(--leading-heading);overflow-wrap:anywhere}
+.product .price{font-size:var(--text-card);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:var(--weight-heading);color:var(--ink);white-space:nowrap}
+.product .volume{font-size:var(--text-caption);color:var(--moss);font-weight:var(--weight-heading);margin:var(--space-2) 0 var(--space-3)}
+.product p{font-size:var(--text-caption);line-height:var(--leading-reading);margin:0 0 var(--space-4);color:var(--sub)}
+.product a{font-size:var(--text-caption);font-weight:var(--weight-heading)}
+.detail-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-4);border-top:1px solid var(--line);padding-top:var(--space-5);margin-top:var(--space-3)}
+.series-link{font-size:var(--text-caption);font-weight:var(--weight-heading)}
+.back-to-list{display:none;cursor:pointer;border:0;background:none;color:var(--moss);font-size:var(--text-caption);font-weight:var(--weight-heading);padding:var(--space-3) 0}
+.note{margin:var(--space-6) 0 var(--space-6);padding:var(--space-5) var(--space-6);border:1px solid var(--line);border-radius:19px;background:var(--paper)}
+.note h3{font-size:var(--text-body);letter-spacing:var(--tracking-heading);margin:0 0 var(--space-2)}
+.note p{font-size:var(--text-caption);line-height:var(--leading-reading);color:var(--sub);margin:0}
+.footer{font-size:var(--text-caption);color:var(--sub);padding:var(--space-4) 0 var(--space-10)}
+.empty{grid-column:1/-1;border-radius:20px;padding:var(--space-7) var(--space-6);background:var(--paper);color:var(--sub);font-size:var(--text-small)}
+.skeleton{padding:var(--space-7);border-radius:24px;background:var(--paper);color:var(--sub)}
 [hidden]{display:none!important}
 @media(max-width:1020px){.browser{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.families{grid-template-columns:1fr}.family{min-height:auto}}
-@media(max-width:760px){.hero{padding:39px 0 23px}.paths{padding:12px 0 31px;gap:9px}.path{padding:18px 16px;border-radius:18px}.path .label{font-size:16px}.path .desc{font-size:12px}.section-intro{align-items:start}.section-intro h2{font-size:27px}.browser{display:block}.families{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.detail{position:relative;top:auto;margin-top:15px;padding:24px}.back-to-list{display:inline-block}.search{flex:1;min-width:170px}.family{min-height:158px;padding:16px 13px}.families>.detail{grid-column:1/-1;margin-top:0}.family .name{font-size:17px}.why{gap:9px}.family .from strong{font-size:15px}.family .tagline{font-size:12px}}
-@media(max-width:410px){.wrap{padding:0 18px}.families{grid-template-columns:1fr}.family{min-height:auto}.family .from{margin-top:12px}.hero h1{font-size:42px}.lead{font-size:16px}.meta{gap:6px}.meta span{font-size:11px;padding:6px 9px}.tools{gap:12px}.filters{gap:6px}.filter{padding:8px 11px}.why{grid-template-columns:1fr}.price{font-size:20px}}
+@media(max-width:760px){.paths{padding:var(--space-4) 0 var(--space-7);gap:var(--space-3)}.path{padding:var(--space-5) var(--space-5);border-radius:18px}.path .label{font-size:var(--text-body)}.path .desc{font-size:var(--text-caption)}.section-intro{align-items:start}.section-intro h2{font-size:var(--text-card)}.browser{display:block}.families{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.detail{position:relative;top:auto;margin-top:var(--space-5)}.back-to-list{display:inline-block}.search{flex:1;min-width:var(--width-control)}.family{min-height:158px;padding:var(--space-5) var(--space-4)}.families>.detail{grid-column:1/-1;margin-top:0}.family .name{font-size:var(--text-lead)}.why{gap:var(--space-3)}.family .from strong{font-size:var(--text-body)}.family .tagline{font-size:var(--text-caption)}}
+@media(max-width:410px){.families{grid-template-columns:1fr}.family{min-height:auto}.family .from{margin-top:var(--space-4)}.meta{gap:var(--space-3)}.meta span{font-size:var(--text-caption);padding:var(--space-3) var(--space-3)}.tools{gap:var(--space-4)}.filters{gap:var(--space-3)}.filter{padding:var(--space-3) var(--space-4)}.why{grid-template-columns:1fr}.price{font-size:var(--text-title)}}
 @media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#121713;--paper:#1c251e;--ink:#edf3ed;--sub:#c2cfc3;--line:#374538;--moss:#9ed2ad;--moss-strong:#315940;--tint:#28392c}.meta span{background:#26382b;color:#c6ddcb}.family[aria-pressed="true"]{background:#293b2d}.path.active{background:#315940}.search::placeholder{color:#a3aea4}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
@@ -103,7 +100,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #78ab
 <div class="meta">
 <span id="catalog-count">18 个常见系列</span>
 <span>36 款代表型号</span>
-<span>美国官网 USD · 核对于 2026-10-14</span>
+<span>美国官网 USD · 核对于 <time datetime="2026-10-14">2026年10月14日</time></span>
 </div>
 </section>
 <nav class="paths" aria-label="小鹰背包两种选购方式">
@@ -141,10 +138,11 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #78ab
 </section>
 <section class="note">
 <h3>关于价格和系列覆盖范围</h3>
-<p>本目录按 Osprey 美国官方网站于 2026 年 10 月 14 日所列的公开价格制作快照，金额单位为美元（USD）。非自动同步实时售价，不含其他地区的运费和税费；促销、颜色、尺码、库存均可能变化。男女版型名称仅表示官方设计方向，不代替背长测量和实际试背。这里收录 18 个常见系列与每个系列的两款代表型号，其他骑行、雪地、亲子等专业产品可继续查看 <a href="https://www.osprey.com/featured/shop-by-collections" target="_blank" rel="noopener noreferrer">Osprey 官方完整系列入口 ↗</a>。</p>
+<p>本目录按 Osprey 美国官方网站于 <time datetime="2026-10-14">2026年10月14日</time>所列的公开价格制作快照，金额单位为美元（USD）。非自动同步实时售价，不含其他地区的运费和税费；促销、颜色、尺码、库存均可能变化。男女版型名称仅表示官方设计方向，不代替背长测量和实际试背。这里收录 18 个常见系列与每个系列的两款代表型号，其他骑行、雪地、亲子等专业产品可继续查看 <a href="https://www.osprey.com/featured/shop-by-collections" target="_blank" rel="noopener noreferrer">Osprey 官方完整系列入口 ↗</a>。</p>
 </section>
 <footer class="footer">资料：<a href="https://www.osprey.com/" target="_blank" rel="noopener noreferrer">Osprey 美国官网</a> · <a href="https://www.osprey.com/expert-advice/size-fit" target="_blank" rel="noopener noreferrer">背包尺寸与试背指南</a> · <a href="/osprey/">返回按用途选</a></footer>
 </main>
+<script src="/assets/calendar-date.js" defer></script>
 <script src="./app.js" defer></script>
 </body>
 </html>
