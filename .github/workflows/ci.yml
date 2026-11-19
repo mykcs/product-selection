@@ -16,6 +16,10 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    shell: bash
+
 concurrency:
   group: apple-compare-pr-ci-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
