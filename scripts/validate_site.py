@@ -8,6 +8,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from audit_site_design import validate_design
+
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = (
     Path("index.html"),
@@ -351,7 +353,7 @@ def validate_actual_purchase_route() -> None:
         'data-tradein="pending"',
         'data-courier="shipped"',
         'data-source="customer-recollection"',
-        "2026 年 10 月 13 日",
+        '<time datetime="2026-10-13">2026年10月13日</time>',
         "冰川蓝 · 256GB",
         "8 位验证码",
         "已到香港顺丰网点寄出旧机",
@@ -378,13 +380,14 @@ def validate_actual_purchase_route() -> None:
         fail("actual route must not pretend the 8-digit code was used")
     if "2026-10-13" not in record or "香港店员" not in record:
         fail("actual record must preserve witnessed testimony and uncertainty")
-    if "2026-10-13 真实结局" not in main_page or "冰川蓝" not in main_page:
+    if '<time datetime="2026-10-13">2026年10月13日</time> 真实结局' not in main_page or "冰川蓝" not in main_page:
         fail("iPhone landing page must report purchase complete")
     require(style, ".actual-steps", "connected actual route timeline")
     require(style, ".actual-side", "unverified side branch styles")
 
 
 def main() -> int:
+    validate_design(ROOT, PAGES)
     validate_routes()
     validate_osprey()
     validate_osprey_series()

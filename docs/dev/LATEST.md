@@ -12,4 +12,4 @@ python3 scripts/validate_site.py
 
 Public GitHub Actions runs that validator on pull requests. Vercel remains the website Preview/Production provider; CI does not replace deployment.
 
-The validator intentionally avoids browser farms and package-manager setup. It protects only high-value deterministic logic that has actually been easy to break during edits.
+The default validator avoids browser dependencies and package-manager setup. It now checks all served HTML entries, shared design ownership and displayed calendar dates alongside the existing purchasing logic. The opt-in exact-candidate browser job verifies all routes, interactive states, light/dark themes and actual token consumers in Chromium/WebKit; its requirements live in [SITE_STANDARDS.md](SITE_STANDARDS.md).

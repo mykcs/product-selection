@@ -15,6 +15,7 @@ This repository is intentionally small. This file is navigation-only and does no
 | iPhone 香港换机话术与分支 | `iphone/trade-in-guide/index.html`, `model.js`, `ui.js`, `app.js` |
 | iPhone 2026-10-13 实际购机路线 | `docs/decisions/2026-10-13-iphone-hk-actual-route.md` + `iphone/trade-in-guide/index.html#actual-route-20261013` |
 | Mac chooser | `mac/index.html` and the relevant `mac/*/index.html` route |
+| All-page typography, spacing, width and displayed dates | `assets/site.css`, `assets/calendar-date.js`; contract: `docs/dev/SITE_STANDARDS.md`; guard: `scripts/audit_site_design.py` |
 | Current Apple price/spec/config claim | current official Apple source first, then the route HTML |
 | Osprey model/fit/capacity claim | current official Osprey product and Size & Fit pages first |
 | Exchange-rate conversion | the dated snapshot stated in `README.md` / route copy |

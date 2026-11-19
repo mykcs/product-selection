@@ -5,6 +5,7 @@ CI mode: **STANDARD_CI**
 - [LATEST.md](LATEST.md) — current development direction.
 - [DESIGN.md](DESIGN.md) — why the site uses a tiny public CI lane plus Vercel deployment.
 - [CI_PASSPORT.md](CI_PASSPORT.md) — current validation contract.
+- [SITE_STANDARDS.md](SITE_STANDARDS.md) — executable typography, spacing, width and calendar display contract.
 - [ARCHIVE.md](ARCHIVE.md) — replaced decisions only.
 - [Shared Dev protocol](https://github.com/mykcs/.agents/blob/main/docs/agents/DEV_PROTOCOL.md)
 - [Shared CI standard](https://github.com/mykcs/.agents/blob/main/docs/agents/CI_STANDARD.md)
