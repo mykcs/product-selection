@@ -6,8 +6,8 @@ const base=process.env.SITE_ORIGIN || 'http://127.0.0.1:4191';
   for(const [engine,type] of (process.env.RUN_WEBKIT === '1' ? [['chromium',chromium],['webkit',webkit]] : [['chromium',chromium]])){
     const browser=await type.launch({headless:true});
     try{
-      for(const width of [1280,440]){
-        const context=await browser.newContext({viewport:{width,height:956},colorScheme:'light'});
+      for(const width of [1280,900,440]){
+        const context=await browser.newContext({viewport:{width,height:956},colorScheme:'light',hasTouch:width===440,isMobile:width===440});
         for(const route of paths){
           const page=await context.newPage();
           const errors=[];
@@ -37,6 +37,10 @@ const base=process.env.SITE_ORIGIN || 'http://127.0.0.1:4191';
             assert.notEqual(before.bg,after.bg,engine+' nav hover feedback '+route);
           }
           if(route==='/' && width===1280){
+             const go=await page.locator('a.card .go').evaluateAll(nodes=>nodes.map(n=>({y:n.getBoundingClientRect().y+scrollY, h:n.getBoundingClientRect().height})));
+             assert.equal(go.length,4,'four homepage action labels');
+             assert.ok(Math.abs(go[0].y-go[1].y)<1,'Mac/iPhone CTAs must align, '+JSON.stringify(go));
+             assert.ok(Math.abs(go[2].y-go[3].y)<1,'Osprey/Watch CTAs must align, '+JSON.stringify(go));
              const card=page.locator('a.card').first();
              const arrow=card.locator('.go-arrow');
              assert.equal(await arrow.count(),1);
@@ -49,6 +53,20 @@ const base=process.env.SITE_ORIGIN || 'http://127.0.0.1:4191';
           }
           if(route==='/' && width===440){
              await page.screenshot({path:process.env.SCREENSHOT_MOBILE || '/tmp/product-selection-after-440.png',animations:'disabled',fullPage:false});
+          }
+          if(route==='/osprey/series/' && width===1280) {
+             const selected=page.locator('button.filter[aria-pressed="true"]').first();
+             assert.equal(await selected.count(),1,'one initial selected filter');
+             const initial=await selected.evaluate(el=>({color:getComputedStyle(el).borderColor,pressed:el.getAttribute('aria-pressed')}));
+             await selected.hover();await page.waitForTimeout(250);
+             const hovered=await selected.evaluate(el=>({color:getComputedStyle(el).borderColor,pressed:el.getAttribute('aria-pressed')}));
+             assert.deepEqual(hovered,initial,'hover may not mask selected semantics');
+          }
+          if(route==='/' && width===440){
+             const card=page.locator('a.card').first();
+             assert.equal(await page.evaluate(()=>matchMedia('(hover: none)').matches),true,'real touch context');
+             const activeStyle=await card.evaluate(el=>[...document.styleSheets].filter(s=>s.href?.endsWith('/interaction-craft.css')).some(s=>[...s.cssRules].some(r=>r.cssText.includes('a.card[href]:active'))));
+             assert.ok(activeStyle,'visible pressed state for card, not only disabled tap highlight');
           }
           assert.deepEqual(errors,[],engine+route+' runtime exceptions');
           console.log('PASS',engine,width,route);

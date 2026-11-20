@@ -124,7 +124,7 @@ for(const button of buttons){
   document.getElementById("series-detail").href="/osprey/series/#"+item.seriesId;
   const panel=document.getElementById("result");
   panel.hidden=false;
-  panel.scrollIntoView({behavior:"smooth",block:"nearest"});
+  panel.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"});
  });
 }
 </script>

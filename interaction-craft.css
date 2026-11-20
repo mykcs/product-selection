@@ -12,10 +12,7 @@
   outline: 3px solid var(--craft-accent);
   outline-offset: 3px;
 }
-:where(a,button,summary) {
-  -webkit-tap-highlight-color: transparent;
-}
-:where(.nav, nav.nav) {
+.nav {
   gap: clamp(5px,1vw,12px);
   align-items: center;
 }
@@ -40,16 +37,17 @@
     box-shadow var(--craft-duration) var(--craft-ease),
     transform var(--craft-duration) var(--craft-ease);
 }
-:where(.card[href]) {
+/* Specificity beats the existing inline .card display:block and .go margin. */
+a.card[href] {
   display:flex;
   flex-direction:column;
   align-items:flex-start;
 }
-:where(.card[href] > .go, .route[href] > .go) {
+a.card[href] > .go, a.route[href] > .go {
   margin-top:auto;
   padding-top:22px;
 }
-:where(.card[href] .go, .route[href] .go) {
+a.card[href] .go, a.route[href] .go {
   display:inline-flex;
   align-items:center;
   gap:.45rem;
@@ -93,7 +91,7 @@
     background-color:color-mix(in srgb,var(--craft-accent) 9%,transparent);
     transform:translateX(2px);
   }
-  :where(button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button):hover:not(:disabled):not(.active) {
+  :where(button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button):hover:not(:disabled):not(.active):not(.selected):not([aria-pressed="true"]):not([aria-selected="true"]):not([data-active="true"]) {
     border-color:var(--craft-ring);
     box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--craft-accent) 14%,transparent);
   }
@@ -101,6 +99,20 @@
 :where(button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button):active:not(:disabled) {
   transform:scale(.985);
 }
+
+/* On real touch devices the native tap highlight remains visible.
+   An additional pressed surface gives cards and navigation non-hover feedback. */
+a.card[href]:active {
+  border-color:var(--craft-ring);
+  background-color:color-mix(in srgb,var(--craft-accent) 6%,var(--card,#fff));
+}
+a.card[href]:active .go-arrow {
+  background-color:color-mix(in srgb,var(--craft-accent) 12%,transparent);
+}
+header nav a:active,.nav a:active {
+  background-color:color-mix(in srgb,var(--craft-accent) 12%,transparent);
+}
+
 @media(prefers-color-scheme:dark) {
   :root { --craft-ring:color-mix(in srgb,var(--craft-accent) 55%,transparent); }
 }
