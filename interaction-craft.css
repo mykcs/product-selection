@@ -1,0 +1,120 @@
+/* Interaction craft for the selection site.
+ * Keep existing product-specific color/price/choice semantics intact.
+ * The action remains the same size on hover; only its surface changes.
+ */
+:root {
+  --craft-accent: var(--accent, var(--blue, #06c));
+  --craft-duration: 210ms;
+  --craft-ease: cubic-bezier(.22,.72,.26,1);
+  --craft-ring: color-mix(in srgb, var(--craft-accent) 46%, transparent);
+}
+:where(a,button,input,select,summary):focus-visible {
+  outline: 3px solid var(--craft-accent);
+  outline-offset: 3px;
+}
+:where(a,button,summary) {
+  -webkit-tap-highlight-color: transparent;
+}
+:where(.nav, nav.nav) {
+  gap: clamp(5px,1vw,12px);
+  align-items: center;
+}
+:where(header nav a, .nav a) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 36px;
+  padding: 6px 9px;
+  margin-inline: -2px;
+  border-radius: 9px;
+  text-decoration: none;
+  transition: background-color var(--craft-duration) var(--craft-ease),
+              color var(--craft-duration) var(--craft-ease);
+}
+:where(.card[href], .route[href]) {
+  border-color: var(--line, rgba(0,0,0,.08));
+  transition:
+    color var(--craft-duration) var(--craft-ease),
+    background-color var(--craft-duration) var(--craft-ease),
+    border-color var(--craft-duration) var(--craft-ease),
+    box-shadow var(--craft-duration) var(--craft-ease),
+    transform var(--craft-duration) var(--craft-ease);
+}
+:where(.card[href]) {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+:where(.card[href] > .go, .route[href] > .go) {
+  margin-top:auto;
+  padding-top:22px;
+}
+:where(.card[href] .go, .route[href] .go) {
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  text-decoration:none;
+}
+.go-arrow {
+  inline-size:1.45rem;
+  block-size:1.45rem;
+  display:inline-grid;
+  place-items:center;
+  border-radius:999px;
+  border:1px solid var(--line, #d9d9de);
+  color:var(--craft-accent);
+  font-size:16px;
+  line-height:1;
+  flex:0 0 auto;
+  transition:background-color var(--craft-duration) var(--craft-ease),
+             transform var(--craft-duration) var(--craft-ease),
+             border-color var(--craft-duration) var(--craft-ease);
+}
+:where(button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button) {
+  transition:
+    background-color var(--craft-duration) var(--craft-ease),
+    border-color var(--craft-duration) var(--craft-ease),
+    color var(--craft-duration) var(--craft-ease),
+    box-shadow var(--craft-duration) var(--craft-ease),
+    transform var(--craft-duration) var(--craft-ease);
+}
+@media (hover:hover) and (pointer:fine) {
+  :where(header nav a,.nav a):hover {
+    background-color:color-mix(in srgb, var(--craft-accent) 9%, transparent);
+    text-decoration:none;
+  }
+  :where(.card[href],.route[href]):hover {
+    border-color:color-mix(in srgb,var(--craft-accent) 33%,var(--line,#dadade));
+    box-shadow:0 12px 30px rgba(0,0,0,.055);
+    text-decoration:none;
+  }
+  :where(.card[href],.route[href]):hover .go-arrow {
+    border-color:var(--craft-ring);
+    background-color:color-mix(in srgb,var(--craft-accent) 9%,transparent);
+    transform:translateX(2px);
+  }
+  :where(button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button):hover:not(:disabled):not(.active) {
+    border-color:var(--craft-ring);
+    box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--craft-accent) 14%,transparent);
+  }
+}
+:where(button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button):active:not(:disabled) {
+  transform:scale(.985);
+}
+@media(prefers-color-scheme:dark) {
+  :root { --craft-ring:color-mix(in srgb,var(--craft-accent) 55%,transparent); }
+}
+@media(prefers-color-scheme:dark) and (hover:hover) and (pointer:fine) {
+  :where(.card[href],.route[href]):hover { box-shadow:0 12px 28px rgba(0,0,0,.23); }
+}
+@media(prefers-reduced-motion:reduce) {
+  :where(header nav a,.nav a,.card[href],.route[href],.go-arrow,button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button) {
+    transition:none !important;
+    animation:none !important;
+  }
+  :where(.card[href],.route[href],button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button):hover,
+  :where(.card[href],.route[href],button.choice,button.filter,.tabs button,.mode[href],.path[href],.action[href],.buy[href],.tf2-pick,.secondary-button):active,
+  .go-arrow {
+    transform:none !important;
+  }
+}
