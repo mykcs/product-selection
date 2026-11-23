@@ -1,4 +1,4 @@
-# Current | mykcs/product-selection
+# Current | suiyue77/product-selection
 
 这是长期协作 Agent 的统一接手入口，遵循 [共享 Handoff Pattern](https://github.com/mykcs/.agents/blob/main/docs/agents/HANDOFF_PATTERN.md)。Current 负责导航和恢复上下文，不是实时锁，也不复制 Wish、Dev 或产品规则。
 
@@ -14,7 +14,7 @@
 ## 新 Agent 接手顺序
 
 1. 读取 AGENTS、本页以及当前 STATUS 指向的规范来源，不把历史记录当作当前授权。
-2. **实时**检查默认分支 HEAD、[Issues](https://github.com/mykcs/product-selection/issues)、[PRs](https://github.com/mykcs/product-selection/pulls)、相关分支与任务认领。
+2. **实时**检查默认分支 HEAD、[Issues](https://github.com/suiyue77/product-selection/issues)、[PRs](https://github.com/suiyue77/product-selection/pulls)、相关分支与任务认领。
 3. 根据现行 Issues/PR 判断是否有人正在编辑同一文件；若已有 owner，优先只读审查或补独立文件，不重建第二条相同工作线。
 4. 确认目标、受控写入范围、base/head SHA 和验收证据；在独立分支做修改并通过 PR 交付。
 5. 跨窗口交接在 Issue/PR 留下实际结果、文件、命令、风险、下一动作；集成者串行合并并核实远端 main。
