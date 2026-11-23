@@ -146,6 +146,29 @@ def validate_osprey_hk() -> None:
     ):
         require(page, fragment, "HK Osprey dealer and MTR map")
 
+    # Source-backed merchant channels must remain attached to the right store,
+    # distinct from the global distributor and from live per-branch inventory.
+    verified_contacts = {
+        "reecho-ymt": ("https://wa.me/85267057928", "www.facebook.com/reechoshop"),
+        "funshop": ("www.instagram.com/funshop_outdoor", "www.xiaohongshu.com/user/profile/6292621500000000210206f2"),
+        "backpacker": ("www.facebook.com/backpacker.outdoor.hk/", "backpacker.outdoor@gmail.com"),
+        "rc-mk": ("www.instagram.com/rcoutfitters/", "twitter.com/RCOutfitters", "phone=85263602944"),
+        "overlander-mk": ("www.instagram.com/theoverlander_hk/", "wa.me/85296725348"),
+        "reecho-wc": ("www.facebook.com/reechoshop",),
+        "rc-cwb": ("www.instagram.com/rcoutfitters/", "twitter.com/RCOutfitters", "phone=85263602944"),
+        "overlander-cwb": ("www.instagram.com/theoverlander_hk/", "wa.me/85296725348"),
+    }
+    for store_id, fragments in verified_contacts.items():
+        block_start = f'<article class="shop" id="{store_id}"'
+        require(page, block_start, "HK social contact store " + store_id)
+        block = page.split(block_start, 1)[1].split("</article>", 1)[0]
+        require(block, 'class="merchant-channels"', "HK social contact group " + store_id)
+        require(block, 'href="tel:+852', "HK tap-to-call " + store_id)
+        for fragment in fragments:
+            require(block, fragment, "HK verified contact " + store_id)
+    require(page, "社交账号、统一客服、具体门店电话分别标注", "HK social source boundary")
+    require(page, "mailto:info@acu.com.hk", "HK distributor public contact")
+
 
 def validate_osprey_series() -> None:
     home = (ROOT / "index.html").read_text(encoding="utf-8")
