@@ -384,7 +384,23 @@ def validate_actual_purchase_route() -> None:
     require(style, ".actual-side", "unverified side branch styles")
 
 
+
+def validate_vercel_git_deployment_policy() -> None:
+    """Keep main and normal PR previews; opt out only from named local-iteration branches."""
+    config = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
+    expected = {"main": True, "wip/**": False, "scratch/**": False}
+    if config.get("$schema") != "https://openapi.vercel.sh/vercel.json":
+        fail("vercel.json missing official config schema")
+    if config.get("git", {}).get("deploymentEnabled") != expected:
+        fail("Git deployment policy must keep main and normal PR previews and skip only wip/scratch")
+    if config.get("github", {}).get("autoJobCancelation") is not True:
+        fail("Vercel superseded branch builds must be cancelable")
+    if "ignoreCommand" in config or "builds" in config or "routes" in config:
+        fail("Do not add unrelated Vercel build/runtime overrides to the lightweight deployment policy")
+
+
 def main() -> int:
+    validate_vercel_git_deployment_policy()
     validate_routes()
     validate_osprey()
     validate_osprey_series()

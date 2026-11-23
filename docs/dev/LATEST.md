@@ -13,3 +13,15 @@ python3 scripts/validate_site.py
 Public GitHub Actions runs that validator on pull requests. Vercel remains the website Preview/Production provider; CI does not replace deployment.
 
 The validator intentionally avoids browser farms and package-manager setup. It protects only high-value deterministic logic that has actually been easy to break during edits.
+
+## Vercel Git automatic deployment budget (2026-11-23)
+
+The site remains a zero-dependency static multi-route site. GitHub Actions PR CI still performs the exact deterministic Python price/route validation; Vercel remains the Preview + Production provider.
+
+- **Production**: pushes/merges to main continue to create Vercel Production deployments.
+- **Normal review**: feat/, fix/, review/, etc. branches continue to receive automatic PR Previews; no existing PR needs renaming. On any branch that does not match the opt-out patterns, Vercel's default remains deploy.
+- **Cost-saving work branches**: new wip/ or scratch/ branches are for frequent local/agent iterations when an online Preview is not needed, and vercel.json explicitly prevents Git deployment scheduling for those two patterns. Create a normal feat/ or review/ branch at the reviewed SHA when a link is actually needed; don't require a Vercel check on a wip/ branch.
+- **No false fix**: an Ignored Build Step still counts against Vercel daily deployment quota, so it is not used to solve the 100-deploy Hobby limit. Prebuilt VPS output also counts as a deployment. Do local offline build/tests as often as needed, batch commits, reserve a Vercel Preview for decision points.
+- **Authority/test**: scripts/validate_site.py owns a cheap exact policy guard in the existing PR GitHub Actions validator; no new runner or provider. This is a new branch-namespace capability, not evidence of saved deployments until a natural wip/ event is observed. The existing website routes, domain, hosting, permissions, and Vercel link remain unchanged.
+
+Rollback: remove git.deploymentEnabled from vercel.json in a reviewed PR; all branches return to Vercel's default auto-deploy policy.
