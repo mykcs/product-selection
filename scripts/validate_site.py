@@ -133,7 +133,7 @@ def validate_osprey_hk() -> None:
         "overlander.com.hk",
         "mtr.com.hk",
         "openstreetmap.org/copyright",
-        "家樂坊" if False else "家乐坊",
+        "家乐坊",
         "油麻地",
         "旺角",
         "湾仔",
