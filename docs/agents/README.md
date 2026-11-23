@@ -10,6 +10,7 @@ This repository is intentionally small. This file is navigation-only and does no
 | Homepage/navigation | `index.html` |
 | Apple Watch comparison | `watch/index.html` |
 | Osprey backpack use-case chooser | `osprey/index.html` |
+| Osprey Hong Kong dealer map | `osprey/hong-kong/index.html`; check dealer addresses against `ospreypacks.com.hk`, retailer stores pages, and MTR official network map; map coordinates are not door-level guarantees |
 | Osprey series and price catalogue | `osprey/series/index.html`, `app.js`, `catalog.json`; evidence: `docs/decisions/2026-10-14-osprey-series-us-prices.md` |
 | iPhone comparison | `iphone/index.html` |
 | iPhone 香港换机话术与分支 | `iphone/trade-in-guide/index.html`, `model.js`, `ui.js`, `app.js` |
