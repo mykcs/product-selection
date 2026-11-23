@@ -56,6 +56,10 @@
 最终价格、库存、教育资格与汇率以下单页面为准。
 
 
+## 给 Agent 读
+
+通用品类目录位于 `/agent/`。只从明确允许的首页品类入口生成，不复制私人购买记录、财务信息、具体价格或深层记录页面。修改品类导航后运行 `python3 scripts/agent_reader.py --write`，再运行现有站点检查；网站登录保护不变。
+
 ## 开发与 CI
 
 开发方向、轻量价格逻辑检查与 Vercel 分工见 [`docs/dev/README.md`](docs/dev/README.md)。

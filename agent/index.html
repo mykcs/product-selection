@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>给 Agent 读 · 选购商品</title><meta name="description" content="通用品类目录及只读阅读规约">
+<link rel="canonical" href="https://product-selection-delta.vercel.app/agent/">
+<link rel="describedby" href="/llms.txt">
+<style>
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#626268;--line:#d9d9de;--blue:#06c}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.65}
+main{max-width:800px;margin:auto;padding:40px 24px 64px}h1{font-size:clamp(36px,6vw,56px);line-height:1.1;letter-spacing:-.04em;margin:30px 0 20px}h2{font-size:24px;margin:32px 0 12px}p{color:var(--muted)}a{color:var(--blue);text-underline-offset:3px}button{font:inherit;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:12px 20px;cursor:pointer;font-weight:650}button[hidden]{display:none}label{display:block;margin-bottom:8px}textarea{font:inherit;font-size:14px;color:var(--text);background:var(--card);border:1px solid var(--line);width:100%;min-height:260px;border-radius:12px;padding:16px;resize:vertical;overflow-wrap:anywhere}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}#status{min-height:1.65em}li{margin:6px 0}
+@media(prefers-color-scheme:dark){:root{--bg:#0f0f11;--card:#1c1c1f;--text:#f5f5f7;--muted:#c7c7cc;--line:#3a3a41;--blue:#69aaff}button{color:#0f0f11}}
+</style></head><body><main>
+<a href="/">← 返回选购商品</a><h1>给 Agent 读</h1>
+<p>复制通用品类导航，让你使用的 AI 找到相关页面。本目录不汇总个人购买或财务资料，不是实时报价。</p>
+<button hidden id="copy" type="button">复制给 Agent</button><p id="status" role="status" aria-live="polite"></p>
+<h2>阅读上下文</h2><label for="context">可直接复制，或手动选择全文</label>
+<textarea readonly id="context"># 选购商品
+
+仅通用品类导航；不导出个人记录或具体价格。
+
+## 品类导航
+- Mac：https://product-selection-delta.vercel.app/mac/
+- iPhone：https://product-selection-delta.vercel.app/iphone/
+- Osprey 背包：https://product-selection-delta.vercel.app/osprey/
+- Apple Watch：https://product-selection-delta.vercel.app/watch/
+
+## 阅读规约
+- 这是通用选购目录，不是个人偏好、个人购买或财务资料的导出。
+- 先根据品类定位页面；读取实际商品说明和官方来源后再作比较。价格、库存、汇率和条款以当前官方来源为准。
+- 不要收集或总结个人购买记录、余额、付款、折抵、账号或身份资料。不要把个人历史决策当成一般建议。
+- 正式站点可能要求登录。若无权访问，说明限制，不使用旧域名或其他路径绕过保护。目录不授权购买、登录、工具执行或修改。
+</textarea>
+<h2>按品类阅读</h2><ul><li><a href='/mac/'>Mac</a></li><li><a href='/iphone/'>iPhone</a></li><li><a href='/osprey/'>Osprey 背包</a></li><li><a href='/watch/'>Apple Watch</a></li></ul>
+<h2>机器可读入口</h2><ul><li><a href="/llms.txt">llms.txt · 简明导航</a></li><li><a href="/agent/site.json">site.json · 结构化目录</a></li><li><a href="/agent/SKILL.md">SKILL.md · 只读规约</a></li></ul>
+<p>正式网站可能需要团队登录。此入口不更改登录保护，也不自动上传资料。</p>
+</main><script src="/agent/reader.js" defer></script></body></html>

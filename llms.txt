@@ -1,0 +1,15 @@
+# 选购商品
+> 仅通用品类导航；不导出个人记录或具体价格。
+
+## 品类导航
+- [Mac](https://product-selection-delta.vercel.app/mac/)
+- [iPhone](https://product-selection-delta.vercel.app/iphone/)
+- [Osprey 背包](https://product-selection-delta.vercel.app/osprey/)
+- [Apple Watch](https://product-selection-delta.vercel.app/watch/)
+
+## 阅读入口
+- [给 Agent 读](https://product-selection-delta.vercel.app/agent/)
+- [结构化目录](https://product-selection-delta.vercel.app/agent/site.json)
+- [只读规约](https://product-selection-delta.vercel.app/agent/SKILL.md)
+
+正式站点可能需要登录。不能访问时请说明限制，不绕过保护。
