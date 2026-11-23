@@ -14,6 +14,7 @@ PAGES = (
     Path("watch/index.html"),
     Path("osprey/index.html"),
     Path("osprey/series/index.html"),
+    Path("osprey/hong-kong/index.html"),
     Path("iphone/index.html"),
     Path("iphone/trade-in-guide/index.html"),
     Path("mac/index.html"),
@@ -115,6 +116,35 @@ def validate_osprey() -> None:
         "aria-pressed",
     ):
         require(page, fragment, "Osprey chooser")
+
+
+def validate_osprey_hk() -> None:
+    """Protect the separate MTR map route, primary sources, and uncertainty."""
+    chooser = (ROOT / "osprey/index.html").read_text(encoding="utf-8")
+    page = (ROOT / "osprey/hong-kong/index.html").read_text(encoding="utf-8")
+    require(chooser, 'href="/osprey/hong-kong/"', "HK store-map entry")
+    if page.count('<article class="shop"') != 8:
+        fail("HK dealer map must preserve eight distinct primary-store cards")
+    for fragment in (
+        "Great Seasons Limited",
+        "ospreypacks.com.hk",
+        "funshopoutdoor.com.hk",
+        "rcoutfitters.net",
+        "overlander.com.hk",
+        "mtr.com.hk",
+        "openstreetmap.org/copyright",
+        "家樂坊" if False else "家乐坊",
+        "油麻地",
+        "旺角",
+        "湾仔",
+        "铜锣湾",
+        "折扣与库存待查",
+        "港铁导航",
+        "街道级近似",
+        "data-region",
+        "data-station",
+    ):
+        require(page, fragment, "HK Osprey dealer and MTR map")
 
 
 def validate_osprey_series() -> None:
@@ -387,6 +417,7 @@ def validate_actual_purchase_route() -> None:
 def main() -> int:
     validate_routes()
     validate_osprey()
+    validate_osprey_hk()
     validate_osprey_series()
     validate_rates()
     validate_watch()
