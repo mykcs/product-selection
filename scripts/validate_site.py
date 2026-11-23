@@ -7,10 +7,12 @@ import json
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
+from agent_reader import validate_reader
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = (
     Path("index.html"),
+    Path("agent/index.html"),
     Path("watch/index.html"),
     Path("osprey/index.html"),
     Path("osprey/series/index.html"),
@@ -77,7 +79,7 @@ def internal_target(href: str) -> Path | None:
 
 
 def validate_routes() -> None:
-    expected = {page.as_posix() for page in PAGES}
+    expected = {page.as_posix() for page in PAGES} | {"llms.txt", "agent/site.json", "agent/SKILL.md"}
     for page in PAGES:
         full = ROOT / page
         if not full.is_file():
@@ -402,6 +404,7 @@ def validate_vercel_git_deployment_policy() -> None:
 def main() -> int:
     validate_vercel_git_deployment_policy()
     validate_routes()
+    validate_reader()
     validate_osprey()
     validate_osprey_series()
     validate_rates()
