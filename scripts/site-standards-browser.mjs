@@ -27,14 +27,15 @@ async function htmlFiles(directory) {
   }
   return files;
 }
-const routes = (await htmlFiles(root)).sort().map(file => '/' + relative(root, file).replaceAll(sep, '/').replace(/index\.html$/, ''));
-assert.equal(routes.length, 11, 'register every new served route in the price/route validator and browser contract');
+const servingRoot = join(root, 'dist');
+const routes = (await htmlFiles(servingRoot)).sort().map(file => '/' + relative(servingRoot, file).replaceAll(sep, '/').replace(/index\.html$/, ''));
+assert.equal(routes.length, 12, 'register every new served route in the price/route validator and browser contract');
 const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml' };
 const server = createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
-    const file = resolve(root, '.' + pathname + (pathname.endsWith('/') ? 'index.html' : ''));
-    if (!file.startsWith(root + sep)) { response.writeHead(403).end(); return; }
+    const file = resolve(servingRoot, '.' + pathname + (pathname.endsWith('/') ? 'index.html' : ''));
+    if (!file.startsWith(servingRoot + sep)) { response.writeHead(403).end(); return; }
     const body = await readFile(file);
     response.writeHead(200, { 'content-type': mime[extname(file)] || 'application/octet-stream' }).end(body);
   } catch { response.writeHead(404).end('Not found'); }

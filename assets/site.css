@@ -55,6 +55,8 @@
   --width-control: 13rem;
   --width-control-small: 8rem;
   --width-table: 52rem;
+  --width-map-min: 55rem;
+  --width-map-max: 62rem;
 }
 
 * { box-sizing: border-box; }

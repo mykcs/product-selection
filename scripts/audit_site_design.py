@@ -178,7 +178,7 @@ def calendar_failures(records: list[dict], root: Path) -> list[dict]:
 def validate_design(root: Path, pages) -> dict:
     expected = {Path(page).as_posix() for page in pages}
     discovered = {page.relative_to(root).as_posix() for page in root.rglob("*.html")
-                  if not any(part in {".git", "node_modules", "test-results", "playwright-report", "reports"} for part in page.relative_to(root).parts)}
+                  if not any(part in {".git", "node_modules", "test-results", "playwright-report", "reports", "dist", ".public-build", ".astro"} for part in page.relative_to(root).parts)}
     errors = []
     if discovered != expected:
         errors.append(f"HTML route inventory differs: missing={sorted(expected-discovered)}, unregistered={sorted(discovered-expected)}")
@@ -208,6 +208,11 @@ def validate_design(root: Path, pages) -> dict:
             stylesheet = (root / url.path.lstrip("/") if url.path.startswith("/") else path.parent / url.path).resolve()
             if not stylesheet.is_relative_to(root.resolve()) or not stylesheet.is_file():
                 errors.append(name + ": broken local stylesheet " + href)
+            elif href == "/assets/vendor/leaflet/leaflet.css":
+                # Pinned third-party map geometry is not the product typography owner.
+                if not stylesheet.read_text(encoding="utf-8").startswith("/* required styles"):
+                    errors.append(name + ": unexpected Leaflet CSS artifact")
+                continue
             elif stylesheet not in linked:
                 linked.add(stylesheet)
                 css_blocks.append((stylesheet.relative_to(root).as_posix(), stylesheet.read_text(encoding="utf-8")))

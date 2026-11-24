@@ -10,7 +10,7 @@
 
 四个品类入口（原来的 Apple 页面和子页面均保留）：
 
-- 小鹰背包 Osprey：按用途选 /osprey/；按系列看 /osprey/series/
+- 小鹰背包 Osprey：按用途选 /osprey/；按系列看 /osprey/series/；香港门店及港铁导购 /osprey/hong-kong/
 - Apple Watch Series 12：/watch/
 - iPhone 18 Pro Max 256GB：/iphone/
 - Mac 交互选择工具：/mac/

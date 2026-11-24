@@ -31,3 +31,18 @@ test('Osprey chooser and local series data',async({page})=>{
   await page.locator('#series-search').fill('Talon');
   await expect(page.locator('#family-list')).toContainText(/Talon/i);
 });
+
+test('Hong Kong dealer map and wishlist preserve independent filters',async({page})=>{
+  await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
+  await page.goto('/osprey/');
+  await expect(page.locator('#my-wishes')).toBeVisible();
+  await page.locator('a[href="/osprey/hong-kong/"]').click();
+  await expect(page.locator('.shop')).toHaveCount(8);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(8);
+  await page.locator('button[data-region="island"]').click();
+  await expect(page.locator('.shop:visible')).toHaveCount(3);
+  await page.locator('button[data-station="油麻地"]').click();
+  await expect(page.locator('.shop:visible')).toHaveCount(2);
+  await expect(page.locator('.shop:visible a').first()).toBeVisible();
+  await expect(page.locator('.shop:visible a[href*="travelmode=transit"]').first()).toBeVisible();
+});

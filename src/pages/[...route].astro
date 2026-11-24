@@ -4,6 +4,6 @@ import { pages } from '../lib/legacy-pages.mjs';
 export function getStaticPaths() {
   return pages().map(page=>({params:{route:page.route||undefined},props:page}));
 }
-const { lang, head, content, mainId } = Astro.props;
+const { lang, head, bodyAttrs, content, mainId } = Astro.props;
 ---
-<SiteLayout {lang} {head} {content} {mainId} />
+<SiteLayout {lang} {head} {bodyAttrs} {content} {mainId} />

@@ -13,15 +13,15 @@ const filesUnder = root => fs.existsSync(root) ? fs.readdirSync(root, { withFile
 export function pages() {
   return ['index.html', ...roots.flatMap(root => filesUnder(root)).filter(file => file.endsWith('/index.html'))].sort().map(file => {
     const source = fs.readFileSync(file, 'utf8');
-    const match = source.match(/^\s*<!doctype html>\s*<html lang="(zh-CN|en)">\s*<head>([\s\S]*?)<\/head>\s*<body>([\s\S]*?)<\/body>\s*<\/html>\s*$/i);
+    const match = source.match(/^\s*<!doctype html>\s*<html lang="(zh-CN|en)">\s*<head>([\s\S]*?)<\/head>\s*<body([^>]*)>([\s\S]*?)<\/body>\s*<\/html>\s*$/i);
     if (!match) throw new Error('Unexpected document structure: ' + file);
-    const [, lang, head, body] = match;
+    const [, lang, head, bodyAttrs, body] = match;
     const main = body.match(/<main\b[^>]*>/g);
     if (main?.length !== 1) throw new Error('Expected one main landmark: ' + file);
     const start = main[0];
     const id = start.match(/\bid="([^"]+)"/)?.[1] ?? 'main';
     const content = /\bid=/.test(start) ? body : body.replace(start, start.replace(/>$/, ' id="main">'));
-    return { file, route: file.replace(/(?:^|\/)index\.html$/, ''), lang, head, body, content, mainId: id };
+    return { file, route: file.replace(/(?:^|\/)index\.html$/, ''), lang, head, bodyAttrs, body, content, mainId: id };
   });
 }
 
