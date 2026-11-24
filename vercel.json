@@ -9,5 +9,8 @@
   },
   "github": {
     "autoJobCancelation": true
-  }
+  },
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
 }
