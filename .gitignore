@@ -1,0 +1,11 @@
+__pycache__/
+reports/site-standards/
+
+node_modules/
+dist/
+.astro/
+.public-build/
+playwright-report/
+test-results/
+*.pyc
+.DS_Store

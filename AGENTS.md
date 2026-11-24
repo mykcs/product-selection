@@ -2,20 +2,20 @@
 
 Shared operating policy: follow [the central AGENTS.md](https://github.com/mykcs/.agents/blob/main/AGENTS.md) and [Capability Routing](https://github.com/mykcs/.agents/blob/main/docs/dev/CAPABILITY_ROUTING.md) for authorization reuse, tool fallbacks and engineering completion. This repository retains its scoped scientific, resource, privacy and release requirements.
 
-This is a small static multi-category product selection site (Apple devices and Osprey backpacks). Keep the Agent surface thin.
+This is a small static Astro multi-category product selection site (Apple devices and Osprey backpacks). Keep the Agent surface thin.
 
 ## Read first
 
 1. `README.md` — current product/page scope and public URL.
 2. `docs/agents/README.md` — route/ownership map.
-3. Only the HTML route(s) relevant to the requested change.
+3. Only the Astro route(s) relevant to the requested change.
 
 Do not recursively read every page for a one-route edit.
 
 ## Authority boundaries
 
 - Human-facing scope and comparison intent → `README.md`.
-- Rendered content and interaction → the relevant route `index.html`.
+- Product content and interaction → the relevant source route under `src/pages/`; `src/layouts/SiteLayout.astro`, `src/components/MainContent.astro` and `assets/site.css` own the common shell and shared design. No second copy of pricing or private data.
 - Apple prices, education-store availability, product configurations, technical specifications and purchase URLs → current official Apple pages; re-verify before changing dated/current claims.
 - Osprey backpack models, fit, volume, and purchase URLs → official Osprey pages; do not invent a local-market price, sizing result or fit guarantee. The only product-family catalogue and dated US price snapshot is `osprey/series/catalog.json`, with verification policy in `docs/decisions/2026-10-14-osprey-series-us-prices.md`. Never claim prices are live or copy prices into a second source of truth.
 - Exchange-rate claims → the explicitly dated snapshot documented in the site; do not silently mix dates.
@@ -32,7 +32,7 @@ Do not recursively read every page for a one-route edit.
 ## Validation
 
 For a changed route:
-- inspect the final HTML;
+- inspect both source and emitted HTML; run `npm ci`, `npm run check`, `python3 scripts/validate_site.py` and `npm run test:browser` for build/layout changes;
 - verify internal links affected by the change;
 - verify external purchase/source links when they are part of the task;
 - after deployment work, verify the actual public route rather than assuming repository merge equals Production success.

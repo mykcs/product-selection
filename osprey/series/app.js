@@ -5,7 +5,7 @@ const detail = document.getElementById("family-detail");
 const search = document.getElementById("series-search");
 const count = document.getElementById("result-count");
 const filters = [...document.querySelectorAll("[data-filter]")];
-const state = { families: [], category: "all", query: "", selectedId: null, categories: {} };
+const state = { families: [], category: "all", query: "", selectedId: null, categories: {}, checkedAt: "" };
 const money = value => new Intl.NumberFormat("en-US", {style:"currency",currency:"USD",maximumFractionDigits:0}).format(value);
 const make = (tag, className, value) => {
   const node = document.createElement(tag);
@@ -45,7 +45,11 @@ function renderDetail() {
   why.append(best,caution);
   detail.append(why);
   const bar = make("div","subhead");
-  bar.append(make("h4","","这个系列的代表型号"),make("span","","美国官网价 · 2026-10-14"));
+  const snapshot = make("time", "", SiteCalendar.formatCalendarDate(state.checkedAt, "zh"));
+  snapshot.dateTime = state.checkedAt;
+  const snapshotLabel = make("span", "", "美国官网价 · ");
+  snapshotLabel.append(snapshot);
+  bar.append(make("h4","","这个系列的代表型号"), snapshotLabel);
   detail.append(bar);
   for (const product of family.products) {
     const card = make("article","product");
@@ -144,6 +148,7 @@ fetch("./catalog.json",{cache:"no-store"})
     if(!Array.isArray(catalog.families)||catalog.families.length===0)throw new Error("empty catalog");
     state.families=catalog.families;
     state.categories=catalog.categoryLabels;
+    state.checkedAt=catalog.checkedAt;
     const incoming=decodeURIComponent(location.hash.slice(1));
     state.selectedId=state.families.some(f=>f.id===incoming)?incoming:state.families[0].id;
     const total=state.families.reduce((n,f)=>n+f.products.length,0);

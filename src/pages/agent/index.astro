@@ -1,0 +1,12 @@
+---
+import source from '../../../agent/index.html?raw';
+import SiteLayout from '../../layouts/SiteLayout.astro';
+const parts=source.match(/<head>([\s\S]*?)<\/head>\s*<body[^>]*>([\s\S]*?)<\/body>/i);
+if (!parts) throw new Error('Invalid generated reader document');
+const head=parts[1].replace(/<link rel="stylesheet" href="\/assets\/site\.css">/,'');
+const body=parts[2].replace('<main class="wrap">','<main id="main" class="wrap">');
+---
+<SiteLayout pageRole="tool">
+  <Fragment slot="head" set:html={head} />
+  <Fragment set:html={body} />
+</SiteLayout>

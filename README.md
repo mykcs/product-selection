@@ -10,7 +10,7 @@
 
 四个品类入口（原来的 Apple 页面和子页面均保留）：
 
-- 小鹰背包 Osprey：按用途选 /osprey/；按系列看 /osprey/series/
+- 小鹰背包 Osprey：按用途选 /osprey/；按系列看 /osprey/series/；香港门店及港铁导购 /osprey/hong-kong/
 - Apple Watch Series 12：/watch/
 - iPhone 18 Pro Max 256GB：/iphone/
 - Mac 交互选择工具：/mac/
@@ -63,3 +63,14 @@
 ## 开发与 CI
 
 开发方向、轻量价格逻辑检查与 Vercel 分工见 [`docs/dev/README.md`](docs/dev/README.md)。
+
+### Local static build
+
+```bash
+npm ci
+npm run check
+python3 scripts/validate_site.py
+npm run test:browser
+```
+
+Native Astro 7 pages under `src/pages/` use a shared layout and Tailwind CSS 4 utilities mapped to the existing design tokens. The static build emits `dist/` and preserves the dated product facts and client interactions. The Agent reader is a strictly allowlisted generated projection. Leaflet 1.9.4 is vendored with its license; street-map tiles use the existing OpenStreetMap provider. See the [current development direction](docs/dev/LATEST.md) for the validation and deployment boundaries.

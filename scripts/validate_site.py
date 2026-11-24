@@ -9,13 +9,17 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from agent_reader import validate_reader
 
+from audit_site_design import validate_design
+
 ROOT = Path(__file__).resolve().parents[1]
+SITE = ROOT / "dist"
 PAGES = (
     Path("index.html"),
     Path("agent/index.html"),
     Path("watch/index.html"),
     Path("osprey/index.html"),
     Path("osprey/series/index.html"),
+    Path("osprey/hong-kong/index.html"),
     Path("iphone/index.html"),
     Path("iphone/trade-in-guide/index.html"),
     Path("mac/index.html"),
@@ -81,7 +85,7 @@ def internal_target(href: str) -> Path | None:
 def validate_routes() -> None:
     expected = {page.as_posix() for page in PAGES} | {"llms.txt", "agent/site.json", "agent/SKILL.md"}
     for page in PAGES:
-        full = ROOT / page
+        full = SITE / page
         if not full.is_file():
             fail(f"missing required page: {page}")
         text = full.read_text(encoding="utf-8")
@@ -93,13 +97,13 @@ def validate_routes() -> None:
             target = internal_target(href)
             if target is None:
                 continue
-            if target.as_posix() not in expected or not (ROOT / target).is_file():
+            if target.as_posix() not in expected or not (SITE / target).is_file():
                 fail(f"{page}: broken internal route {href!r} -> {target}")
 
 
 def validate_osprey() -> None:
-    home = (ROOT / "index.html").read_text(encoding="utf-8")
-    page = (ROOT / "osprey/index.html").read_text(encoding="utf-8")
+    home = (SITE / "index.html").read_text(encoding="utf-8")
+    page = (SITE / "osprey/index.html").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     require(home, "<h1>选购商品</h1>", "product selection site title")
     require(home, 'href="/osprey/"', "backpack homepage entry")
@@ -119,10 +123,62 @@ def validate_osprey() -> None:
         require(page, fragment, "Osprey chooser")
 
 
+def validate_osprey_hk() -> None:
+    """Protect the separate MTR map route, primary sources, and uncertainty."""
+    chooser = (SITE / "osprey/index.html").read_text(encoding="utf-8")
+    page = (SITE / "osprey/hong-kong/index.html").read_text(encoding="utf-8")
+    require(chooser, 'href="/osprey/hong-kong/"', "HK store-map entry")
+    if page.count('<article class="shop"') != 8:
+        fail("HK dealer map must preserve eight distinct primary-store cards")
+    for fragment in (
+        "Great Seasons Limited",
+        "ospreypacks.com.hk",
+        "funshopoutdoor.com.hk",
+        "rcoutfitters.net",
+        "overlander.com.hk",
+        "mtr.com.hk",
+        "openstreetmap.org/copyright",
+        "家乐坊",
+        "油麻地",
+        "旺角",
+        "湾仔",
+        "铜锣湾",
+        "折扣与库存待查",
+        "港铁导航",
+        "街道级近似",
+        "data-region",
+        "data-station",
+    ):
+        require(page, fragment, "HK Osprey dealer and MTR map")
+
+    # Source-backed merchant channels must remain attached to the right store,
+    # distinct from the global distributor and from live per-branch inventory.
+    verified_contacts = {
+        "reecho-ymt": ("https://wa.me/85267057928", "www.facebook.com/reechoshop"),
+        "funshop": ("www.instagram.com/funshop_outdoor", "www.xiaohongshu.com/user/profile/6292621500000000210206f2"),
+        "backpacker": ("www.facebook.com/backpacker.outdoor.hk/", "backpacker.outdoor@gmail.com"),
+        "rc-mk": ("www.instagram.com/rcoutfitters/", "twitter.com/RCOutfitters", "phone=85263602944"),
+        "overlander-mk": ("www.instagram.com/theoverlander_hk/", "wa.me/85296725348"),
+        "reecho-wc": ("www.facebook.com/reechoshop",),
+        "rc-cwb": ("www.instagram.com/rcoutfitters/", "twitter.com/RCOutfitters", "phone=85263602944"),
+        "overlander-cwb": ("www.instagram.com/theoverlander_hk/", "wa.me/85296725348"),
+    }
+    for store_id, fragments in verified_contacts.items():
+        block_start = f'<article class="shop" id="{store_id}"'
+        require(page, block_start, "HK social contact store " + store_id)
+        block = page.split(block_start, 1)[1].split("</article>", 1)[0]
+        require(block, 'class="merchant-channels"', "HK social contact group " + store_id)
+        require(block, 'href="tel:+852', "HK tap-to-call " + store_id)
+        for fragment in fragments:
+            require(block, fragment, "HK verified contact " + store_id)
+    require(page, "社交账号、统一客服、具体门店电话分别标注", "HK social source boundary")
+    require(page, "mailto:info@acu.com.hk", "HK distributor public contact")
+
+
 def validate_osprey_series() -> None:
-    home = (ROOT / "index.html").read_text(encoding="utf-8")
-    chooser = (ROOT / "osprey/index.html").read_text(encoding="utf-8")
-    series_page = (ROOT / "osprey/series/index.html").read_text(encoding="utf-8")
+    home = (SITE / "index.html").read_text(encoding="utf-8")
+    chooser = (SITE / "osprey/index.html").read_text(encoding="utf-8")
+    series_page = (SITE / "osprey/series/index.html").read_text(encoding="utf-8")
     app = (ROOT / "osprey/series/app.js").read_text(encoding="utf-8")
     require(home, "18 个常见系列", "Osprey homepage overview")
     require(chooser, 'href="/osprey/series/"', "Osprey two-way navigation")
@@ -173,7 +229,7 @@ def validate_rates() -> None:
 
 
 def validate_watch() -> None:
-    text = (ROOT / "watch/index.html").read_text(encoding="utf-8")
+    text = (SITE / "watch/index.html").read_text(encoding="utf-8")
     require(text, "页面默认按 46 mm 比较", "Watch fixed-size policy")
     require(text, "<h2>46 mm</h2>", "Watch heading")
     require(text, "46mm-cellular-natural-titanium", "Watch titanium purchase URL")
@@ -202,7 +258,7 @@ def validate_watch() -> None:
 
 
 def validate_iphone() -> None:
-    text = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    text = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     require(text, "iPhone 18 Pro Max 256GB", "iPhone fixed model")
 
     hk = yen(11499, HKD)
@@ -223,7 +279,7 @@ def validate_iphone() -> None:
 
 
 def validate_iphone_tradein_applecare() -> None:
-    text = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    text = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     for fragment in (
         'id="tradein-applecare"',
         "HK$4,499",
@@ -241,7 +297,7 @@ def validate_iphone_tradein_applecare() -> None:
 
 
 def validate_iphone_payment() -> None:
-    text = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    text = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     # Protect the dated Hong Kong payment decision without making live-bank claims in CI.
     for fragment in (
         'id="hk-payment" class="payment" data-price="11499"',
@@ -275,7 +331,7 @@ def validate_iphone_payment() -> None:
 
 
 def validate_iphone_tradein_routes() -> None:
-    text = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    text = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     for fragment in (
         'id="trade-flow-simulator" data-price="11499" data-balance="5080" data-care="1799"',
         'data-route="A"',
@@ -323,8 +379,8 @@ def validate_iphone_tradein_routes() -> None:
 
 def validate_tradein_dialogue() -> None:
     """The guided conversation is a separate subroute; do not overwrite finance logic."""
-    guide = (ROOT / "iphone/trade-in-guide/index.html").read_text(encoding="utf-8")
-    main_page = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    guide = (SITE / "iphone/trade-in-guide/index.html").read_text(encoding="utf-8")
+    main_page = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     ui = (ROOT / "iphone/trade-in-guide/ui.js").read_text(encoding="utf-8")
     app = (ROOT / "iphone/trade-in-guide/app.js").read_text(encoding="utf-8")
     model = (ROOT / "iphone/trade-in-guide/model.js").read_text(encoding="utf-8")
@@ -342,8 +398,8 @@ def validate_tradein_dialogue() -> None:
 
 def validate_actual_purchase_route() -> None:
     """Actual purchase path is immutable evidence, not a guessed successful Trade In."""
-    page = (ROOT / "iphone/trade-in-guide/index.html").read_text(encoding="utf-8")
-    main_page = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    page = (SITE / "iphone/trade-in-guide/index.html").read_text(encoding="utf-8")
+    main_page = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     style = (ROOT / "iphone/trade-in-guide/style.css").read_text(encoding="utf-8")
     record = (ROOT / "docs/decisions/2026-10-13-iphone-hk-actual-route.md").read_text(encoding="utf-8")
 
@@ -353,7 +409,7 @@ def validate_actual_purchase_route() -> None:
         'data-tradein="pending"',
         'data-courier="shipped"',
         'data-source="customer-recollection"',
-        "2026 年 10 月 13 日",
+        '<time datetime="2026-10-13">2026年10月13日</time>',
         "冰川蓝 · 256GB",
         "8 位验证码",
         "已到香港顺丰网点寄出旧机",
@@ -380,7 +436,7 @@ def validate_actual_purchase_route() -> None:
         fail("actual route must not pretend the 8-digit code was used")
     if "2026-10-13" not in record or "香港店员" not in record:
         fail("actual record must preserve witnessed testimony and uncertainty")
-    if "2026-10-13 真实结局" not in main_page or "冰川蓝" not in main_page:
+    if '<time datetime="2026-10-13">2026年10月13日</time> 真实结局' not in main_page or "冰川蓝" not in main_page:
         fail("iPhone landing page must report purchase complete")
     require(style, ".actual-steps", "connected actual route timeline")
     require(style, ".actual-side", "unverified side branch styles")
@@ -402,10 +458,12 @@ def validate_vercel_git_deployment_policy() -> None:
 
 
 def main() -> int:
+    validate_design(SITE, PAGES, calendar_root=ROOT, allow_compiled_tailwind=True)
     validate_vercel_git_deployment_policy()
     validate_routes()
     validate_reader()
     validate_osprey()
+    validate_osprey_hk()
     validate_osprey_series()
     validate_rates()
     validate_watch()

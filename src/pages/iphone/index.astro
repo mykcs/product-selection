@@ -1,0 +1,382 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import MainContent from "../../components/MainContent.astro";
+---
+<SiteLayout lang="zh-CN">
+<Fragment slot="head">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>iPhone 18 Pro Max 256GB｜中国大陆 / 香港 / 新加坡 / 美国</title><style is:inline>
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#5f5f65;--sub:#77777e;--line:#d9d9de;--blue:#06c;--green:#176c39;--greenbg:#edf8f1;--shadow:0 16px 44px rgba(0,0,0,.06)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+.top{position:sticky;top:0;z-index:20;background:rgba(245,245,247,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.08)}.top .wrap{height:52px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-6)}.nav{display:flex;gap:var(--space-5);font-size:var(--text-caption)}.hero p{margin:0;color:var(--muted)}
+section{padding:var(--space-7) 0}h2{margin:0 0 var(--space-3)}.lead{color:var(--muted);margin:0 0 var(--space-6)}.panel{background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:28px;box-shadow:var(--shadow)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-5)}.card{border:1px solid var(--line);border-radius:22px}.card.best{background:var(--greenbg);border-color:#75b88f}.card h3{font-size:var(--text-card);margin:0 0 var(--space-5)}.price{font-size:var(--text-price);font-weight:var(--weight-heading);letter-spacing:var(--tracking-tight)}.local{color:var(--muted);font-size:var(--text-caption);margin-top:var(--space-2)}.note{color:var(--muted);font-size:var(--text-caption);line-height:var(--leading-body);margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--line)}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:var(--space-4) var(--space-5);border-bottom:1px solid var(--line);vertical-align:top;font-size:var(--text-caption);line-height:var(--leading-body)}th{color:var(--sub);font-size:var(--text-caption);text-transform:uppercase;letter-spacing:var(--tracking-label)}
+.callout{margin-top:var(--space-5);padding:var(--space-5) var(--space-6);border-radius:20px;background:#111113;color:#fff}.callout strong{font-size:var(--text-card)}.callout p{margin:var(--space-3) 0 0;color:#d1d1d6;font-size:var(--text-caption);line-height:var(--leading-body)}
+.pills{display:flex;gap:var(--space-3);flex-wrap:wrap}.pill{padding:var(--space-3) var(--space-4);border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:var(--text-caption);color:var(--muted)}
+footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--text-caption);line-height:var(--leading-body)}
+@media(max-width:780px){.nav{display:none}.cards{grid-template-columns:1fr}}
+@media(prefers-color-scheme:dark){:root{--bg:#0f0f11;--card:#1c1c1f;--text:#f5f5f7;--muted:#c7c7cc;--sub:#a9a9b0;--line:#3b3b42;--blue:#69aaff;--green:#81dba5;--greenbg:#153523;--shadow:none}.top{background:rgba(15,15,17,.9)}.panel,.card{border-color:#303037}.card.best{background:#14291d}}
+
+/* 2026-10-10 HK payment decision: independent of regional price comparison. */
+.payment{padding-top:var(--space-4)}.decision-line{display:flex;justify-content:space-between;align-items:center;gap:var(--space-5);padding:var(--space-6) var(--space-6);border:1px solid #b1dbc0;background:var(--greenbg);border-radius:26px;margin:var(--space-5) 0 var(--space-6)}
+.decision-line strong{display:block;font-size:var(--text-section);letter-spacing:var(--tracking-heading)}.eyebrow{text-transform:uppercase;color:var(--muted)}
+.payment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}.payment-card{border:1px solid var(--line);border-radius:24px;background:var(--card)}.payment-card h3{font-size:var(--text-title);margin:var(--space-3) 0 var(--space-3)}.payment-card .amount{font-size:var(--text-price);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);font-weight:var(--weight-heading);margin:var(--space-4) 0 var(--space-3);font-variant-numeric:tabular-nums}.payment-card .amount.is-green{color:var(--green)}.payment-card .mini{font-size:var(--text-caption);color:var(--muted);line-height:var(--leading-body)}.payment-card .net{border-top:1px solid var(--line);padding-top:var(--space-5);margin-top:var(--space-5)}.payment-card .net strong{display:block;font-size:var(--text-card);letter-spacing:var(--tracking-tight);font-variant-numeric:tabular-nums}.payment-tag{font-size:var(--text-caption);display:inline-block;padding:var(--space-3) var(--space-4);border-radius:999px;background:var(--bg);color:var(--muted)}
+.payment-controls{margin-top:var(--space-5)}.payment-controls h3{margin:0 0 var(--space-4);font-size:var(--text-title)}.control-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6)}.control-row{margin-top:var(--space-5)}.control-row label{font-size:var(--text-caption);font-weight:var(--weight-strong);line-height:var(--leading-body);display:flex;justify-content:space-between;gap:var(--space-3)}.control-row input[type=range]{width:100%;accent-color:var(--blue);margin:var(--space-4) 0 var(--space-2);cursor:pointer}.control-row select{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--text);border-radius:11px;padding:var(--space-4);margin-top:var(--space-4);font-size:var(--text-small)}.muted-small{font-size:var(--text-caption);color:var(--muted);line-height:var(--leading-reading)}
+.ledger{margin-top:var(--space-6)}.ledger h3{font-size:var(--text-card);margin:0 0 var(--space-4)}.ledger td:first-child{width:29%;font-weight:var(--weight-strong)}.ledger ul{margin:0;padding-left:var(--space-5)}.ledger li{margin:var(--space-2) 0}.ledger a{overflow-wrap:anywhere}
+.source-list{padding-left:var(--space-5);margin:var(--space-5) 0 var(--space-2);color:var(--muted);font-size:var(--text-caption);line-height:var(--leading-reading)}.source-list a{text-decoration:underline;text-underline-offset:2px}
+.state{font-size:var(--text-caption);border-radius:999px;padding:var(--space-2) var(--space-3);border:1px solid var(--line);white-space:nowrap}.state.caution{color:#b56d06;border-color:#d9a751}
+.payment details{margin-top:var(--space-4);border:1px solid var(--line);border-radius:17px;background:var(--card);padding:var(--space-5) var(--space-5)}.payment summary{font-weight:var(--weight-heading);cursor:pointer;font-size:var(--text-body)}.payment details p,.payment details li{font-size:var(--text-caption);line-height:var(--leading-reading);color:var(--muted)}.payment details ul{padding-left:var(--space-6)}
+@media(max-width:780px){.payment-grid,.control-grid{grid-template-columns:1fr}.decision-line{align-items:flex-start;flex-direction:column}.payment-card .amount{font-size:var(--text-section)}.ledger td:first-child{width:32%}}
+
+.tradein-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}
+.tradein-card{padding:var(--space-6);border-radius:20px;border:1px solid var(--line)}
+.tradein-card h3{font-size:var(--text-lead);margin:0 0 var(--space-3)}
+.tradein-card .figure{font-size:var(--text-price);letter-spacing:var(--tracking-tight);font-weight:var(--weight-heading);margin:var(--space-4) 0}
+.tradein-card .muted-small{margin:var(--space-3) 0}
+.tradein-warning{border-left:4px solid #c88a20;padding:var(--space-5) var(--space-5);margin-top:var(--space-5);background:var(--card);border-radius:9px;line-height:var(--leading-reading)}
+.tradein-warning strong{font-size:var(--text-lead)}
+.tradein-step{padding-left:var(--space-6);font-size:var(--text-caption);line-height:var(--leading-reading)}
+.tradein-step li{margin:var(--space-3) 0}
+@media(max-width:780px){.tradein-grid{grid-template-columns:1fr}.tradein-card .figure{font-size:var(--text-section)}}
+
+
+
+/* Active Oct-10 decision: Apple official trade-in ONLY. No gift-card or private sale. */
+.tf2{background:#0c1524;color:#f3f7ff;border-radius:27px;padding:var(--space-panel);box-shadow:0 22px 50px rgba(0,0,0,.11);margin:var(--space-6) 0 var(--space-6)}
+.tf2 *{box-sizing:border-box}.tf2 h3{font-size:var(--text-section);line-height:var(--leading-tight);letter-spacing:var(--tracking-tight);color:#fff;margin:var(--space-3) 0 var(--space-4)}
+.tf2 p{color:#aabbd0;line-height:var(--leading-reading);font-size:var(--text-caption);margin:0 0 var(--space-5)}
+.tf2 .tf2-mini{font-size:var(--text-caption);color:#a0b5d3;letter-spacing:var(--tracking-label);font-weight:var(--weight-heading)}
+.tf2 .tf2-fixed{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);margin:var(--space-5) 0 var(--space-5)}
+.tf2 .tf2-fixed>div{background:#1a283d;border:1px solid #344861;border-radius:14px;padding:var(--space-4)}
+.tf2 .tf2-fixed span{display:block;font-size:var(--text-caption);color:#a1b3ca;margin-bottom:var(--space-3)}
+.tf2 .tf2-fixed strong{font-size:var(--text-card);font-variant-numeric:tabular-nums}
+.tf2 .tf2-assumptions{border:1px solid #435770;background:#1b2a3a;border-radius:13px;padding:var(--space-4);color:#c2cfdf;font-size:var(--text-caption);line-height:var(--leading-reading)}
+.tf2 .tf2-head{text-align:center;border-radius:16px;border:1px solid #445c78;background:#253751;padding:var(--space-5);max-width:var(--width-summary);margin:var(--space-5) auto 0}
+.tf2 .tf2-head small{color:#afc6e2}.tf2 .tf2-head strong{display:block;font-size:var(--text-title);margin:var(--space-2) 0;color:#fff}
+.tf2 .tf2-connector{height:35px;max-width:62%;margin:0 auto;position:relative}
+.tf2 .tf2-connector:before{content:"";position:absolute;left:50%;top:0;height:16px;width:2px;background:#92b7e7}
+.tf2 .tf2-connector:after{content:"";position:absolute;left:5%;right:5%;top:15px;border-top:2px solid #68899f;border-left:2px solid #68899f;border-right:2px solid #68899f;height:18px;border-radius:10px 10px 0 0}
+.tf2 .tf2-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4)}
+.tf2 .tf2-pick{cursor:pointer;width:100%;padding:var(--space-5);text-align:left;border-radius:19px;border:1px solid #3a4a5f;background:#1b2738;opacity:.58;color:#a7b6cb;transition:.18s ease;transition-property:opacity,border-color,background,transform}
+.tf2 .tf2-pick:hover{opacity:1;transform:translateY(-2px)}.tf2 .tf2-pick:focus-visible{outline:2px solid #e8d68b;outline-offset:3px}
+.tf2 .tf2-pick[aria-pressed=true]{border:2px solid #81ebbd;padding:var(--space-5);opacity:1;background:#1f473c;color:#fff}
+.tf2 .tf2-pick[data-route="B"][aria-pressed=true]{background:#2b4166;border-color:#a2c3ff}
+.tf2 .tf2-pick small{display:block;font-size:var(--text-caption);color:#9daec6;line-height:var(--leading-body);margin-bottom:var(--space-2)}
+.tf2 .tf2-pick b{display:block;font-size:var(--text-lead);line-height:var(--leading-heading);margin:var(--space-3) 0 var(--space-2)}
+.tf2 .tf2-pick .tf2-sub{font-size:var(--text-caption);line-height:var(--leading-body);display:block;color:#b5c4d8}
+.tf2 .tf2-arrow{text-align:center;color:#9dbaeb;font-size:var(--text-card);margin:var(--space-3) 0}
+.tf2 .tf2-results{border:1px solid #5b7890;border-radius:20px;padding:var(--space-5);background:#1b2b40}
+.tf2 .tf2-large{font-size:var(--text-price);font-weight:var(--weight-heading);letter-spacing:var(--tracking-tight);line-height:var(--leading-tight);margin:var(--space-4) 0 var(--space-3);font-variant-numeric:tabular-nums}
+.tf2 .tf2-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);margin-top:var(--space-5)}
+.tf2 .tf2-stat{border-radius:13px;padding:var(--space-4);background:#111e30}
+.tf2 .tf2-stat small{font-size:var(--text-caption);color:#a0b3ce;line-height:var(--leading-body);display:block;margin-bottom:var(--space-2)}
+.tf2 .tf2-stat b{display:block;color:#f6fbff;font-size:var(--text-card);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.tf2 .tf2-stat.strong{background:#164637;border:1px solid #4a9278}.tf2 .tf2-stat.strong b{color:#a2f5c8}
+.tf2 .tf2-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);margin-top:var(--space-5)}
+.tf2 .tf2-stage{border:1px solid #42566e;border-radius:14px;padding:var(--space-4)}
+.tf2 .tf2-stage .ordinal{font-size:var(--text-caption);color:#94afcc}
+.tf2 .tf2-stage b{font-size:var(--text-caption);display:block;margin:var(--space-3) 0;color:#fff}
+.tf2 .tf2-stage p{font-size:var(--text-caption);line-height:var(--leading-reading);margin:0}
+.tf2 .tf2-options{margin-top:var(--space-5);border-top:1px solid #40526d;padding-top:var(--space-5);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5)}
+.tf2 label{display:block;color:#c8d7ec;font-size:var(--text-caption);line-height:var(--leading-body);font-weight:var(--weight-heading);margin-bottom:var(--space-3)}
+.tf2 select{background:#192b41;color:#f6faff;border:1px solid #6c839e;border-radius:10px;width:100%;padding:var(--space-4);font-size:var(--text-caption)}
+.tf2 input[type=range]{width:100%;accent-color:#89e5bd;cursor:pointer}
+.tf2 output{font-weight:var(--weight-heading);color:#9ef0c8;font-size:var(--text-small)}
+.tf2 .tf2-note{margin-top:var(--space-5);background:#342d2b;border-left:3px solid #dbb277;border-radius:10px;padding:var(--space-5);color:#f1d6a8;font-size:var(--text-caption);line-height:var(--leading-reading)}
+.tf2 .tf2-note strong{color:#fff3c9}
+.tf2 .tf2-bottom{border-top:1px solid #40536a;margin-top:var(--space-5);padding-top:var(--space-5);color:#a1b8d2;font-size:var(--text-caption);line-height:var(--leading-reading)}
+.tf2 a{color:#acd0ff;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:760px){.tf2 .tf2-timeline{grid-template-columns:1fr}.tf2 .tf2-connector{max-width:90%}}
+@media(max-width:550px){.tf2 .tf2-fixed{grid-template-columns:repeat(2,minmax(0,1fr))}.tf2 .tf2-fixed>div:last-child{grid-column:span 2}.tf2 .tf2-cards,.tf2 .tf2-grid,.tf2 .tf2-options{grid-template-columns:1fr}.tf2 .tf2-results{padding:var(--space-5)}.tf2 .tf2-connector{display:none}}
+</style></Fragment>
+
+<header class="top"><div class="wrap"><div class="brand">iPhone 18 Pro Max · 256GB</div><nav class="nav"><a href="/">首页</a><a href="/watch/">Apple Watch</a><a href="/mac/">Mac</a></nav></div></header>
+<MainContent>
+<section class="hero"><h1>iPhone 18 Pro Max 256GB</h1><p>四个地区统一比较同一款 256GB 机型。美国按免税州 0% 销售税；外币价格同时保留原币与人民币折算，并把 SIM 卡地区差异放在同一页。</p></section>
+
+<section id="trade-in-dialogue" aria-labelledby="tradein-dialogue-title">
+  <div class="panel">
+    <div class="eyebrow">香港换机 · <time datetime="2026-10-13">2026年10月13日</time> 真实结局</div>
+    <h2 id="tradein-dialogue-title">已买下冰川蓝 iPhone 18 Pro Max · 256GB</h2>
+    <p class="lead">到店咨询后选择网上下单、店内取货，买下冰川蓝 256GB 新机。旧 iPhone 17 Pro Max 当天也已交给香港顺丰寄出；店员曾说邮件会有 8 位验证码，但是否实际收到或使用仍未确认。HK$7,000 尚待验机，真实路线和原来的肉鸽模拟保留在同一页。</p>
+    <a href="/iphone/trade-in-guide/#actual-route-20261013" style="display:inline-flex;align-items:center;justify-content:center;padding:var(--space-4) var(--space-5);background:var(--blue);color:#fff;border-radius:12px;font-size:var(--text-small);font-weight:var(--weight-heading);text-decoration:none">查看 10 月 13 日的真实通关路线 →</a>
+  </div>
+</section>
+
+<section id="hk-payment" class="payment" data-price="11499" aria-labelledby="pay-title">
+  <div class="eyebrow">香港付款决策 · <time datetime="2026-10-10">2026年10月10日</time> 快照</div>
+  <h2 id="pay-title">买这部手机，哪张卡让你真正少花钱？</h2>
+  <p class="lead">先比较<strong>自己最终承担的成本</strong>，而不是广告写的回赠比例。下面只看香港 Apple 直营渠道，手机原价 HK$11,499；网上付款与店内直接付款的差别可以切换。所有奖励都是事后回赠，不是结账直接立减。</p>
+  <div class="decision-line">
+    <div><div class="eyebrow">当前默认情境 · 不以旧换新 · ZA 股票价格不变、Chill 当月额度尚有 HK$150</div><strong id="pay-headline">自己用 ZA Card，比借朋友 Chill 少花 HK$74.49</strong></div>
+    <div class="muted-small">ZA 奖励你独享；朋友 Chill 卡的回赠价值你们一人一半。<br>不将抽奖奖品当成已到手的优惠。</div>
+  </div>
+  <div class="payment-grid">
+    <article class="payment-card" aria-labelledby="za-card-title">
+      <span class="payment-tag">你自己的 · 余额付款 · 回赠不分账</span>
+      <h3 id="za-card-title">ZA Card · StockBack 1.5%</h3>
+      <div class="mini">合资格付款获得股票奖励；官网标注「1.5% 无上限」，不代表股票价格不会跌。</div>
+      <div class="amount is-green" id="za-stock" aria-live="polite">HK$172.49</div>
+      <div class="mini">按 1.5% 获得股票的初始等值（不保证卖出价）</div>
+      <div class="net"><div class="eyebrow">你自己最终承担 · 假设按当前模拟价值卖出</div><strong id="za-cost">HK$11,326.51</strong><div class="mini">另有「全城有『机』用」抽奖潜在机会，最高奖赏 HK$21,999；不计入省钱金额。</div></div>
+    </article>
+    <article class="payment-card" aria-labelledby="chill-card-title">
+      <span class="payment-tag">朋友的 · Chill Platinum Mastercard · 回赠五五分</span>
+      <h3 id="chill-card-title">Chill 白金卡 · 网上消费</h3>
+      <div class="mini">标称 4% = 0.4% 基础积分等值 + 3.6% 额外现金回赠；额外部分每月合计封顶 HK$150。</div>
+      <div class="amount" id="chill-reward" aria-live="polite">HK$196.00</div>
+      <div class="mini">朋友这张卡的总回赠等值；<strong>你只分到 <span id="chill-share">HK$98.00</span></strong></div>
+      <div class="net"><div class="eyebrow">你自己最终承担 · 含一半积分折算价值</div><strong id="chill-cost">HK$11,401.00</strong><div class="mini">基础积分不能直接当作现金，需要成功兑换。实际回赠、入账和卡方资格按正式条款。</div></div>
+    </article>
+  </div>
+  <div class="panel payment-controls" aria-label="购机付款计算器">
+    <h3>换一个情境，自己算一次</h3>
+    <div class="control-grid">
+      <div class="control-row"><label for="stock-change">ZA 奖励股票后来上涨或下跌多少？ <output id="stock-change-label" for="stock-change">0%</output></label><input id="stock-change" type="range" min="-50" max="100" step="5" value="0"><div class="muted-small">1.5% 是发奖时的比例。股价上涨 20% ≈ 最终等值 1.8%；上涨约 33.33% ≈ 2%。股价下跌则反过来。</div></div>
+      <div>
+        <div class="control-row"><label for="chill-channel">朋友 Chill 卡怎样付款？</label><select id="chill-channel"><option value="online">Apple 官网完成付款</option><option value="store">Apple 实体店直接刷卡</option></select></div>
+        <div class="control-row"><label for="chill-left">朋友 Chill 本月额外回赠还剩多少？ <output id="chill-left-label" for="chill-left">HK$150</output></label><input id="chill-left" type="range" min="0" max="150" step="5" value="150"><div class="muted-small">假设该月共享的 HK$150 额度尚未使用；实体店直接刷卡不套用网上消费额外 3.6%。</div></div>
+      </div>
+    </div>
+    <p class="muted-small" id="payment-assumption">初始数值是便于比较的条件情境，不是银行保证到账的金额。若 ZA 股票没有卖出，股票的市场价值也不等于现金。</p>
+  </div>
+  <div class="panel ledger" id="payment-evidence">
+    <h3>今天调查后的实际取舍</h3>
+    <table><thead><tr><th>途径</th><th>现在怎么处理</th><th>理由与证据</th></tr></thead><tbody>
+      <tr><td>自己的 ZA Card</td><td>优先比较</td><td>普通扣账卡账户余额付款即可，不要求 ZA Credit。官方 1.5% 股票回赠无固定金额上限；回赠归本人。必须按 StockBack 规则领取股票奖励。</td></tr>
+      <tr><td>朋友 Chill 白金卡</td><td>备用</td><td>Apple 官网付款时，额外回赠每历月合计 HK$150 上限；基础 0.4% 为积分等值。朋友取得回赠后双方按 50/50 分摊价值。朋友是否已经占用额度仍需确认。</td></tr>
+      <tr><td>朋友的中银 Visa</td><td>本次不计 HK$500</td><td>Apple 专项活动的登记入口，朋友实际尝试时显示「名额已满」；具体 Visa 卡种也未确认，不能把未知积分算进折扣。</td></tr>
+      <tr><td>其他活动</td><td>本次不比较</td><td>不计迎新（朋友已无迎新）；按本次购买意愿排除百老汇及可能涉及月费合约的中国移动渠道。</td></tr>
+    </tbody></table>
+    <div class="callout"><strong>HK$21,999 ≠ HK$21,999 立减</strong><p>ZA App 的「全城有『机』用」是一项截至 <time datetime="2026-10-31">2026年10月31日</time>的电子产品消费任务：单笔 ≥ HK$10,000 有机会抽最高价值 HK$21,999 的 StockBack 奖赏。人工客服确认余额付款也可参加、Apple Pay 可用；但 Apple 香港网店的交易类别依 Visa 实际回传判定，银行无法预先保证；而且<strong>以实际扣款日期</strong>是否在活动期内为准。活动完整公开条款、中奖概率及该抽奖与日常 StockBack 的叠加规则仍未独立核实。因此<strong>预期节省额只计算常规回赠，不包括抽奖</strong>。</p></div>
+    <details><summary>为什么「1.5% 无上限」不等于保证 2%？</summary><p>银行的无上限是指合资格 StockBack 的金额没有固定封顶。HK$11,499 × 1.5% ≈ HK$172.49。若领取的股票后来涨 20%，卖出等值约 HK$206.98（约占原购买额 1.8%）；若跌 20%，等值约 HK$137.99（约 1.2%）。股票投资有波动风险，卖出价、换汇和交易费用以实际为准。需要在官方规定的 48 小时窗口内选择股票奖励，并满足投资账户条件。</p></details>
+    <details><summary>为什么这次不追求海报上最高回赠？</summary><ul>
+      <li>先区分「直接立减」「现金回赠」「积分折算」「股票市场价值」「抽奖最高奖品」，不要混写成同一种现金。</li>
+      <li>先检查登记名额、月度上限、商户分类、实际扣款日期，再算理论百分比。</li>
+      <li>同一笔 HK$11,499，朋友信用卡的回赠必须平分；自己的 ZA 奖励全部归自己，只有比较个人净成本才公平。</li>
+      <li>银行智能客服与人工客服不是可公开复核的正式活动条款；未知的 MCC / 中奖概率 / 能否叠加，应持续标注为未知。</li>
+    </ul></details>
+    <h3 style="margin-top:var(--space-6)">原始依据与核实边界</h3>
+    <ul class="source-list">
+      <li><a href="https://www.apple.com/hk-zh/shop/buy-iphone/iphone-18-pro/6.9-%E5%90%8B%E9%A1%AF%E7%A4%BA%E5%99%A8-256gb-%E9%8A%80%E8%89%B2" target="_blank" rel="noopener noreferrer">Apple 香港官方：18 Pro Max 256GB 售价 HK$11,499</a>。</li>
+      <li><a href="https://bank.za.group/za-card" target="_blank" rel="noopener noreferrer">ZA Bank 官方：StockBack 1.5% 无上限（至 <time datetime="2026-12-31">2026年12月31日</time>）、48 小时领取及账户要求</a>。</li>
+      <li><a href="https://www.bochk.com/dam/boccreditcard/chillcard/chill_offer_tnc_sc.pdf" target="_blank" rel="noopener noreferrer">中银香港官方 Chill 条款：白金卡网上 4% 结构、额外 HK$150 / 月上限</a>。</li>
+      <li>「全城有『机』用」任务和人工客服答复来自 <time datetime="2026-10-10">2026年10月10日</time> 的 ZA App 内核验；<strong>未找到可独立查阅的专项活动完整公开条款</strong>。不公布任何卡号、私人聊天截图或账户资料。</li>
+    </ul>
+    <div class="muted-small"><a href="https://github.com/mykcs/apple-watch-series-12-price-compare/blob/main/docs/decisions/2026-10-10-iphone-hk-payment.md" target="_blank" rel="noopener noreferrer">查看完整研究快照与计算依据</a> · 证据快照：<time datetime="2026-10-10">2026年10月10日</time>。此页是购买决策辅助，不提供银行卡实时额度查询、中奖保证或股票投资建议。事后奖励金额可能因兑换、汇率、股价及实际交易资格变化。</div>
+  </div>
+</section>
+
+
+<section id="tradein-applecare" aria-labelledby="tradein-heading">
+  <div class="eyebrow">折抵旧机与 AppleCare+ · <time datetime="2026-10-10">2026年10月10日</time> 新增情境</div>
+  <h2 id="tradein-heading">如果把内地版 iPhone 17 Pro Max 折抵掉？</h2>
+  <p class="lead">这是<strong>不同于上方全额刷卡</strong>的新情境。旧机仍有有效至 <time datetime="2027-09-28">2027年9月28日</time>的中国大陆两年期 AppleCare+。以下以本人提供的 <strong>HK$7,000 折抵报价</strong>作假设，旧机的实际验收及最终报价以 Apple 为准。</p>
+
+
+
+<div class="tf2" id="trade-flow-simulator" data-price="11499" data-balance="5080" data-care="1799" aria-labelledby="tf2-title">
+ <div class="tf2-mini"><time datetime="2026-10-10">2026年10月10日</time> · 最新购买路线 · 只考虑 Apple 官方 Trade In</div>
+ <h3 id="tf2-title">六条研究过，现在真正只剩两条。</h3>
+ <p>不考虑礼品卡和私人出售。主要选择是：<strong style="color:#fff">少换汇，直接现场抵扣</strong>，还是<strong style="color:#fff">先全额刷卡，争取 ZA 活动并等待折抵退款</strong>。无论哪种，你的两年 AppleCare+ 都必须计入资金需求。</p>
+ <div class="tf2-fixed">
+   <div><span>账户余额 · 1,180＋3,900</span><strong>HK$5,080</strong></div>
+   <div><span>新机 · 18 Pro Max 256GB</span><strong>HK$11,499</strong></div>
+   <div><span>必买 · 两年 AppleCare+</span><strong>HK$1,799</strong></div>
+ </div>
+ <div class="tf2-assumptions">固定情景：Apple 香港直营店<strong>假设有现货</strong>；内地版 iPhone 17 Pro Max 网上估价<strong>暂按 HK$7,000</strong>；线上旧机交付不作为障碍；ZA 对线上后续退款<strong>假设仍保留 HK$10,000 抽奖参与资格</strong>，但这是乐观假设，不是银行正式确认，也不等于中奖。</div>
+ <div class="tf2-head"><small>起点 · 旧机只交给 Apple 官方</small><strong>什么时候付款、什么时候折抵？</strong></div>
+ <div class="tf2-connector" aria-hidden="true"></div>
+ <div class="tf2-cards">
+   <button type="button" class="tf2-pick" data-route="A" aria-pressed="true"><small>路线 A · 资金友好</small><b>Apple Store 现场折抵</b><span class="tf2-sub">直接带旧机到店验收，当场减去估价。手机只付差价，无后续折抵退款。</span></button>
+   <button type="button" class="tf2-pick" data-route="B" aria-pressed="false"><small>路线 B · ZA 活动优先</small><b>官网全额付款，店取新机</b><span class="tf2-sub">先用 ZA Card 支付全款；旧机按线上 Trade In 交付，验收后退回原卡。</span></button>
+ </div>
+ <div class="tf2-arrow" aria-hidden="true">↓</div>
+ <div class="tf2-results" aria-live="polite">
+  <div class="tf2-mini">当前点亮的购买结局</div>
+  <div id="tf2-choice-title" style="font-size:var(--text-lead);font-weight:var(--weight-heading);margin-top:var(--space-3)">A · 实体店即时折抵</div>
+  <div class="tf2-large" id="tf2-pay">HK$4,499</div>
+  <p id="tf2-paydesc">手机当天实际支付的 ZA Card 金额，不包括 AppleCare+。</p>
+  <div class="tf2-grid">
+   <div class="tf2-stat"><small>手机支付当天，还需要兑换多少港币</small><b id="tf2-day-topup">HK$0</b></div>
+   <div class="tf2-stat strong"><small>手机＋AppleCare+ 全部完成，需要额外兑换的港币总额</small><b id="tf2-total-topup">HK$1,218</b></div>
+   <div class="tf2-stat"><small>买齐手机与保障后，港币账户余额</small><b id="tf2-final-bank">HK$0</b></div>
+   <div class="tf2-stat"><small>Apple Trade In 后续退款</small><b id="tf2-refund">无需退款</b></div>
+   <div class="tf2-stat"><small>手机付款 StockBack（1.5% 理论值）</small><b id="tf2-stockback">HK$67.49</b></div>
+   <div class="tf2-stat"><small>ZA 满 HK$10,000 专项抽奖</small><b id="tf2-raffle">不达金额门槛</b></div>
+  </div>
+ </div>
+ <div class="tf2-timeline" aria-label="付款与旧机交付时间线">
+  <div class="tf2-stage"><span class="ordinal">01 · 新机付款</span><b id="tf2-stage1-title">Apple Store 现场结账</b><p id="tf2-stage1-text">旧机现场验机，确认估价后只付差价。</p></div>
+  <div class="tf2-stage"><span class="ordinal">02 · 旧机怎样交付</span><b id="tf2-stage2-title">店内直接交给 Specialist</b><p id="tf2-stage2-text">备份、迁移资料、关闭「查找」之后交出旧机。</p></div>
+  <div class="tf2-stage"><span class="ordinal">03 · AppleCare+ 与折抵退款</span><b id="tf2-stage3-title">购买两年保障</b><p id="tf2-stage3-text">如与新机同日付款，应准备购买手机加保障的全部资金。</p></div>
+ </div>
+ <div class="tf2-options">
+  <div><label for="tf2-appraise">Apple 最终验机金额（约 3 厘米轻微划痕可能影响估价）</label><output id="tf2-appraise-label">HK$7,000</output><input type="range" id="tf2-appraise" min="0" max="7000" step="250" value="7000"/><p style="margin-top:var(--space-3);font-size:var(--text-caption)">这是情景调整，不表示你的划痕一定降价。</p></div>
+  <div><label for="tf2-care-when">HK$1,799 AppleCare+ 准备什么时候付款？</label><select id="tf2-care-when"><option value="later">拿到退款后或稍后加购（60 天内）</option><option value="today">买 iPhone 时同日支付</option></select><p style="margin-top:var(--space-3);font-size:var(--text-caption)">选择「稍后」会减少某些路线的首日资金压力，但如果退款迟到，仍需先筹齐保障费用。</p></div>
+ </div>
+ <div class="tf2-note" id="tf2-caveat"><strong>请注意：</strong>Apple 现场报价可能不同于网上估价。实体店刷卡额不满 HK$10,000，不满足 ZA 活动金额门槛。</div>
+ <div class="tf2-bottom">A/C 的历史区别：C 是「先领礼品卡再付款」，最终效果与 A 接近却多了一道手续，现已从决策中排除。原先的 D 礼品卡路线和 E/F 私下出售路线也已排除，保留在<a href="https://github.com/mykcs/apple-watch-series-12-price-compare/blob/main/docs/decisions/2026-10-10-iphone-hk-payment.md" target="_blank" rel="noopener noreferrer">带日期的研究记录</a>中，不再假装是你愿意选择的方案。<br>Apple 官方依据：<a href="https://www.apple.com/hk-zh/shop/trade-in" target="_blank" rel="noopener noreferrer">Trade In 流程与原卡退款</a>；<a href="https://www.apple.com/hk/shop/buy-iphone/iphone-18-pro/6.9-inch-display-256gb-black" target="_blank" rel="noopener noreferrer">新机 AppleCare+ HK$1,799</a>。中国大陆旧机 AppleCare+ 退款另行办理，不混入本次港币账户。</div>
+</div>
+
+  <div class="panel">
+    <div class="tradein-grid">
+      <div class="tradein-card">
+        <div class="eyebrow">香港新机 · 折抵后净成本</div>
+        <h3>iPhone 18 Pro Max 256GB</h3>
+        <div class="figure">HK$4,499</div>
+        <div class="muted-small">HK$11,499 原价 − HK$7,000 旧机折抵。不包括新 AppleCare+ 费用，也不提前扣除任何尚未确认的 ZA / Chill 回赠。</div>
+      </div>
+      <div class="tradein-card">
+        <div class="eyebrow">中国大陆旧机 · AppleCare+ 退款</div>
+        <h3><time datetime="2027-09-28">2027年9月28日</time> 到期的两年期计划</h3>
+        <div class="figure" style="color:var(--green)">约 48.36%</div>
+        <div class="muted-small">若计划从 <time datetime="2025-09-28">2025年9月28日</time> 到 <time datetime="2027-09-28">2027年9月28日</time>：截至 <time datetime="2026-10-10">2026年10月10日</time> 剩约 353 / 730 天。依 <time datetime="2025-09">2025年9月</time>适用合同第 9.4 条，固定期限计划可按剩余时间比例退款；若使用过有效维修等服务，可能扣除已获服务价值。退款属于<strong>独立的人民币计划退款</strong>，不在上述 HK$7,000 之内。</div>
+      </div>
+    </div>
+    <div class="tradein-warning">
+      <strong>注意：以旧换新可能令之前的银行卡回赠计算失效。</strong>
+      <p class="muted-small">香港 Apple 官网明确表示：线上付款的旧机折抵金额通常在验收后<strong>退回新机付款的原方式</strong>。如果先用 ZA Card 支付 HK$11,499，随后获退 HK$7,000，银行可能把它视为部分退款，重新核算 1.5% 股票回赠，甚至影响 ZA Quest 对「单笔电子产品消费满 HK$10,000」的任务判定。<strong>目前没有证据证明这笔换购交易仍可保有 HK$172.49 股票奖励或抽奖资格</strong>。如果真的选择折抵，必须就部分退款能否保留活动资格另行确认；不要套用上面的全额签账优惠。</p>
+    </div>
+    <div class="tradein-grid" style="margin-top:var(--space-5)">
+      <div class="tradein-card">
+        <h3>香港新机的 AppleCare+</h3>
+        <div class="figure">60 天内</div>
+        <div class="muted-small">在 Apple 香港购买新 iPhone 后 60 天内可另行加购 AppleCare+；该机两年期当前标价 HK$1,799；通过新机「设置 → 通用 → AppleCare 与保修」查看实际加购选项和截止日。延后购买前不享有 AppleCare+ 的意外损坏保障。</div>
+      </div>
+      <div class="tradein-card">
+        <h3>旧机如何退 AppleCare+？</h3>
+        <div class="figure" style="font-size:var(--text-card)">独立申请</div>
+        <div class="muted-small">最好等香港旧机折抵验收完成，再向中国大陆 Apple / 原经销商办理取消。Apple 官方：400-666-8800 或 Apple 支持 App；准备计划编号、旧机序列号、原购买凭证。该版合同未保证两年期固定计划因香港折抵而自动取消，退款方式应由原销售方确认。</div>
+      </div>
+    </div>
+    <details><summary>正确办理顺序与官方证据</summary>
+      <ol class="tradein-step"><li>先取得 Apple HK 对旧机的实际验收报价；HK$7,000 仅为当前假设。</li>
+      <li>新机购买后再看是否需要 60 天内加购香港 AppleCare+；旧机 AppleCare+ 不能直接移到新机。</li>
+      <li>旧机折抵验收确认后，联系中国大陆原 AppleCare+ 销售方申请按比例退费，留存确认编号；不要依赖自动取消。</li>
+      <li>如要用 ZA Card 付款并争取 HK$10,000 消费任务，应事先问清 Apple 后续 HK$7,000 退款如何影响 StockBack 与 ZA Quest。</li></ol>
+      <ul class="source-list">
+      <li><a target="_blank" rel="noopener noreferrer" href="https://www.apple.com/hk/applecare/?filter=iphone">Apple 香港：新机 AppleCare+ 60 天内加购</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://www.apple.com/hk/shop/trade-in">Apple 香港：网上旧机折抵退回原付款方式，需验收</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://www.apple.com.cn/legal/sales-support/applecare/applecareplus/2509/250909_applecareplusch.pdf">Apple 中国大陆：<time datetime="2025-09-09">2025年9月9日</time> 至 <time datetime="2025-10-14">2025年10月14日</time> 适用 AppleCare+ 合同（第 9.4 条）</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://support.apple.com/zh-cn/118218">Apple 支持：如何取消两年期 AppleCare+</a></li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<section><h2>价格</h2><div class="panel"><div class="cards">
+<article class="card"><h3>中国大陆</h3><div class="price">¥10,999</div><div class="local">RMB 10,999</div><div class="note">支持双 nano‑SIM；也可使用 nano‑SIM + eSIM 或双 eSIM。</div></article>
+<article class="card"><h3>香港</h3><div class="price">约 ¥9,839</div><div class="local">HK$11,499</div><div class="note">nano‑SIM + eSIM，同时支持双 eSIM。</div></article>
+<article class="card"><h3>新加坡</h3><div class="price">约 ¥11,032</div><div class="local">S$2,099</div><div class="note">nano‑SIM + eSIM，同时支持双 eSIM。</div></article>
+<article class="card best"><h3>美国免税州</h3><div class="price">约 ¥8,718</div><div class="local">$1,299 · 0% 销售税</div><div class="note">仅 eSIM，不支持实体 SIM。</div></article>
+</div><div class="callout"><strong>美国免税州比香港约低 ¥1,120</strong><p>但美国版是 eSIM-only。若你重视实体 SIM，香港或新加坡版本更容易兼顾；中国大陆版还提供双 nano‑SIM。</p></div></div></section>
+<section><h2>地区差异</h2><div class="panel"><table><thead><tr><th>地区</th><th>SIM</th><th>购买时最需要注意</th></tr></thead><tbody>
+<tr><td>中国大陆</td><td>双 nano‑SIM / nano‑SIM + eSIM / 双 eSIM</td><td>实体 SIM 选择最灵活。</td></tr>
+<tr><td>香港</td><td>nano‑SIM + eSIM / 双 eSIM</td><td>价格低于大陆，又保留实体 SIM。</td></tr>
+<tr><td>新加坡</td><td>nano‑SIM + eSIM / 双 eSIM</td><td>保留实体 SIM，但按当前汇率折算后价格略高于中国大陆。</td></tr>
+<tr><td>美国</td><td>仅 eSIM</td><td>免税州价格最低，但没有实体 SIM 卡槽。</td></tr>
+</tbody></table></div></section>
+</MainContent><footer class="wrap">价格口径：iPhone 18 Pro Max 256GB，不计以旧换新。<time datetime="2026-09-25">2026年9月25日</time> 汇率快照：1 HKD ≈ ¥0.8556，1 SGD ≈ ¥5.2556，1 USD ≈ ¥6.7114；人民币折算四舍五入到元。价格以下单页面为准。</footer>
+
+<script is:inline>
+(function(){
+  "use strict";
+  var section=document.getElementById("hk-payment");
+  if(!section)return;
+  var price=Number(section.dataset.price);
+  var stockInput=document.getElementById("stock-change");
+  var leftInput=document.getElementById("chill-left");
+  var channelInput=document.getElementById("chill-channel");
+  var round=function(v){return Math.round((v+Number.EPSILON)*100)/100;};
+  var money=function(v){return "HK$"+round(v).toLocaleString("en-HK",{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var set=function(id,value){document.getElementById(id).textContent=value;};
+  function update(){
+    var growth=Number(stockInput.value);
+    var left=Number(leftInput.value);
+    var online=channelInput.value==="online";
+    var zaValue=round(price*.015*(1+growth/100));
+    var chillPoints=round(price*.004);
+    var chillExtra=online?Math.min(150,left,round(price*.036)):0;
+    var chillValue=round(chillPoints+chillExtra);
+    var chillShare=round(chillValue/2);
+    var zaCost=round(price-zaValue);
+    var chillCost=round(price-chillShare);
+    var diff=round(Math.abs(chillCost-zaCost));
+    set("stock-change-label",(growth>0?"+":"")+growth+"%");
+    set("chill-left-label","HK$"+left);
+    set("za-stock",money(zaValue));
+    set("za-cost",money(zaCost));
+    set("chill-reward",money(chillValue));
+    set("chill-share",money(chillShare));
+    set("chill-cost",money(chillCost));
+    set("pay-headline",zaCost<chillCost?"自己用 ZA Card，比借朋友 Chill 少花 "+money(diff):chillCost<zaCost?"借朋友 Chill，比自己用 ZA Card 少花 "+money(diff):"两种卡的模拟净成本相同");
+  }
+  [stockInput,leftInput,channelInput].forEach(function(el){el.addEventListener("input",update);el.addEventListener("change",update);});
+  update();
+})();
+</script>
+
+
+
+<script is:inline>
+(function(){
+"use strict";
+var root=document.getElementById("trade-flow-simulator");if(!root)return;
+var path="A";
+var choices=[].slice.call(root.querySelectorAll("[data-route]"));
+var quoteInput=document.getElementById("tf2-appraise");
+var careWhenInput=document.getElementById("tf2-care-when");
+var price=Number(root.dataset.price),balance=Number(root.dataset.balance),care=Number(root.dataset.care);
+function fmt(n){return "HK$"+n.toLocaleString("en-HK",{minimumFractionDigits:0,maximumFractionDigits:0});}
+function cents(n){return "HK$"+n.toLocaleString("en-HK",{minimumFractionDigits:2,maximumFractionDigits:2});}
+function put(id,value){document.getElementById(id).textContent=value;}
+function calculate(){
+ var trade=Number(quoteInput.value),atPurchase=careWhenInput.value==="today",a=path==="A";
+ var duePhone=a?Math.max(0,price-trade):price;
+ var firstDue=duePhone+(atPurchase?care:0);
+ var firstTopup=Math.max(0,firstDue-balance);
+ var afterFirst=balance+firstTopup-firstDue;
+ var refund=a?0:trade;
+ var cashBeforeLaterCare=afterFirst+refund;
+ var laterCare=atPurchase?0:care;
+ var laterTopup=Math.max(0,laterCare-cashBeforeLaterCare);
+ var totalTopup=firstTopup+laterTopup;
+ var endingCash=cashBeforeLaterCare+laterTopup-laterCare;
+ var stockInitial=Math.round(duePhone*.015*100)/100;
+ var netQual=Math.round((price-trade)*.015*100)/100;
+ var raffle=duePhone>=10000;
+ choices.forEach(function(el){el.setAttribute("aria-pressed",el.dataset.route===path?"true":"false");});
+ put("tf2-appraise-label",fmt(trade));
+ put("tf2-choice-title",a?"A · 实体店即时折抵":"B · 官网全款后验机退款");
+ put("tf2-pay",fmt(duePhone));
+ put("tf2-paydesc",a?"旧机现场直接抵扣 "+fmt(trade)+" 后的手机刷卡差价。":"ZA 先按 "+fmt(price)+" 支付新机；之后 Apple 验收旧机，再按原支付方式退回 "+fmt(trade)+"。");
+ put("tf2-day-topup",fmt(firstTopup));
+ put("tf2-total-topup",fmt(totalTopup));
+ put("tf2-final-bank",fmt(endingCash));
+ put("tf2-refund",a?"无需退款":fmt(refund)+"（后续到账）");
+ put("tf2-stockback",cents(stockInitial)+(a?"（条件估算）":"（退款后可能重算）"));
+ put("tf2-raffle",raffle?(a?"达到金额门槛":"模拟保留参与机会"):"不达金额门槛");
+ put("tf2-stage1-title",a?"实体店当场验旧机、买新机":"Apple 官网付款、Apple Store 取货");
+ put("tf2-stage1-text",a?"现场报价同意后，新机 "+fmt(price)+" 减 "+fmt(trade)+"，付 "+fmt(duePhone)+"。":"官网先支付 "+fmt(price)+"；到店领取新机不等于改成只付差价的店内订单。");
+ put("tf2-stage2-title",a?"店内交给 Specialist":"旧机按 Trade In 电邮交付");
+ put("tf2-stage2-text",a?"转移/备份资料、关闭「查找」并确认最终价格后，直接交出旧机。":"按线上换购确认邮件，使用 Apple 指定的快递或交付地点，不保证取货柜台可直接收旧机。");
+ put("tf2-stage3-title",atPurchase?"AppleCare+ 买新机时同时付款":"之后另买两年 AppleCare+");
+ put("tf2-stage3-text",atPurchase?"同日资金须覆盖手机及 HK$1,799 保障。"+(a?"无需等退款。":"旧机 HK$"+trade.toLocaleString("en-HK")+" 退款一般之后到账。"):
+ a?"用购机后的账户余额支付部分 AppleCare+，尚不足的金额另外补入。":"等待 Apple Trade In 退款后，再用其中 HK$1,799 买保障；务必在新机的 60 天加购窗口内完成，退款迟到则先筹齐保障费。");
+ var caveat="";
+ if(a){caveat="Apple 官方提供店内即时估价与折抵，但屏幕划痕和地区型号可能影响实际收购价格。本次只付 "+fmt(duePhone)+"；"+(raffle?"虽达到 HK$10,000 门槛，其他 ZA 条件仍不保证。":"低于 ZA 专项抽奖的 HK$10,000 门槛。");}
+ else {caveat="你指定按乐观情景：Apple 后续退 "+fmt(trade)+"，ZA 仍保留原始 HK$11,499 的抽奖参与资格；但银行尚未正式保证，实际商户类别仍需符合活动。ZA 常规 1.5% 的初始名义值 "+cents(stockInitial)+"，如果按净额重算则约 "+cents(netQual)+"，也不能保证保留。";}
+ put("tf2-caveat","注意："+caveat);
+}
+choices.forEach(function(el){el.addEventListener("click",function(){path=el.dataset.route;calculate();});});
+[quoteInput,careWhenInput].forEach(function(el){el.addEventListener("input",calculate);el.addEventListener("change",calculate);});
+calculate();
+})();
+</script>
+
+
+
+
+</SiteLayout>

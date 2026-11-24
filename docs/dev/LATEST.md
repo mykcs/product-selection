@@ -7,16 +7,18 @@ This public static site contains real purchasing logic: fixed models/sizes, exch
 The current cheap validation contract is:
 
 ```bash
+npm ci
+npm run check
 python3 scripts/validate_site.py
 ```
 
 Public GitHub Actions runs that validator on pull requests. Vercel remains the website Preview/Production provider; CI does not replace deployment.
 
-The validator intentionally avoids browser farms and package-manager setup. It protects only high-value deterministic logic that has actually been easy to break during edits.
+The required PR gate installs pinned Astro/Tailwind dependencies, builds and type-checks the static output, and avoids browser installation. The deterministic validator then inspects the built site. It now checks all served HTML entries, shared design ownership and displayed calendar dates alongside the existing purchasing logic. The opt-in exact-candidate browser job verifies all routes, interactive states, light/dark themes and actual token consumers in Chromium/WebKit; its requirements live in [SITE_STANDARDS.md](SITE_STANDARDS.md).
 
 ## Vercel Git automatic deployment budget (2026-11-23)
 
-The site remains a zero-dependency static multi-route site. GitHub Actions PR CI still performs the exact deterministic Python price/route validation; Vercel remains the Preview + Production provider.
+The site uses a pinned Astro 7 / Tailwind 4 static build, shared design tokens and unchanged purchasing logic. GitHub Actions PR CI still performs the exact deterministic Python price/route validation; Vercel remains the Preview + Production provider.
 
 - **Production**: pushes/merges to main continue to create Vercel Production deployments.
 - **Normal review**: feat/, fix/, review/, etc. branches continue to receive automatic PR Previews; no existing PR needs renaming. On any branch that does not match the opt-out patterns, Vercel's default remains deploy.
@@ -25,3 +27,7 @@ The site remains a zero-dependency static multi-route site. GitHub Actions PR CI
 - **Authority/test**: scripts/validate_site.py owns a cheap exact policy guard in the existing PR GitHub Actions validator; no new runner or provider. This is a new branch-namespace capability, not evidence of saved deployments until a natural wip/ event is observed. The existing website routes, domain, hosting, permissions, and Vercel link remain unchanged.
 
 Rollback: remove git.deploymentEnabled from vercel.json in a reviewed PR; all branches return to Vercel's default auto-deploy policy.
+
+## Astro integration
+
+All route, date, price and Agent reader checks remain mandatory. All 12 routes now use native Astro entries and a shared layout; the Agent route wraps its generated allowlisted projection. Use npm ci, npm run check and python3 scripts/validate_site.py for type/build and deterministic built-output validation, and npm run test:browser for local browser regression. The exact-SHA browser acceptance lane remains opt-in.

@@ -1,0 +1,12 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "../layouts";
+@source "../components";
+@source "../pages";
+@theme inline {
+  --spacing-ui-inset: var(--space-5);
+  --spacing-ui-control: var(--space-control-block);
+}
+.site-skip:focus{background:#fff;color:#174080;border:2px solid currentColor;border-radius:.5rem;box-shadow:0 2px 12px #0003}
+@media(prefers-color-scheme:dark){.site-skip:focus{background:#17171a;color:#a8cbff}}

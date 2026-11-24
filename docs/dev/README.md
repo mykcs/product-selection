@@ -5,11 +5,12 @@ CI mode: **STANDARD_CI**
 - [LATEST.md](LATEST.md) — current development direction.
 - [DESIGN.md](DESIGN.md) — why the site uses a tiny public CI lane plus Vercel deployment.
 - [CI_PASSPORT.md](CI_PASSPORT.md) — current validation contract.
+- [SITE_STANDARDS.md](SITE_STANDARDS.md) — executable typography, spacing, width and calendar display contract.
 - [ARCHIVE.md](ARCHIVE.md) — replaced decisions only.
 - [Shared Dev protocol](https://github.com/mykcs/.agents/blob/main/docs/agents/DEV_PROTOCOL.md)
 - [Shared CI standard](https://github.com/mykcs/.agents/blob/main/docs/agents/CI_STANDARD.md)
 
-The website source is static HTML. Vercel remains the deployment/hosting role; repository correctness is checked independently by a dependency-free Python validator.
+The website source uses native Astro 7 pages, a shared layout and Tailwind CSS 4 with one shared design-token owner. Vercel remains the deployment/hosting role; repository correctness is checked independently by a pinned build/type check and a deterministic Python validator of the emitted HTML.
 
 
 ## Git / CI / Preview / Production contract
@@ -29,3 +30,19 @@ If `main` advances but the **new** production site does not:
 5. if an authenticated Vercel project readback is unavailable (for example 403 / wrong browser account), report **Production exact-SHA NOT VERIFIED** and retain the GitHub status as a separate, lower-level observation. Do not use the legacy project's GitHub Deployment records as the new project's evidence.
 
 Do not create synthetic probe commits, change commit authors, relax SSO, move old domains or repoint Production merely to turn a status green. Prefer a real, meaningful PR and the existing [cross-account qualification contract](DESIGN.md#cross-account-preview-qualification). A manual Vercel CLI deploy is only a separately authorized recovery option after verifying the actual target project and account.
+
+## Website acceptance map
+
+| Area | Existing owner and check |
+| --- | --- |
+| Agent reading | scripts/agent_reader.py, generated generic category directory and tests/agent-reader.browser.cjs. Preserve the strict approved category allowlist. |
+| Design | [SITE_STANDARDS](SITE_STANDARDS.md), assets/site.css and route-specific color/geometry; every rendered HTML entry must use the shared owner. |
+| Responsive | scripts/site-standards-browser.mjs across desktop and 440×956 DPR3/touch; retain local comparison scrolling. |
+| Expression | README, actual source and current official product evidence; dated prices are not live offers. |
+| Engineering | python3 scripts/validate_site.py, deterministic business/date/design tests; pinned static Astro build. |
+| CI | [CI Passport](CI_PASSPORT.md) and existing exact-candidate GitHub workflow. Verify actual release separately. |
+| Access | Approved content only; do not export personal records in the reader or alter protection. |
+| Accessibility/performance | Browser interactions, contrast, keyboard, overflow and measured load behavior; keep unrun checks explicit. |
+| Governance | AGENTS, Wish, Dev, current local design owner and provider evidence. |
+
+This map is navigation to actual checks, not a full-compliance claim.

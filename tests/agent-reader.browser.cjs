@@ -3,14 +3,17 @@ const assert=require('node:assert/strict');
 const {createServer}=require('node:http');
 const {readFile}=require('node:fs/promises');
 const {resolve}=require('node:path');
+const {readdirSync}=require('node:fs');
 const {chromium}=require(process.env.PLAYWRIGHT_PACKAGE||'playwright');
-const root=resolve(__dirname,'..');
-const allowed=new Map([['/','index.html'],['/agent/','agent/index.html'],['/llms.txt','llms.txt'],['/agent/site.json','agent/site.json'],['/agent/SKILL.md','agent/SKILL.md'],['/agent/reader.js','agent/reader.js']]);
+const root=resolve(__dirname,'../dist');
+const allowed=new Map([['/','index.html'],['/agent/','agent/index.html'],['/llms.txt','llms.txt'],['/agent/site.json','agent/site.json'],['/agent/SKILL.md','agent/SKILL.md'],['/agent/reader.js','agent/reader.js'],['/assets/site.css','assets/site.css']]);
+allowed.set('/assets/interaction-craft.css','assets/interaction-craft.css');
+for(const file of readdirSync(resolve(root,'_astro'))) if(file.endsWith('.css')) allowed.set('/_astro/'+file,'_astro/'+file);
 const server=createServer(async(req,res)=>{
   try{
     const file=allowed.get(new URL(req.url,'http://localhost').pathname);
     if(!file){res.writeHead(404).end();return;}
-    const mime=file.endsWith('.html')?'text/html; charset=utf-8':file.endsWith('.js')?'text/javascript':file.endsWith('.json')?'application/json':'text/plain; charset=utf-8';
+    const mime=file.endsWith('.html')?'text/html; charset=utf-8':file.endsWith('.css')?'text/css; charset=utf-8':file.endsWith('.js')?'text/javascript':file.endsWith('.json')?'application/json':'text/plain; charset=utf-8';
     res.writeHead(200,{'Content-Type':mime}).end(await readFile(resolve(root,file)));
   }catch{res.writeHead(404).end();}
 });
