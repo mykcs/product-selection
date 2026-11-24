@@ -63,3 +63,13 @@
 ## 开发与 CI
 
 开发方向、轻量价格逻辑检查与 Vercel 分工见 [`docs/dev/README.md`](docs/dev/README.md)。
+
+### Local static build
+
+```bash
+npm ci
+npm run check
+npm run test:browser
+```
+
+The Astro 7 / Tailwind CSS 4 compatibility build emits the site to `dist/`, preserves the existing source pages, product facts and client scripts, and only copies reviewed site assets. See the [current development direction](docs/dev/LATEST.md) for the staged migration and deployment boundaries.

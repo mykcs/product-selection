@@ -1,0 +1,15 @@
+---
+import '../styles/tailwind.css';
+interface Props { lang: string; head: string; content: string; mainId: string }
+const { lang, head, content, mainId } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <Fragment set:html={head} />
+</head>
+<body>
+  <a href={'#'+mainId} class="site-skip sr-only focus:not-sr-only focus:fixed focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-3">跳到主要内容</a>
+  <Fragment set:html={content} />
+</body>
+</html>
