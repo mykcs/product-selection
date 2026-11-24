@@ -1,5 +1,10 @@
-<!doctype html><html lang="zh-CN"><head>
-<link rel="stylesheet" href="/assets/site.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MacBook Pro 芯片选择｜M5 / M5 Pro / M5 Max</title><style>
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import MainContent from "../../../components/MainContent.astro";
+---
+<SiteLayout lang="zh-CN">
+<Fragment slot="head">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MacBook Pro 芯片选择｜M5 / M5 Pro / M5 Max</title><style is:inline>
 :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#626268;--sub:#7a7a81;--line:#d9d9de;--accent:#06c;--good:#176c39;--goodbg:#edf8f1;--warn:#8b5c00;--warnbg:#fff7e8;--shadow:0 18px 50px rgba(0,0,0,.06)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button,select,input{font:inherit}.top{position:sticky;top:0;z-index:30;background:rgba(245,245,247,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.08)}.top .wrap{height:54px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-5)}.nav{display:flex;gap:var(--space-5);font-size:var(--text-caption);white-space:nowrap}.hero p{margin:0;color:var(--muted)}
@@ -22,9 +27,10 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 .chipbtn{min-width:var(--width-control-small);text-align:left}.chipbtn small{display:block;font-weight:var(--weight-medium);opacity:.75;margin-top:var(--space-1)}.comparetop{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-5);align-items:center}.vs{color:var(--sub);font-weight:var(--weight-heading)}.selectbox label{display:block;color:var(--sub);font-size:var(--text-caption);margin-bottom:var(--space-2)}.selectbox select{width:100%;padding:var(--space-4) var(--space-4);border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text)}
 .whylist{display:grid;gap:var(--space-3);margin-top:var(--space-4)}.why{padding:var(--space-4) var(--space-4);border-radius:13px;background:var(--bg);font-size:var(--text-caption);line-height:var(--leading-control)}.why b{display:block;margin-bottom:var(--space-1)}
 .unavailable{opacity:.55}
-</style><link rel="stylesheet" href="/assets/interaction-craft.css"></head><body>
+</style></Fragment>
+
 <header class="top"><div class="wrap"><div class="brand">MacBook Pro 芯片选择</div><nav class="nav"><a href="/mac/">Mac 首页</a><a href="/mac/mac-mini/">Mac mini</a><a href="/mac/storage/">SSD</a></nav></div></header>
-<main class="wrap">
+<MainContent>
 <section class="hero"><h1>MacBook Pro：M5、Pro 还是 Max</h1><p>当前没有 M6 MacBook Pro。M6 已经发布，但现在只在 Mac mini；Apple 没有公布 M6 MacBook Pro 的日期、价格或配置，所以这里不把不存在的机器塞进比较。</p></section>
 
 <section><h2>机身先决定一部分芯片</h2><div class="tabs" id="sizeTabs"><button type="button" data-size="14" class="active">14 英寸</button><button type="button" data-size="16">16 英寸</button></div>
@@ -64,8 +70,8 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 <div class="card"><h3>Notebookcheck · 16 英寸 M5 Max</h3><p>看更大机身能否让 Max 更稳定持续输出，以及 14/16 英寸散热差异。<br><a href="https://www.notebookcheck.net/Apple-s-fastest-laptop-starts-to-show-its-age-Apple-MacBook-Pro-16-2026-M5-Max-Review.1250821.0.html" target="_blank" rel="noreferrer">打开 →</a></p></div>
 <div class="card"><h3>iFixit · M5 拆解</h3><p>看内部结构、维修性与 SSD / 逻辑板布局。<br><a href="https://www.ifixit.com/News/114046/m5-macbook-pro-teardown" target="_blank" rel="noreferrer">打开 →</a></p></div>
 </div></section>
-</main><footer class="wrap">当前香港教育商店整个 MacBook Pro 产品线从 HK$15,199 起。Pro / Max 精确价随核心、内存与 SSD 自订组合变化；页面不把 3 月首发价当作今天结账价。</footer>
-<script>
+</MainContent><footer class="wrap">当前香港教育商店整个 MacBook Pro 产品线从 HK$15,199 起。Pro / Max 精确价随核心、内存与 SSD 自订组合变化；页面不把 3 月首发价当作今天结账价。</footer>
+<script is:inline>
 (()=>{
 const chips={
  m5:{name:"M5 · 10/10",family:"M5",cpu:10,gpu:10,bw:153,mem:"16 / 24 / 32GB",memMax:32,media:1,displays:2,tb:"TB4",battery14:24,price14:15199,price16:null,legal14:true,legal16:false,note:"基础芯片"},
@@ -134,4 +140,5 @@ document.getElementById("sizeTabs").addEventListener("click",e=>{if(!e.target.da
 A.addEventListener("change",render);B.addEventListener("change",render);document.getElementById("workloads").addEventListener("change",render);
 fillSelects();rows();
 })();
-</script></body></html>
+</script>
+</SiteLayout>

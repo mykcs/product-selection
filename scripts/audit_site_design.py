@@ -175,7 +175,7 @@ def calendar_failures(records: list[dict], root: Path) -> list[dict]:
     return json.loads(checked.stdout)
 
 
-def validate_design(root: Path, pages) -> dict:
+def validate_design(root: Path, pages, *, calendar_root=None, allow_compiled_tailwind=False) -> dict:
     expected = {Path(page).as_posix() for page in pages}
     discovered = {page.relative_to(root).as_posix() for page in root.rglob("*.html")
                   if not any(part in {".git", "node_modules", "test-results", "playwright-report", "reports", "dist", ".public-build", ".astro"} for part in page.relative_to(root).parts)}
@@ -208,6 +208,10 @@ def validate_design(root: Path, pages) -> dict:
             stylesheet = (root / url.path.lstrip("/") if url.path.startswith("/") else path.parent / url.path).resolve()
             if not stylesheet.is_relative_to(root.resolve()) or not stylesheet.is_file():
                 errors.append(name + ": broken local stylesheet " + href)
+            elif allow_compiled_tailwind and re.fullmatch(r"/_astro/[^/]+\.css", href):
+                if not stylesheet.read_text(encoding="utf-8").startswith("/*! tailwindcss"):
+                    errors.append(name + ": unexpected generated stylesheet")
+                continue
             elif href == "/assets/vendor/leaflet/leaflet.css":
                 # Pinned third-party map geometry is not the product typography owner.
                 if not stylesheet.read_text(encoding="utf-8").startswith("/* required styles"):
@@ -226,7 +230,7 @@ def validate_design(root: Path, pages) -> dict:
             for prop, value in declarations(css):
                 declarations_count += 1
                 errors.extend(name + " inline: " + issue for issue in inspect_declaration(selector, prop, value, tokens))
-    for failure in calendar_failures(records, root):
+    for failure in calendar_failures(records, calendar_root or root):
         errors.append(f"{failure['source']}: nonstandard date {failure['actual']!r}; expected {failure['expected']!r}")
     if errors:
         raise SystemExit("Design contract failed:\n" + "\n".join(errors))

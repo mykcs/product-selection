@@ -69,7 +69,8 @@
 ```bash
 npm ci
 npm run check
+python3 scripts/validate_site.py
 npm run test:browser
 ```
 
-The Astro 7 / Tailwind CSS 4 compatibility build emits the site to `dist/`, preserves the existing source pages, product facts and client scripts, and only copies reviewed site assets. See the [current development direction](docs/dev/LATEST.md) for the staged migration and deployment boundaries.
+Native Astro 7 pages under `src/pages/` use a shared layout and Tailwind CSS 4 utilities mapped to the existing design tokens. The static build emits `dist/` and preserves the dated product facts and client interactions. The Agent reader is a strictly allowlisted generated projection. Leaflet 1.9.4 is vendored with its license; street-map tiles use the existing OpenStreetMap provider. See the [current development direction](docs/dev/LATEST.md) for the validation and deployment boundaries.

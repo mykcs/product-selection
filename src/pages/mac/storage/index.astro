@@ -1,5 +1,10 @@
-<!doctype html><html lang="zh-CN"><head>
-<link rel="stylesheet" href="/assets/site.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mac SSD 容量与速度｜1TB 是不是高速档</title><style>
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import MainContent from "../../../components/MainContent.astro";
+---
+<SiteLayout lang="zh-CN">
+<Fragment slot="head">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mac SSD 容量与速度｜1TB 是不是高速档</title><style is:inline>
 :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#626268;--sub:#7a7a81;--line:#d9d9de;--accent:#06c;--good:#176c39;--goodbg:#edf8f1;--warn:#8b5c00;--warnbg:#fff7e8;--shadow:0 18px 50px rgba(0,0,0,.06)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button,select,input{font:inherit}.top{position:sticky;top:0;z-index:30;background:rgba(245,245,247,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.08)}.top .wrap{height:54px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-5)}.nav{display:flex;gap:var(--space-5);font-size:var(--text-caption);white-space:nowrap}.hero p{margin:0;color:var(--muted)}
@@ -18,9 +23,10 @@ section{padding:var(--space-7) 0}h2{margin:0 0 var(--space-3)}.lead{color:var(--
 footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--text-caption);line-height:var(--leading-body)}
 @media(max-width:820px){.nav{display:none}.grid2,.grid3,.controlset,.delta{grid-template-columns:1fr}.axis{grid-template-columns:92px 1fr 66px}}
 @media(prefers-color-scheme:dark){:root{--bg:#0f0f11;--card:#1c1c1f;--text:#f5f5f7;--muted:#c7c7cc;--sub:#a9a9b0;--line:#3b3b42;--accent:#69aaff;--good:#80dca4;--goodbg:#163725;--warn:#e7c77d;--warnbg:#2b2417;--shadow:none}.top{background:rgba(15,15,17,.9)}.panel,.card,.check,.delta .side{border-color:#303037}.bar{background:#2d2d32}.tabs button.active{background:#f5f5f7;color:#111;border-color:#f5f5f7}}
-</style><link rel="stylesheet" href="/assets/interaction-craft.css"></head><body>
+</style></Fragment>
+
 <header class="top"><div class="wrap"><div class="brand">Mac SSD</div><nav class="nav"><a href="/mac/">Mac 首页</a><a href="/mac/macbook-pro/">MacBook Pro</a><a href="/mac/mac-mini/">Mac mini</a></nav></div></header>
-<main class="wrap">
+<MainContent>
 <section class="hero"><h1>1TB 不是“高速缓存开关”</h1><p>容量变大有时会让 SSD 更快，但原因通常是 NAND 并行度、控制器通道和具体闪存组织，而不是到了 1TB 才突然“有缓存”。</p></section>
 <section><h2>三个概念分开看</h2><div class="grid3"><div class="card"><h3>容量</h3><p>256GB / 512GB / 1TB / 2TB 是能放多少数据。</p></div><div class="card"><h3>NAND 并行</h3><p>更多 NAND die / package 可以并行读写，较大容量有时因此得到更高持续速度。</p></div><div class="card"><h3>SLC 缓存</h3><p>一部分 NAND 暂时以更快的写入模式工作。Apple 没有公开当前各容量具体缓存策略。</p></div></div></section>
 <section><h2>现在能确定什么</h2><div class="matrix panel"><table><thead><tr><th>产品</th><th>当前事实</th><th>能否把 1TB 当速度门槛</th></tr></thead><tbody>
@@ -36,5 +42,6 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 <div class="card"><h3>Notebookcheck · PCIe 5.0 SSD 实测</h3><p>2026 M5 Max 评测里包含不同 Apple SSD 的 Blackmagic 读写数据，适合看“大容量是否更快”到底有多大。<br><a href="https://www.notebookcheck.net/M5-Max-with-inconsistent-performance-and-throttling-issues-Apple-MacBook-Pro-14-Review.1246064.0.html" target="_blank" rel="noreferrer">打开 →</a></p></div>
 <div class="card"><h3>iFixit · M5 MacBook Pro 拆解</h3><p>用于理解逻辑板、SSD 相关硬件布局和维修结构。<br><a href="https://www.ifixit.com/News/114046/m5-macbook-pro-teardown" target="_blank" rel="noreferrer">打开 →</a></p></div>
 </div></section>
-</main><footer class="wrap">如果你最终在 512GB 与 1TB 之间犹豫，真正有价值的是同机型、同芯片、不同容量的 Blackmagic / AmorphousDiskMark 实测与 NAND 拆解。</footer>
-</body></html>
+</MainContent><footer class="wrap">如果你最终在 512GB 与 1TB 之间犹豫，真正有价值的是同机型、同芯片、不同容量的 Blackmagic / AmorphousDiskMark 实测与 NAND 拆解。</footer>
+
+</SiteLayout>

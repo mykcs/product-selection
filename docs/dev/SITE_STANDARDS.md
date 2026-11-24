@@ -1,6 +1,6 @@
 # 全站排版与日期标准
 
-本站使用原生静态 HTML、CSS 和现有业务脚本。所有 10 个页面链接 `/assets/site.css`；此文件是字体、字号、字重、行距、字距、间距和内容宽度的唯一活动定义。页面自己的样式负责产品布局、颜色、边框和图形几何，并引用共享角色。新增页面必须进入现有路由清单和全路由验收。
+本站使用原生 Astro 7 页面、共享布局、Tailwind CSS 4 和现有业务脚本。所有 12 个页面链接 `/assets/site.css`；此文件是字体、字号、字重、行距、字距、间距和内容宽度的唯一活动定义。页面自己的样式负责产品布局、颜色、边框和图形几何，并引用共享角色。新增页面必须进入现有路由清单和全路由验收。
 
 ## 有限角色
 
@@ -28,20 +28,22 @@
 
 ## 可执行验收
 
-默认 PR 门禁仍是轻量 `Price and route validation`，没有浏览器依赖安装或部署副作用：
+默认 PR 门禁仍是轻量 `Price and route validation`，包含固定依赖安装、静态构建、类型检查和确定性校验，没有浏览器安装或部署副作用：
 
 ```sh
+npm ci
+npm run check
 python3 scripts/validate_site.py
 node scripts/test_iphone_tradein.js
 node scripts/test_calendar_date.cjs
 python3 scripts/test_design_contract.py
 ```
 
-源码检查动态发现全部 HTML，并与价格验证的路由清单比较；漏页、漏接 owner、局部 token 重定义、独立排版数值、未知 token 和展示日期不一致都会失败。负例明确覆盖未接入页面、新增未登记页面、`calc(18px)`、隐藏在负 margin 旁的独立间距、坏正文与机器日期混淆。
+构建输出检查动态发现全部 HTML，并与价格验证的路由清单比较；漏页、漏接 owner、局部 token 重定义、独立排版数值、未知 token 和展示日期不一致都会失败。负例明确覆盖未接入页面、新增未登记页面、`calc(18px)`、隐藏在负 margin 旁的独立间距、坏正文与机器日期混淆。
 
 正式浏览器验收通过同一 `Repository CI` 的手动入口执行：`browser=true`，`expected_sha` 为完整已审查提交，dispatch 分支必须正好指向该 SHA。该入口使用固定 Playwright 镜像及驱动，超时 20 分钟，证据保留 3 天，不变更部署或分支保护。
 
-- Chromium 和 WebKit × 桌面 1440×1000 / 手机 440×956（3×）× 明暗主题 × 全部 10 页面，共 80 个基础渲染。
+- Chromium 和 WebKit × 桌面 1440×1000 / 手机 440×956（3×）× 明暗主题 × 全部 12 页面，共 96 个基础渲染。
 - 检查真实 main 标题和正文的字体、字号、字重、行距；扰动 panel、section、gap、gutter 及实际页面/阅读宽度。设置和恢复后各等待两帧；要求宽度真实改变，恢复后的测量也必须匹配。
 - 通过真实操作打开 disclosure，覆盖 Osprey 四场景、18 系列/36 产品及空搜索，iPhone A/B 与保障时点、付款渠道，五种到店对话和两条购买结果，MacBook 两尺寸与 Mac mini 比较选择。
 - 同时检查可见字体最小值、行距角色、溢出、日期、运行错误，并上传全部页面截图和候选 SHA 绑定的测量 JSON。手机上下文保持 3×，长页截图按 CSS 像素导出以控制证据体积。正确页头无法掩盖坏正文的负例必须失败。
@@ -50,4 +52,4 @@ python3 scripts/test_design_contract.py
 
 ## 采用的标准方法
 
-共享变量按 [W3C CSS Custom Properties](https://www.w3.org/TR/css-variables-1/) 的继承和级联机制连接真实消费者；日期使用 [HTML `<time>`](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element) 的机器值/显示值边界；验收采用 [Playwright viewport 和 colorScheme](https://playwright.dev/docs/emulation) 的真实渲染。本站继续采用现有静态架构。
+共享变量按 [W3C CSS Custom Properties](https://www.w3.org/TR/css-variables-1/) 的继承和级联机制连接真实消费者；日期使用 [HTML `<time>`](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element) 的机器值/显示值边界；验收采用 [Playwright viewport 和 colorScheme](https://playwright.dev/docs/emulation) 的真实渲染。本站保留静态部署，统一使用 Astro 页面组件。地图第三方运行时使用固定版本的本地 Leaflet，底图网络可用性与离线 UI 验收分别记录。

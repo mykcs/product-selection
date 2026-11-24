@@ -7,15 +7,15 @@ This repository is intentionally small. This file is navigation-only and does no
 | Task | Read / verify |
 |---|---|
 | Overall site scope | `README.md` |
-| Homepage/navigation | `index.html` |
-| Apple Watch comparison | `watch/index.html` |
-| Osprey backpack use-case chooser | `osprey/index.html` |
-| Hong Kong dealer and MTR guide (dated public merchant sources; not stock) | `osprey/hong-kong/index.html` |
-| Osprey series and price catalogue | `osprey/series/index.html`, `app.js`, `catalog.json`; evidence: `docs/decisions/2026-10-14-osprey-series-us-prices.md` |
-| iPhone comparison | `iphone/index.html` |
-| iPhone 香港换机话术与分支 | `iphone/trade-in-guide/index.html`, `model.js`, `ui.js`, `app.js` |
-| iPhone 2026-10-13 实际购机路线 | `docs/decisions/2026-10-13-iphone-hk-actual-route.md` + `iphone/trade-in-guide/index.html#actual-route-20261013` |
-| Mac chooser | `mac/index.html` and the relevant `mac/*/index.html` route |
+| Homepage/navigation | `src/pages/index.astro` |
+| Apple Watch comparison | `src/pages/watch/index.astro` |
+| Osprey backpack use-case chooser | `src/pages/osprey/index.astro` |
+| Hong Kong dealer and MTR guide (dated public merchant sources; not stock) | `src/pages/osprey/hong-kong/index.astro` |
+| Osprey series and price catalogue | `src/pages/osprey/series/index.astro`, `app.js`, `catalog.json`; evidence: `docs/decisions/2026-10-14-osprey-series-us-prices.md` |
+| iPhone comparison | `src/pages/iphone/index.astro` |
+| iPhone 香港换机话术与分支 | `src/pages/iphone/trade-in-guide/index.astro`, `model.js`, `ui.js`, `app.js` |
+| iPhone 2026-10-13 实际购机路线 | `docs/decisions/2026-10-13-iphone-hk-actual-route.md` + `src/pages/iphone/trade-in-guide/index.astro#actual-route-20261013` |
+| Mac chooser | `src/pages/mac/index.astro` and the relevant `src/pages/mac/*/index.astro` route |
 | All-page typography, spacing, width and displayed dates | `assets/site.css`, `assets/calendar-date.js`; contract: `docs/dev/SITE_STANDARDS.md`; guard: `scripts/audit_site_design.py` |
 | Current Apple price/spec/config claim | current official Apple source first, then the route HTML |
 | Osprey model/fit/capacity claim | current official Osprey product and Size & Fit pages first |

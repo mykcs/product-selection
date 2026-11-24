@@ -7,12 +7,14 @@ This public static site contains real purchasing logic: fixed models/sizes, exch
 The current cheap validation contract is:
 
 ```bash
+npm ci
+npm run check
 python3 scripts/validate_site.py
 ```
 
 Public GitHub Actions runs that validator on pull requests. Vercel remains the website Preview/Production provider; CI does not replace deployment.
 
-The default validator avoids browser dependencies and package-manager setup. It now checks all served HTML entries, shared design ownership and displayed calendar dates alongside the existing purchasing logic. The opt-in exact-candidate browser job verifies all routes, interactive states, light/dark themes and actual token consumers in Chromium/WebKit; its requirements live in [SITE_STANDARDS.md](SITE_STANDARDS.md).
+The required PR gate installs pinned Astro/Tailwind dependencies, builds and type-checks the static output, and avoids browser installation. The deterministic validator then inspects the built site. It now checks all served HTML entries, shared design ownership and displayed calendar dates alongside the existing purchasing logic. The opt-in exact-candidate browser job verifies all routes, interactive states, light/dark themes and actual token consumers in Chromium/WebKit; its requirements live in [SITE_STANDARDS.md](SITE_STANDARDS.md).
 
 ## Vercel Git automatic deployment budget (2026-11-23)
 
@@ -28,4 +30,4 @@ Rollback: remove git.deploymentEnabled from vercel.json in a reviewed PR; all br
 
 ## Astro integration
 
-All route, date, price and Agent reader checks remain mandatory. Use npm ci and npm run check for pinned type/build validation, npm run test:browser for local built output. The exact-SHA browser acceptance lane remains opt-in.
+All route, date, price and Agent reader checks remain mandatory. All 12 routes now use native Astro entries and a shared layout; the Agent route wraps its generated allowlisted projection. Use npm ci, npm run check and python3 scripts/validate_site.py for type/build and deterministic built-output validation, and npm run test:browser for local browser regression. The exact-SHA browser acceptance lane remains opt-in.

@@ -10,7 +10,7 @@ CI mode: **STANDARD_CI**
 - [Shared Dev protocol](https://github.com/mykcs/.agents/blob/main/docs/agents/DEV_PROTOCOL.md)
 - [Shared CI standard](https://github.com/mykcs/.agents/blob/main/docs/agents/CI_STANDARD.md)
 
-The website source is static HTML. Vercel remains the deployment/hosting role; repository correctness is checked independently by a dependency-free Python validator.
+The website source uses native Astro 7 pages, a shared layout and Tailwind CSS 4 with one shared design-token owner. Vercel remains the deployment/hosting role; repository correctness is checked independently by a pinned build/type check and a deterministic Python validator of the emitted HTML.
 
 
 ## Git / CI / Preview / Production contract
@@ -39,7 +39,7 @@ Do not create synthetic probe commits, change commit authors, relax SSO, move ol
 | Design | [SITE_STANDARDS](SITE_STANDARDS.md), assets/site.css and route-specific color/geometry; every rendered HTML entry must use the shared owner. |
 | Responsive | scripts/site-standards-browser.mjs across desktop and 440×956 DPR3/touch; retain local comparison scrolling. |
 | Expression | README, actual source and current official product evidence; dated prices are not live offers. |
-| Engineering | python3 scripts/validate_site.py, deterministic business/date/design tests; dependency-free static site. |
+| Engineering | python3 scripts/validate_site.py, deterministic business/date/design tests; pinned static Astro build. |
 | CI | [CI Passport](CI_PASSPORT.md) and existing exact-candidate GitHub workflow. Verify actual release separately. |
 | Access | Approved content only; do not export personal records in the reader or alter protection. |
 | Accessibility/performance | Browser interactions, contrast, keyboard, overflow and measured load behavior; keep unrun checks explicit. |

@@ -1,15 +1,17 @@
 ---
 import '../styles/tailwind.css';
-interface Props { lang: string; head: string; bodyAttrs: string; content: string; mainId: string }
-const { lang, head, bodyAttrs, content, mainId } = Astro.props;
+interface Props { lang?: string; pageRole?: "tool"; }
+const {lang="zh-CN",pageRole}=Astro.props;
 ---
 <!doctype html>
 <html lang={lang}>
 <head>
-  <Fragment set:html={head} />
+  <link rel="stylesheet" href="/assets/site.css">
+  <slot name="head" />
+  <link rel="stylesheet" href="/assets/interaction-craft.css">
 </head>
-<body data-page-role={bodyAttrs.includes('data-page-role="tool"') ? "tool" : undefined}>
-  <a href={'#'+mainId} class="site-skip sr-only focus:not-sr-only focus:fixed focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-3">跳到主要内容</a>
-  <Fragment set:html={content} />
+<body data-page-role={pageRole}>
+  <a href="#main" class="site-skip sr-only focus:not-sr-only focus:fixed focus:z-50 focus:top-ui-inset focus:left-ui-inset focus:px-ui-inset focus:py-ui-control">跳到主要内容</a>
+  <slot />
 </body>
 </html>

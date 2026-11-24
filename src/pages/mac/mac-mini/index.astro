@@ -1,5 +1,10 @@
-<!doctype html><html lang="zh-CN"><head>
-<link rel="stylesheet" href="/assets/site.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mac mini 芯片选择｜M6 vs M5 Pro</title><style>
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import MainContent from "../../../components/MainContent.astro";
+---
+<SiteLayout lang="zh-CN">
+<Fragment slot="head">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mac mini 芯片选择｜M6 vs M5 Pro</title><style is:inline>
 :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#626268;--sub:#7a7a81;--line:#d9d9de;--accent:#06c;--good:#176c39;--goodbg:#edf8f1;--warn:#8b5c00;--warnbg:#fff7e8;--shadow:0 18px 50px rgba(0,0,0,.06)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button,select,input{font:inherit}.top{position:sticky;top:0;z-index:30;background:rgba(245,245,247,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.08)}.top .wrap{height:54px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-5)}.nav{display:flex;gap:var(--space-5);font-size:var(--text-caption);white-space:nowrap}.hero p{margin:0;color:var(--muted)}
@@ -20,9 +25,10 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 @media(prefers-color-scheme:dark){:root{--bg:#0f0f11;--card:#1c1c1f;--text:#f5f5f7;--muted:#c7c7cc;--sub:#a9a9b0;--line:#3b3b42;--accent:#69aaff;--good:#80dca4;--goodbg:#163725;--warn:#e7c77d;--warnbg:#2b2417;--shadow:none}.top{background:rgba(15,15,17,.9)}.panel,.card,.check,.delta .side{border-color:#303037}.bar{background:#2d2d32}.tabs button.active{background:#f5f5f7;color:#111;border-color:#f5f5f7}}
 
 .chipgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5)}.chipcard{border:1px solid var(--line);border-radius:22px;padding:var(--space-6)}.chipcard.selected{outline:2px solid var(--text)}.chipcard button{width:100%;margin-top:var(--space-5);border:1px solid var(--line);border-radius:11px;padding:var(--space-3);background:var(--card);color:var(--text);cursor:pointer;font-weight:var(--weight-heading)}.schem{display:flex;gap:var(--space-2);align-items:flex-end;height:66px;margin:var(--space-5) 0}.schem i{display:block;background:#d7d9df;border-radius:7px 7px 3px 3px}.schem .cpu{width:42%;height:55%}.schem .gpu{width:58%;height:75%}.pro .cpu{height:72%}.pro .gpu{height:100%}@media(max-width:820px){.chipgrid{grid-template-columns:1fr}}@media(prefers-color-scheme:dark){.schem i{background:#34343b}}
-</style><link rel="stylesheet" href="/assets/interaction-craft.css"></head><body>
+</style></Fragment>
+
 <header class="top"><div class="wrap"><div class="brand">Mac mini 芯片选择</div><nav class="nav"><a href="/mac/">Mac 首页</a><a href="/mac/macbook-pro/">MacBook Pro</a><a href="/mac/storage/">SSD</a></nav></div></header>
-<main class="wrap">
+<MainContent>
 <section class="hero"><h1>Mac mini：M6 还是 M5 Pro</h1><p>这是“新一代基础芯片”对“上一代专业级宽芯片”的比较。M6 更新、单核和 AI 单元更先进；M5 Pro 则直接把 CPU/GPU 宽度、内存带宽、内存上限和 Thunderbolt 拉高。</p></section>
 <section><h2>先解决：Passkey 会不会让 Mac mini 变麻烦？</h2><p class="lead">这是现在比 M6 / M5 Pro 更实际的问题：如果 iPhone 上的 ChatGPT 正在请求 GitHub 账号或任务权限，GitHub 要求 Passkey，Mac mini 本体没有内建 Touch ID，会不会给日常工作流增加摩擦？</p>
 <div class="good"><strong>当前结论：</strong>不会因为 Mac mini 本体没有指纹就卡住。最顺的路径是：如果授权从 iPhone 上的 ChatGPT 发起，就让 GitHub 登录也在 iPhone 上完成，直接用 Face ID；如果登录页真的开在 Mac mini，本地可以使用带 Touch ID 的妙控键盘，或者选择“附近设备上的 Passkey”，用 iPhone 扫二维码后再 Face ID。</div>
@@ -77,11 +83,12 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 </div>
 <div class="note" style="margin-top:var(--space-5)">M6 Mac mini 已于 <time datetime="2026-09-22">2026年9月22日</time> 正式发售。第三方跑分、噪音、功耗和 SSD 各容量速度可以开始补充，但应优先采用同机型、同配置、可复现的测试，而不是单个首发样本。</div>
 </section>
-</main><footer class="wrap">Mac mini M6：12 核 CPU / 12 核 GPU、153–170GB/s、最高 32GB；M5 Pro：15/16 或 18/20、307GB/s、最高 64GB。</footer>
-<script>
+</MainContent><footer class="wrap">Mac mini M6：12 核 CPU / 12 核 GPU、153–170GB/s、最高 32GB；M5 Pro：15/16 或 18/20、307GB/s、最高 64GB。</footer>
+<script is:inline>
 (()=>{const d={m6:{n:"M6 · 12/12",cpu:12,gpu:12,bw:153,mem:32,tb:40,ne:"双 16 核",price:"HK$6,499 起"},p15:{n:"M5 Pro · 15/16",cpu:15,gpu:16,bw:307,mem:64,tb:120,ne:"16 核",price:"HK$13,199 起"},p18:{n:"M5 Pro · 18/20",cpu:18,gpu:20,bw:307,mem:64,tb:120,ne:"16 核",price:"自订配置"}};
 const a=document.getElementById("a"),b=document.getElementById("b"),m6mem=document.getElementById("m6mem");const opts=Object.entries(d).map(([k,v])=>'<option value="'+k+'">'+v.n+'</option>').join("");a.innerHTML=opts;b.innerHTML=opts;a.value="m6";b.value="p15";
 function axes(x){return [["CPU",x.cpu,18],["GPU",x.gpu,20],["内存带宽",x.bw,307],["内存上限",x.mem,64]].map(v=>'<div class="axis"><span>'+v[0]+'</span><div class="bar"><i style="width:'+Math.round(v[1]/v[2]*100)+'%"></i></div><b>'+v[1]+(v[0].includes("带宽")?" GB/s":v[0].includes("内存")?" GB":"")+'</b></div>').join("")+'<div class="kpi"><span>Thunderbolt 峰值</span><strong>'+x.tb+'Gb/s</strong></div><div class="kpi"><span>Neural Engine</span><strong>'+x.ne+'</strong></div><div class="kpi"><span>香港教育价</span><strong>'+x.price+'</strong></div>'}
 function render(){d.m6.bw=Number(m6mem.value);const x=d[a.value],y=d[b.value];document.getElementById("na").textContent=x.n;document.getElementById("nb").textContent=y.n;document.getElementById("aa").innerHTML=axes(x);document.getElementById("ab").innerHTML=axes(y);const parts=[];parts.push("CPU "+x.cpu+"→"+y.cpu);parts.push("GPU "+x.gpu+"→"+y.gpu);parts.push("带宽 "+x.bw+"→"+y.bw+"GB/s");parts.push("内存上限 "+x.mem+"→"+y.mem+"GB");document.getElementById("dt").textContent=x.n+" → "+y.n;document.getElementById("dp").textContent=parts.join("；")+"。这不是“新一代 vs 老一代”的单轴比较，而是更新核心设计与更宽专业芯片之间的取舍。"}
 a.addEventListener("change",render);b.addEventListener("change",render);m6mem.addEventListener("change",render);document.getElementById("chipGrid").addEventListener("click",e=>{const c=e.target.closest(".chipcard");if(!c||e.target.tagName!=="BUTTON")return;a.value=c.dataset.key;render()});render()})();
-</script></body></html>
+</script>
+</SiteLayout>

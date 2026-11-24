@@ -1,12 +1,15 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-<link rel="stylesheet" href="/assets/site.css">
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import MainContent from "../../../components/MainContent.astro";
+---
+<SiteLayout lang="zh-CN">
+<Fragment slot="head">
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="小鹰 Osprey 背包系列目录：按照系列浏览 18 个常见家族，逐一了解用途、代表产品、美国官网参考价格与产品链接。">
 <title>小鹰有哪些系列？｜选购商品</title>
-<style>
+<style is:inline>
 :root{color-scheme:light;--bg:#f5f6f3;--paper:#fff;--ink:#1e2921;--sub:#626c63;--line:#dde4dc;--moss:#35654a;--moss-strong:#244734;--tint:#eff5ee;--gold:#b4bfa2}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
@@ -86,9 +89,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #78ab
 @media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#121713;--paper:#1c251e;--ink:#edf3ed;--sub:#c2cfc3;--line:#374538;--moss:#9ed2ad;--moss-strong:#315940;--tint:#28392c}.meta span{background:#26382b;color:#c6ddcb}.family[aria-pressed="true"]{background:#293b2d}.path.active{background:#315940}.search::placeholder{color:#a3aea4}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
-<link rel="stylesheet" href="/assets/interaction-craft.css"></head>
-<body>
-<main class="wrap">
+</Fragment>
+
+<MainContent>
 <header class="top">
 <a href="/">← 选购商品</a>
 <div class="crumb"><a href="/osprey/">小鹰背包</a> ／ 系列目录</div>
@@ -141,8 +144,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #78ab
 <p>本目录按 Osprey 美国官方网站于 <time datetime="2026-10-14">2026年10月14日</time>所列的公开价格制作快照，金额单位为美元（USD）。非自动同步实时售价，不含其他地区的运费和税费；促销、颜色、尺码、库存均可能变化。男女版型名称仅表示官方设计方向，不代替背长测量和实际试背。这里收录 18 个常见系列与每个系列的两款代表型号，其他骑行、雪地、亲子等专业产品可继续查看 <a href="https://www.osprey.com/featured/shop-by-collections" target="_blank" rel="noopener noreferrer">Osprey 官方完整系列入口 ↗</a>。</p>
 </section>
 <footer class="footer">资料：<a href="https://www.osprey.com/" target="_blank" rel="noopener noreferrer">Osprey 美国官网</a> · <a href="https://www.osprey.com/expert-advice/size-fit" target="_blank" rel="noopener noreferrer">背包尺寸与试背指南</a> · <a href="/osprey/">返回按用途选</a></footer>
-</main>
-<script src="/assets/calendar-date.js" defer></script>
-<script src="./app.js" defer></script>
-</body>
-</html>
+</MainContent>
+<script is:inline src="/assets/calendar-date.js" defer></script>
+<script is:inline src="./app.js" defer></script>
+
+</SiteLayout>

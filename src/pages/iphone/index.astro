@@ -1,5 +1,10 @@
-<!doctype html><html lang="zh-CN"><head>
-<link rel="stylesheet" href="/assets/site.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>iPhone 18 Pro Max 256GB｜中国大陆 / 香港 / 新加坡 / 美国</title><style>
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import MainContent from "../../components/MainContent.astro";
+---
+<SiteLayout lang="zh-CN">
+<Fragment slot="head">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>iPhone 18 Pro Max 256GB｜中国大陆 / 香港 / 新加坡 / 美国</title><style is:inline>
 :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#5f5f65;--sub:#77777e;--line:#d9d9de;--blue:#06c;--green:#176c39;--greenbg:#edf8f1;--shadow:0 16px 44px rgba(0,0,0,.06)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
@@ -84,9 +89,10 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 .tf2 a{color:#acd0ff;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:760px){.tf2 .tf2-timeline{grid-template-columns:1fr}.tf2 .tf2-connector{max-width:90%}}
 @media(max-width:550px){.tf2 .tf2-fixed{grid-template-columns:repeat(2,minmax(0,1fr))}.tf2 .tf2-fixed>div:last-child{grid-column:span 2}.tf2 .tf2-cards,.tf2 .tf2-grid,.tf2 .tf2-options{grid-template-columns:1fr}.tf2 .tf2-results{padding:var(--space-5)}.tf2 .tf2-connector{display:none}}
-</style><link rel="stylesheet" href="/assets/interaction-craft.css"></head><body>
+</style></Fragment>
+
 <header class="top"><div class="wrap"><div class="brand">iPhone 18 Pro Max · 256GB</div><nav class="nav"><a href="/">首页</a><a href="/watch/">Apple Watch</a><a href="/mac/">Mac</a></nav></div></header>
-<main class="wrap">
+<MainContent>
 <section class="hero"><h1>iPhone 18 Pro Max 256GB</h1><p>四个地区统一比较同一款 256GB 机型。美国按免税州 0% 销售税；外币价格同时保留原币与人民币折算，并把 SIM 卡地区差异放在同一页。</p></section>
 
 <section id="trade-in-dialogue" aria-labelledby="tradein-dialogue-title">
@@ -272,9 +278,9 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 <tr><td>新加坡</td><td>nano‑SIM + eSIM / 双 eSIM</td><td>保留实体 SIM，但按当前汇率折算后价格略高于中国大陆。</td></tr>
 <tr><td>美国</td><td>仅 eSIM</td><td>免税州价格最低，但没有实体 SIM 卡槽。</td></tr>
 </tbody></table></div></section>
-</main><footer class="wrap">价格口径：iPhone 18 Pro Max 256GB，不计以旧换新。<time datetime="2026-09-25">2026年9月25日</time> 汇率快照：1 HKD ≈ ¥0.8556，1 SGD ≈ ¥5.2556，1 USD ≈ ¥6.7114；人民币折算四舍五入到元。价格以下单页面为准。</footer>
+</MainContent><footer class="wrap">价格口径：iPhone 18 Pro Max 256GB，不计以旧换新。<time datetime="2026-09-25">2026年9月25日</time> 汇率快照：1 HKD ≈ ¥0.8556，1 SGD ≈ ¥5.2556，1 USD ≈ ¥6.7114；人民币折算四舍五入到元。价格以下单页面为准。</footer>
 
-<script>
+<script is:inline>
 (function(){
   "use strict";
   var section=document.getElementById("hk-payment");
@@ -314,7 +320,7 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 
 
 
-<script>
+<script is:inline>
 (function(){
 "use strict";
 var root=document.getElementById("trade-flow-simulator");if(!root)return;
@@ -372,4 +378,5 @@ calculate();
 
 
 
-</body></html>
+
+</SiteLayout>

@@ -3,9 +3,12 @@ const assert=require('node:assert/strict');
 const {createServer}=require('node:http');
 const {readFile}=require('node:fs/promises');
 const {resolve}=require('node:path');
+const {readdirSync}=require('node:fs');
 const {chromium}=require(process.env.PLAYWRIGHT_PACKAGE||'playwright');
-const root=resolve(__dirname,'..');
+const root=resolve(__dirname,'../dist');
 const allowed=new Map([['/','index.html'],['/agent/','agent/index.html'],['/llms.txt','llms.txt'],['/agent/site.json','agent/site.json'],['/agent/SKILL.md','agent/SKILL.md'],['/agent/reader.js','agent/reader.js'],['/assets/site.css','assets/site.css']]);
+allowed.set('/assets/interaction-craft.css','assets/interaction-craft.css');
+for(const file of readdirSync(resolve(root,'_astro'))) if(file.endsWith('.css')) allowed.set('/_astro/'+file,'_astro/'+file);
 const server=createServer(async(req,res)=>{
   try{
     const file=allowed.get(new URL(req.url,'http://localhost').pathname);

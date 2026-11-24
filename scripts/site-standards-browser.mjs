@@ -1,4 +1,4 @@
-/** Opt-in, exact-candidate browser acceptance for this dependency-free site.
+/** Opt-in, exact-candidate browser acceptance for the built Astro site.
  * PLAYWRIGHT_MODULE points to the pinned package installed by the formal job.
  */
 import assert from 'node:assert/strict';
@@ -30,7 +30,7 @@ async function htmlFiles(directory) {
 const servingRoot = join(root, 'dist');
 const routes = (await htmlFiles(servingRoot)).sort().map(file => '/' + relative(servingRoot, file).replaceAll(sep, '/').replace(/index\.html$/, ''));
 assert.equal(routes.length, 12, 'register every new served route in the price/route validator and browser contract');
-const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml' };
+const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png' };
 const server = createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
@@ -189,6 +189,16 @@ async function interactions(page, route, record) {
       await page.locator(`[data-choice="${choice}"]`).click();
       await capture('use-case-' + choice);
     }
+  } else if (route === '/osprey/hong-kong/') {
+    assert.equal(await page.locator('.shop').count(), 8);
+    for (const [region,count] of [['island',3],['kowloon',5],['all',8]]) {
+      await page.locator('button[data-region="'+region+'"]').click();
+      assert.equal(await page.locator('.shop:visible').count(), count);
+      await capture('dealer-region-'+region);
+    }
+    await page.locator('button[data-station="油麻地"]').click();
+    assert.equal(await page.locator('.shop:visible').count(), 2);
+    await capture('dealer-station');
   } else if (route === '/osprey/series/') {
     const families = await page.locator('[data-family]').evaluateAll(elements => elements.map(element => element.dataset.family));
     assert.equal(families.length, 18);
@@ -255,6 +265,7 @@ try {
     try {
       for (const width of [1440,440]) for (const colorScheme of ['light','dark']) {
         const context = await browser.newContext({ viewport: { width, height: width === 440 ? 956 : 1000 }, deviceScaleFactor: width === 440 ? 3 : 1, isMobile: width === 440, hasTouch: width === 440, colorScheme, reducedMotion: 'reduce' });
+        await context.route('**/*', request => request.request().url().startsWith(baseURL + '/') ? request.continue() : request.abort());
         try {
           for (const route of routes) {
             const page = await context.newPage(), errors = [];
@@ -276,6 +287,7 @@ try {
               console.log('PASS ' + label);
             } catch (error) {
               failures.push({ label, reason: error.stack || String(error) });
+              console.error("FAIL " + label + ": " + error.message);
               await page.screenshot({ path: join(output, label + '-failed.png'), fullPage: true, scale: 'css', animations: 'disabled' }).catch(() => {});
             } finally { receipts.push(record); await page.close(); }
           }

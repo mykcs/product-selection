@@ -88,7 +88,7 @@ s=change(M.fresh(),"route","pass","storePay","offset","shopBuy","yes");
 s=M.change(s,"careGate",true);
 assert.equal(s.shopBuy,"","new blocking precondition invalidates stale buy selection");
 
-const html=fs.readFileSync(path.join(folder,"index.html"),"utf8");
+const html=fs.readFileSync(path.join(__dirname,"../dist/iphone/trade-in-guide/index.html"),"utf8");
 const ui=fs.readFileSync(path.join(folder,"ui.js"),"utf8");
 const app=fs.readFileSync(path.join(folder,"app.js"),"utf8");
 const model=fs.readFileSync(path.join(folder,"model.js"),"utf8");

@@ -1,12 +1,15 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-<link rel="stylesheet" href="/assets/site.css">
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import MainContent from "../../components/MainContent.astro";
+---
+<SiteLayout lang="zh-CN">
+<Fragment slot="head">
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="小鹰 Osprey 背包选购：先按日常、徒步、旅行或重装用途缩小候选型号，再核对尺寸、背负与价格。">
 <title>小鹰背包选购 · 选购商品</title>
-<style>
+<style is:inline>
 :root{color-scheme:light;--bg:#f5f6f4;--card:#fff;--text:#202420;--muted:#626963;--line:#dfe4de;--green:#35674b;--soft:#eff5ef;--shadow:0 14px 48px rgba(25,54,35,.055)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text)}
@@ -70,9 +73,9 @@ input[type="checkbox"]{accent-color:var(--green);width:17px;height:17px;margin-t
 
 
 </style>
-<link rel="stylesheet" href="/assets/interaction-craft.css"></head>
-<body>
-<main class="wrap">
+</Fragment>
+
+<MainContent>
 <nav aria-label="页面导航"><a href="/">← 选购商品</a><span>背包 · Osprey</span></nav>
 <section class="hero">
 <div class="eyebrow">新增品类 · OSPREY</div>
@@ -151,8 +154,8 @@ input[type="checkbox"]{accent-color:var(--green);width:17px;height:17px;margin-t
 </div>
 </section>
 <p class="foot">资料依据：Osprey 官方型号页面与 <a href="https://www.osprey.com/expert-advice/size-fit" target="_blank" rel="noopener noreferrer">Size &amp; Fit 指南</a>。容量随部分尺码变化；旅行随身行李限制依航司和航线而异。本站按用途页不预设购买地区；<a href="/osprey/series/">按系列页</a>提供单独标注日期的美国官网美元参考价格，不等于其他地区的实时成交价。</p>
-</main>
-<script>
+</MainContent>
+<script is:inline>
 "use strict";
 const choices={
   daily:{seriesId:"daylite",model:"Daylite™ Plus",volume:"20 L",caution:"电脑尺寸与实际收纳",reason:"适合作为城市日常和短途出行的起点。带电子设备时，要实际量内胆并核对防护需求。",url:"https://www.osprey.com/daylite-plus-dayltpluss21-795"},
@@ -178,5 +181,5 @@ for(const button of buttons){
  });
 }
 </script>
-</body>
-</html>
+
+</SiteLayout>

@@ -12,6 +12,7 @@ from agent_reader import validate_reader
 from audit_site_design import validate_design
 
 ROOT = Path(__file__).resolve().parents[1]
+SITE = ROOT / "dist"
 PAGES = (
     Path("index.html"),
     Path("agent/index.html"),
@@ -84,7 +85,7 @@ def internal_target(href: str) -> Path | None:
 def validate_routes() -> None:
     expected = {page.as_posix() for page in PAGES} | {"llms.txt", "agent/site.json", "agent/SKILL.md"}
     for page in PAGES:
-        full = ROOT / page
+        full = SITE / page
         if not full.is_file():
             fail(f"missing required page: {page}")
         text = full.read_text(encoding="utf-8")
@@ -96,13 +97,13 @@ def validate_routes() -> None:
             target = internal_target(href)
             if target is None:
                 continue
-            if target.as_posix() not in expected or not (ROOT / target).is_file():
+            if target.as_posix() not in expected or not (SITE / target).is_file():
                 fail(f"{page}: broken internal route {href!r} -> {target}")
 
 
 def validate_osprey() -> None:
-    home = (ROOT / "index.html").read_text(encoding="utf-8")
-    page = (ROOT / "osprey/index.html").read_text(encoding="utf-8")
+    home = (SITE / "index.html").read_text(encoding="utf-8")
+    page = (SITE / "osprey/index.html").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     require(home, "<h1>选购商品</h1>", "product selection site title")
     require(home, 'href="/osprey/"', "backpack homepage entry")
@@ -124,8 +125,8 @@ def validate_osprey() -> None:
 
 def validate_osprey_hk() -> None:
     """Protect the separate MTR map route, primary sources, and uncertainty."""
-    chooser = (ROOT / "osprey/index.html").read_text(encoding="utf-8")
-    page = (ROOT / "osprey/hong-kong/index.html").read_text(encoding="utf-8")
+    chooser = (SITE / "osprey/index.html").read_text(encoding="utf-8")
+    page = (SITE / "osprey/hong-kong/index.html").read_text(encoding="utf-8")
     require(chooser, 'href="/osprey/hong-kong/"', "HK store-map entry")
     if page.count('<article class="shop"') != 8:
         fail("HK dealer map must preserve eight distinct primary-store cards")
@@ -175,9 +176,9 @@ def validate_osprey_hk() -> None:
 
 
 def validate_osprey_series() -> None:
-    home = (ROOT / "index.html").read_text(encoding="utf-8")
-    chooser = (ROOT / "osprey/index.html").read_text(encoding="utf-8")
-    series_page = (ROOT / "osprey/series/index.html").read_text(encoding="utf-8")
+    home = (SITE / "index.html").read_text(encoding="utf-8")
+    chooser = (SITE / "osprey/index.html").read_text(encoding="utf-8")
+    series_page = (SITE / "osprey/series/index.html").read_text(encoding="utf-8")
     app = (ROOT / "osprey/series/app.js").read_text(encoding="utf-8")
     require(home, "18 个常见系列", "Osprey homepage overview")
     require(chooser, 'href="/osprey/series/"', "Osprey two-way navigation")
@@ -228,7 +229,7 @@ def validate_rates() -> None:
 
 
 def validate_watch() -> None:
-    text = (ROOT / "watch/index.html").read_text(encoding="utf-8")
+    text = (SITE / "watch/index.html").read_text(encoding="utf-8")
     require(text, "页面默认按 46 mm 比较", "Watch fixed-size policy")
     require(text, "<h2>46 mm</h2>", "Watch heading")
     require(text, "46mm-cellular-natural-titanium", "Watch titanium purchase URL")
@@ -257,7 +258,7 @@ def validate_watch() -> None:
 
 
 def validate_iphone() -> None:
-    text = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    text = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     require(text, "iPhone 18 Pro Max 256GB", "iPhone fixed model")
 
     hk = yen(11499, HKD)
@@ -278,7 +279,7 @@ def validate_iphone() -> None:
 
 
 def validate_iphone_tradein_applecare() -> None:
-    text = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    text = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     for fragment in (
         'id="tradein-applecare"',
         "HK$4,499",
@@ -296,7 +297,7 @@ def validate_iphone_tradein_applecare() -> None:
 
 
 def validate_iphone_payment() -> None:
-    text = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    text = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     # Protect the dated Hong Kong payment decision without making live-bank claims in CI.
     for fragment in (
         'id="hk-payment" class="payment" data-price="11499"',
@@ -330,7 +331,7 @@ def validate_iphone_payment() -> None:
 
 
 def validate_iphone_tradein_routes() -> None:
-    text = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    text = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     for fragment in (
         'id="trade-flow-simulator" data-price="11499" data-balance="5080" data-care="1799"',
         'data-route="A"',
@@ -378,8 +379,8 @@ def validate_iphone_tradein_routes() -> None:
 
 def validate_tradein_dialogue() -> None:
     """The guided conversation is a separate subroute; do not overwrite finance logic."""
-    guide = (ROOT / "iphone/trade-in-guide/index.html").read_text(encoding="utf-8")
-    main_page = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    guide = (SITE / "iphone/trade-in-guide/index.html").read_text(encoding="utf-8")
+    main_page = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     ui = (ROOT / "iphone/trade-in-guide/ui.js").read_text(encoding="utf-8")
     app = (ROOT / "iphone/trade-in-guide/app.js").read_text(encoding="utf-8")
     model = (ROOT / "iphone/trade-in-guide/model.js").read_text(encoding="utf-8")
@@ -397,8 +398,8 @@ def validate_tradein_dialogue() -> None:
 
 def validate_actual_purchase_route() -> None:
     """Actual purchase path is immutable evidence, not a guessed successful Trade In."""
-    page = (ROOT / "iphone/trade-in-guide/index.html").read_text(encoding="utf-8")
-    main_page = (ROOT / "iphone/index.html").read_text(encoding="utf-8")
+    page = (SITE / "iphone/trade-in-guide/index.html").read_text(encoding="utf-8")
+    main_page = (SITE / "iphone/index.html").read_text(encoding="utf-8")
     style = (ROOT / "iphone/trade-in-guide/style.css").read_text(encoding="utf-8")
     record = (ROOT / "docs/decisions/2026-10-13-iphone-hk-actual-route.md").read_text(encoding="utf-8")
 
@@ -457,7 +458,7 @@ def validate_vercel_git_deployment_policy() -> None:
 
 
 def main() -> int:
-    validate_design(ROOT, PAGES)
+    validate_design(SITE, PAGES, calendar_root=ROOT, allow_compiled_tailwind=True)
     validate_vercel_git_deployment_policy()
     validate_routes()
     validate_reader()

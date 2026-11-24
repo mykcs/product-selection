@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { assets } from '../src/lib/legacy-pages.mjs';
+import { assets } from '../src/lib/site-files.mjs';
 const dest=path.resolve('.public-build');
 fs.rmSync(dest,{recursive:true,force:true});
 fs.mkdirSync(dest,{recursive:true});

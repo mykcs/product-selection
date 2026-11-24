@@ -8,11 +8,11 @@ CI mode: `STANDARD_CI`
 
 ## Contract
 
-- command: `python3 scripts/validate_site.py`
+- command: `npm ci && npm run check && python3 scripts/validate_site.py`
 - provider: public GitHub Actions
 - runner: Ubuntu
-- expected runtime: seconds
-- required external services: none
+- expected runtime: minutes (bounded 5-minute PR job)
+- required external services: pinned npm dependency registry
 - secrets: none
 - deployment side effects: none
 - required main check: `Price and route validation` (GitHub Actions, integration ID `15368`; strict ruleset `24133819`)
@@ -21,7 +21,7 @@ The pull-request workflow checks out the exact PR head SHA before validation. Th
 
 ## Site design acceptance
 
-The required cheap gate includes the source/date contract and its negative fixtures. For a sitewide design change, additionally dispatch `Repository CI` on the reviewed branch with `browser=true` and its full `expected_sha`. `Site design browser acceptance` checks 10 routes in both engines, both themes and desktop/440px viewports, including interactive states. It is an explicit 20-minute lane with 3-day screenshots/JSON artifacts. The default PR gate remains dependency-free and required; no ruleset or deployment setting changes are implied.
+The required cheap gate includes the source/date contract and its negative fixtures. For a sitewide design change, additionally dispatch `Repository CI` on the reviewed branch with `browser=true` and its full `expected_sha`. `Site design browser acceptance` checks 12 routes in both engines, both themes and desktop/440px viewports, including interactive states. It is an explicit 20-minute lane with 3-day screenshots/JSON artifacts. The default PR gate remains browser-free and required; no ruleset or deployment setting changes are implied.
 
 ## Cross-account qualification
 

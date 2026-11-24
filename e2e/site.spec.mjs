@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-import {pages} from '../src/lib/legacy-pages.mjs';
+import {pages} from '../src/lib/site-files.mjs';
 for(const route of pages())test('rendered /'+route.route,async({page},info)=>{
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
@@ -39,6 +39,7 @@ test('Hong Kong dealer map and wishlist preserve independent filters',async({pag
   await page.locator('a[href="/osprey/hong-kong/"]').click();
   await expect(page.locator('.shop')).toHaveCount(8);
   await expect(page.locator('.leaflet-marker-icon')).toHaveCount(8);
+  await expect(page.locator('#map-message')).toContainText('底图暂不可用');
   await page.locator('button[data-region="island"]').click();
   await expect(page.locator('.shop:visible')).toHaveCount(3);
   await page.locator('button[data-station="油麻地"]').click();

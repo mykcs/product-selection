@@ -1,5 +1,10 @@
-<!doctype html><html lang="zh-CN"><head>
-<link rel="stylesheet" href="/assets/site.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Mac 芯片选择工具：MacBook Pro M5/M5 Pro/M5 Max 与 Mac mini M6/M5 Pro。"><title>Mac 芯片怎么选｜交互式购买工具</title><style>
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import MainContent from "../../components/MainContent.astro";
+---
+<SiteLayout lang="zh-CN">
+<Fragment slot="head">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Mac 芯片选择工具：MacBook Pro M5/M5 Pro/M5 Max 与 Mac mini M6/M5 Pro。"><title>Mac 芯片怎么选｜交互式购买工具</title><style is:inline>
 :root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--muted:#626268;--sub:#7a7a81;--line:#d9d9de;--accent:#06c;--good:#176c39;--goodbg:#edf8f1;--warn:#8b5c00;--warnbg:#fff7e8;--shadow:0 18px 50px rgba(0,0,0,.06)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button,select,input{font:inherit}.top{position:sticky;top:0;z-index:30;background:rgba(245,245,247,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.08)}.top .wrap{height:54px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-5)}.nav{display:flex;gap:var(--space-5);font-size:var(--text-caption);white-space:nowrap}.hero p{margin:0;color:var(--muted)}
@@ -22,9 +27,10 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 .route{display:block;text-decoration:none;color:inherit}.route:hover{text-decoration:none}.route .go{display:inline-block;margin-top:var(--space-5);color:var(--accent);font-weight:var(--weight-heading);font-size:var(--text-caption)}
 .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-3);align-items:end;height:150px;margin-top:var(--space-5)}.tower{border-radius:14px 14px 8px 8px;background:#dfe1e6;padding:var(--space-4);text-align:center;min-width:0}.tower b{font-size:var(--text-caption)}.tower span{display:block;font-size:var(--text-caption);color:#666;margin-top:var(--space-2)}.t1{height:48%}.t2{height:63%}.t3{height:70%}.t4{height:86%}.t5{height:100%}
 @media(prefers-color-scheme:dark){.tower{background:#303037}.tower span{color:#b5b5bb}}
-</style><link rel="stylesheet" href="/assets/interaction-craft.css"></head><body>
+</style></Fragment>
+
 <header class="top"><div class="wrap"><div class="brand">Mac 购买工具</div><nav class="nav"><a href="/">Apple 首页</a><a href="/mac/macbook-pro/">MacBook Pro</a><a href="/mac/mac-mini/">Mac mini</a><a href="/mac/storage/">SSD</a></nav></div></header>
-<main class="wrap">
+<MainContent>
 <section class="hero"><h1>Mac 芯片怎么选</h1><p>不是把“核心越多越好、内存越大越好”重新说一遍。这里把芯片升级拆成几种真正不同的资源：CPU 并行、GPU 规模、内存带宽、可用内存档位、媒体引擎和 I/O。你可以看到每次加钱到底买到了什么。</p></section>
 
 <section><h2>当前能买到什么</h2><p class="lead">截至 <time datetime="2026-09-25">2026年9月25日</time>，MacBook Pro 没有 M6。MacBook Pro 是 M5 / M5 Pro / M5 Max；Mac mini 是 M6 / M5 Pro。</p>
@@ -72,5 +78,6 @@ footer{padding:var(--space-7) 0 var(--space-9);color:var(--sub);font-size:var(--
 <div class="card"><h3>Notebookcheck · M5 Max 实测</h3><p>看 14 英寸 Max 的持续功耗、降频和 PCIe 5.0 SSD 实测，不只看纸面核心数。<br><a href="https://www.notebookcheck.net/M5-Max-with-inconsistent-performance-and-throttling-issues-Apple-MacBook-Pro-14-Review.1246064.0.html" target="_blank" rel="noreferrer">打开 14 英寸 M5 Max 评测 →</a></p></div>
 <div class="card"><h3>iFixit · M5 MacBook Pro 拆解</h3><p>适合看内部结构、SSD/逻辑板与维修设计，补足官方规格看不到的硬件信息。<br><a href="https://www.ifixit.com/News/114046/m5-macbook-pro-teardown" target="_blank" rel="noreferrer">打开拆解 →</a></p></div>
 </div></section>
-</main><footer class="wrap">规格以 Apple <time datetime="2026-09-25">2026年9月25日</time> 当前页面为准。M6 Mac mini 已于 9 月 22 日正式发售；首批独立实测正在出现，页面中的结构化配置数字仍以 Apple 官方规格为准。</footer>
-</body></html>
+</MainContent><footer class="wrap">规格以 Apple <time datetime="2026-09-25">2026年9月25日</time> 当前页面为准。M6 Mac mini 已于 9 月 22 日正式发售；首批独立实测正在出现，页面中的结构化配置数字仍以 Apple 官方规格为准。</footer>
+
+</SiteLayout>

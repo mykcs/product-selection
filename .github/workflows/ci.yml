@@ -53,7 +53,11 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - name: Run dependency-free site validator
+      - name: Validate pinned Astro build and route parity
+        run: |
+          npm ci
+          npm run check
+      - name: Run built site validator
         run: python3 scripts/validate_site.py
       - name: Run branch outcome and script tests
         run: |
@@ -65,10 +69,6 @@ jobs:
           node scripts/test_iphone_tradein.js
           node scripts/test_calendar_date.cjs
           python3 scripts/test_design_contract.py
-      - name: Validate pinned Astro build and route parity
-        run: |
-          npm ci
-          npm run check
 
   browser:
     name: Site design browser acceptance
