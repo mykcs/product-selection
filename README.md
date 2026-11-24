@@ -1,10 +1,12 @@
 # 选购商品
 
-**在线首页：** https://mykcs-product-selection.vercel.app
+**当前代码仓库：** https://github.com/suiyue77/product-selection
 
-**GitHub 仓库：** https://github.com/mykcs/product-selection
+**新 Vercel 站点（需团队成员登录）：** https://product-selection-delta.vercel.app
 
-2026-10-14 项目从 Apple Watch 专题升级为「选购商品」。为保护已有外部链接，旧网站地址 https://apple-watch-series-12-price-compare.vercel.app 仍保留可访问；新内容、入口与开发说明以本仓库和上方新首页为准。
+**旧公开站点（尚未退役）：** https://mykcs-product-selection.vercel.app、https://apple-watch-series-12-price-compare.vercel.app
+
+2026-10-14 项目从 Apple Watch 专题升级为「选购商品」，并保留旧站点网址以保护已有外部链接。2026-11-23 仓库转移至 `suiyue77/product-selection`，新 Vercel 项目设在 `suiyue77-team`；两个旧公开域名仍由原 Vercel 项目服务，**不受新项目的登录保护**。仓库自身仍为 Public。部署与验收以 [Dev 说明](docs/dev/README.md) 和实时 GitHub/Vercel 状态为准。
 
 四个品类入口（原来的 Apple 页面和子页面均保留）：
 
@@ -53,6 +55,10 @@
 
 最终价格、库存、教育资格与汇率以下单页面为准。
 
+
+## 给 Agent 读
+
+通用品类目录位于 `/agent/`。只从明确允许的首页品类入口生成，不复制私人购买记录、财务信息、具体价格或深层记录页面。修改品类导航后运行 `python3 scripts/agent_reader.py --write`，再运行现有站点检查；网站登录保护不变。
 
 ## 开发与 CI
 

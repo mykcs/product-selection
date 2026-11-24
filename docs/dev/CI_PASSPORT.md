@@ -2,7 +2,7 @@
 
 Status: **active — lightweight required PR gate**
 
-Repository: `mykcs/product-selection`  
+Repository: `suiyue77/product-selection`\
 Integration branch: `main`  
 CI mode: `STANDARD_CI`
 
@@ -22,3 +22,10 @@ The pull-request workflow checks out the exact PR head SHA before validation. Th
 ## Site design acceptance
 
 The required cheap gate includes the source/date contract and its negative fixtures. For a sitewide design change, additionally dispatch `Repository CI` on the reviewed branch with `browser=true` and its full `expected_sha`. `Site design browser acceptance` checks 10 routes in both engines, both themes and desktop/440px viewports, including interactive states. It is an explicit 20-minute lane with 3-day screenshots/JSON artifacts. The default PR gate remains dependency-free and required; no ruleset or deployment setting changes are implied.
+
+## Cross-account qualification
+
+- GitHub repository owner: `suiyue77`; the `mykcs` collaborator has write access, not repository-admin authority.
+- Vercel hosting owner: `suiyue77-team/product-selection` (Hobby). Its Git connection points to `suiyue77/product-selection`, not the former `mykcs/product-selection`.
+- This passport defines the **GitHub merge gate**, not a Vercel deployment guarantee. Validate whether a `mykcs`-authored PR actually receives a Vercel Preview; do not infer that from successful GitHub Actions.
+- The evidence checklist and production/privacy boundaries are in [DESIGN.md](DESIGN.md#cross-account-preview-qualification).

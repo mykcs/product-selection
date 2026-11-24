@@ -28,7 +28,7 @@ async function htmlFiles(directory) {
   return files;
 }
 const routes = (await htmlFiles(root)).sort().map(file => '/' + relative(root, file).replaceAll(sep, '/').replace(/index\.html$/, ''));
-assert.equal(routes.length, 10, 'register every new served route in the price/route validator and browser contract');
+assert.equal(routes.length, 11, 'register every new served route in the price/route validator and browser contract');
 const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml' };
 const server = createServer(async (request, response) => {
   try {

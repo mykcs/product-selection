@@ -15,7 +15,7 @@ public small multi-category product-selection website for Apple hardware and Osp
 
 ## 新 Agent 的第一动作
 
-检查 [Current README](README.md) 与现有代码、README；重新获取 [Issues](https://github.com/mykcs/product-selection/issues)、[PR](https://github.com/mykcs/product-selection/pulls) 和 main SHA，明确当前 owner、可写文件、具体验收与后续下一动作。
+检查 [Current README](README.md) 与现有代码、README；重新获取 [Issues](https://github.com/suiyue77/product-selection/issues)、[PR](https://github.com/suiyue77/product-selection/pulls) 和 main SHA，明确当前 owner、可写文件、具体验收与后续下一动作。以上导航链接已随 2026-11-23 仓库迁移更新；本快照的 2026-11-10 观察时间和历史 main SHA 保持不变。
 
 ## 更新纪律
 

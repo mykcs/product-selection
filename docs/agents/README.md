@@ -32,7 +32,7 @@ Treat:
 
 ## Human navigation
 
-[Project Wiki](https://github.com/mykcs/product-selection/wiki) and [Wish and Dev](https://github.com/mykcs/product-selection/wiki/Wish-and-Dev) provide public reader navigation. Repository README, Wish/Dev and route/source evidence remain authoritative; Wiki is a reader projection.
+[Project Wiki](https://github.com/suiyue77/product-selection/wiki) and [Wish and Dev](https://github.com/suiyue77/product-selection/wiki/Wish-and-Dev) provide public reader navigation. Repository README, Wish/Dev and route/source evidence remain authoritative; Wiki is a reader projection.
 
 ## Agent continuity
 
