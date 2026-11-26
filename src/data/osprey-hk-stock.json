@@ -1,0 +1,98 @@
+{
+  "checkedAt": "2026-11-26",
+  "currency": "HKD",
+  "model": "Hikelite S26 普通 Raven Black",
+  "products": {
+    "26": {
+      "barcode": "810165747616",
+      "regular": 1190
+    },
+    "28": {
+      "barcode": "810165747661",
+      "regular": 1490
+    }
+  },
+  "stores": {
+    "hillmalaya": {
+      "note": "网页显示具体黑色库存数量；支持网购及自取，出发前确认备货。",
+      "26": {
+        "status": "in",
+        "qty": 5,
+        "price": 952,
+        "url": "https://hillmalaya.com.hk/zh/products/osprey-hikelite%E2%84%A2-26-hiking-backpack-2026?variant=48356550967525"
+      },
+      "28": {
+        "status": "in",
+        "qty": 3,
+        "price": 1192,
+        "url": "https://hillmalaya.com.hk/zh/products/osprey-hikelite%E2%84%A2-28-hiking-backpack-2026?variant=48356580163813"
+      },
+      "evidence": "选中烏鴉黑；公开商品规格与可见库存一致。"
+    },
+    "wildholics": {
+      "note": "支持门店自取；确认取货时间。",
+      "26": {
+        "status": "out",
+        "price": 952,
+        "url": "https://wildholics.com/products/osprey-hikelite-26-backpack-2026-new-version?variant=49258384425197"
+      },
+      "28": {
+        "status": "in",
+        "price": 1192,
+        "url": "https://wildholics.com/products/osprey-hikelite-28-backpack-2026-new-version?variant=49258473226477"
+      },
+      "evidence": "Raven Black 规格；网页显示已售罄／有存货。28 L 未公布数量。"
+    },
+    "howa": {
+      "note": "商品页标注八折；另有 Osprey 黑五七折专区，未确认本款适用。",
+      "26": {
+        "status": "out",
+        "price": 952,
+        "url": "https://www.howa.com.hk/GOHIKE26-26-Osprey-Hikelite-26L-Backpack",
+        "sku": "GOHIKE26-26-BLK-26L"
+      },
+      "28": {
+        "status": "out",
+        "price": 1192,
+        "url": "https://www.howa.com.hk/GOHIKE28-26-Osprey-Hikelite-28L-Backpack%20",
+        "sku": "GOHIKE28-26-BLK-28L"
+      },
+      "evidence": "浏览器逐个点击黑色，两个 SKU 均显示缺货。"
+    },
+    "funshop": {
+      "note": "店方明确规定 Osprey 不设网店下单或留货，必须到店；请当天询问库存。",
+      "26": {
+        "status": "unavailable",
+        "price": 952,
+        "url": "https://funshopoutdoor.com.hk/collections/osprey/products/osprey-hikelite-26-%E8%A1%8C%E5%B1%B1%E8%83%8C%E5%9B%8A-%E5%A4%9A%E8%89%B2%E5%8F%AF%E9%81%B8%E6%93%87?variant=52661586493758"
+      },
+      "28": {
+        "status": "unavailable",
+        "price": 1192,
+        "url": "https://funshopoutdoor.com.hk/products/osprey-hikelite-28?variant=52667443609918"
+      },
+      "evidence": "两款 Raven Black S26 公开规格均 available=false；不等同实体店缺货。"
+    },
+    "backnature": {
+      "note": "曾见 26 L 第三方报价 HK$904，未确认年份、黑色及有效性；不纳入已核实报价。",
+      "evidence": "尚无目标颜色的可靠独立库存证据。"
+    },
+    "ultra-hing": {
+      "note": "26 L 页面列出其他颜色，但没有普通黑色；28 L 待查询。到店前请预约。",
+      "26": {
+        "status": "unlisted",
+        "url": "https://ultra-hing.com/products/2026-%E6%9C%80%E6%96%B0%E7%89%88-osprey-hikelite-26-%E7%99%BB%E5%B1%B1%E8%83%8C%E5%9B%8A-%E9%A6%99%E6%B8%AF%E8%BC%95%E9%87%8F%E5%8C%96%E6%88%B6%E5%A4%96%E5%BA%97"
+      },
+      "evidence": "商品变体列表不含 Raven Black；未将其他颜色的库存或 USD 价格作为目标报价。"
+    },
+    "rc-mk": {
+      "note": "旧款商品不计入 2026 S26；问旺角门店。"
+    },
+    "overlander-mk": {
+      "note": "26 L 官网未列出目标黑色选项；指定门店库存待询。"
+    },
+    "reecho-ymt": {
+      "note": "品牌体验馆，询问本店与其他分店库存。"
+    }
+  }
+}
