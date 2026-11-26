@@ -74,7 +74,7 @@ test('Hong Kong dealer map and wishlist preserve independent filters',async({pag
   await page.locator('button[data-region="kowloon"]').click();
   await expect(page.locator('#stock-empty')).toBeVisible();
   await expect(page.locator('.leaflet-marker-icon')).toHaveCount(0);
-  await page.locator('button[data-stock-filter="pending"]').click();
+  await page.locator('button[data-stock-filter="candidate"]').click();
   await expect(page.locator('#campzone')).toBeVisible();
   await expect(page.locator('.leaflet-marker-icon .marker.candidate')).toHaveCount(1);
 
@@ -87,4 +87,52 @@ test('Hong Kong dealer map and wishlist preserve independent filters',async({pag
   await expect(page.locator('.leaflet-popup-content')).toContainText('Ho Wa');
   await expect(page.locator('.leaflet-popup-content')).toContainText('BackNature');
 
+});
+
+test('Hong Kong exact-model tags share the same offer predicate and restore from URL',async({page})=>{
+  await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
+  await page.goto('/osprey/hong-kong/');
+  await expect(page.locator('.scope-tags')).toContainText('Hikelite');
+  await expect(page.locator('.scope-tags')).toContainText('Raven Black');
+  await page.locator('button[data-size-filter="28"]').click();
+  await page.locator('button[data-stock-filter="buyable"]').click();
+  await expect(page.locator('#stock-count')).toContainText('28 L · 黑色：3 家门店');
+  await expect(page.locator('.shop:visible')).toHaveCount(3);
+  await expect(page.locator('.stock-row:visible')).toHaveCount(3);
+  await expect(page.locator('.stock-row[data-size="26"]:visible')).toHaveCount(0);
+  await expect(page.locator('#hillmalaya')).toBeVisible();
+  await expect(page.locator('#wildholics')).toBeVisible();
+  await expect(page.locator('#campzone')).toBeVisible();
+  await expect(page.locator('.leaflet-marker-icon .marker.in')).toHaveCount(2);
+  await expect(page.locator('.leaflet-marker-icon .marker.candidate')).toHaveCount(1);
+  await expect(page.locator('[data-overview-size="26"]')).toBeHidden();
+  await expect(page.locator('#active-filters button')).toHaveCount(2);
+  await expect(page.locator('button[data-stock-filter="in"] .facet-count')).toHaveText('2');
+  await expect(page.locator('button[data-stock-filter="candidate"] .facet-count')).toHaveText('1');
+  await expect(page).toHaveURL(/size=28&stock=buyable/);
+  await page.reload();
+  await expect(page.locator('.shop:visible')).toHaveCount(3);
+  await page.locator('button[data-stock-filter="in"]').click();
+  await expect(page.locator('.shop:visible')).toHaveCount(2);
+  await expect(page.locator('#campzone')).toBeHidden();
+  await page.locator('button[data-region="kowloon"]').click();
+  await expect(page.locator('#stock-empty')).toBeVisible();
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(0);
+  await page.locator('[data-remove-filter="region"]').click();
+  await expect(page.locator('.shop:visible')).toHaveCount(2);
+  await page.locator('button[data-stock-filter="in"]').click();
+  await expect(page.locator('button[data-stock-filter="all"]')).toHaveAttribute('aria-pressed','true');
+  await page.locator('#reset-filters').click();
+  await expect(page.locator('.shop:visible')).toHaveCount(16);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(14);
+  await expect(page.locator('#reset-filters')).toBeDisabled();
+  await page.goto('/osprey/hong-kong/?size=28&stock=candidate&region=kowloon');
+  await expect(page.locator('.shop:visible')).toHaveCount(1);
+  await expect(page.locator('#campzone')).toBeVisible();
+  await page.locator('.leaflet-marker-icon').click();
+  await expect(page.locator('.leaflet-popup-content')).toContainText('28 L');
+  await expect(page.locator('.leaflet-popup-content')).not.toContainText('26 L');
+  await expect(page.locator('.leaflet-popup-content')).toContainText('1,132.40');
+  const measure=await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth}));
+  expect(measure.scrollWidth).toBeLessThanOrEqual(measure.width+1);
 });
