@@ -14,20 +14,30 @@
   },
   "stores": {
     "hillmalaya": {
-      "note": "网上下单自取：等候备货确认邮件，到店出示邮件；营业开始30分钟后可取。",
+      "note": "网上自取等备货确认邮件，营业开始30分钟后可取。购物车列 FPS 访客0.5%／登录后2.5%支付折扣；未登录、未付款，适用资格及最终叠加待确认。",
       "26": {
         "status": "in",
         "qty": 5,
         "price": 952,
-        "url": "https://hillmalaya.com.hk/zh/products/osprey-hikelite%E2%84%A2-26-hiking-backpack-2026?variant=48356550967525"
+        "url": "https://hillmalaya.com.hk/zh/products/osprey-hikelite%E2%84%A2-26-hiking-backpack-2026?variant=48356550967525",
+        "promotion": {
+          "single": 928.2,
+          "label": "登录后 FPS 支付2.5%折扣",
+          "verification": "购物车公示；登录后叠加待确认"
+        }
       },
       "28": {
         "status": "in",
         "qty": 3,
         "price": 1192,
-        "url": "https://hillmalaya.com.hk/zh/products/osprey-hikelite%E2%84%A2-28-hiking-backpack-2026?variant=48356580163813"
+        "url": "https://hillmalaya.com.hk/zh/products/osprey-hikelite%E2%84%A2-28-hiking-backpack-2026?variant=48356580163813",
+        "promotion": {
+          "single": 1162.2,
+          "label": "登录后 FPS 支付2.5%折扣",
+          "verification": "购物车公示；登录后叠加待确认"
+        }
       },
-      "evidence": "第二次核验条码及烏鴉黑选项，商品规格与可见库存一致。",
+      "evidence": "两款条码与 Raven Black 选项吻合，网店 26 L 5件、28 L 3件；访客购物车显示 FPS 登录后2.5%支付优惠提示。",
       "evidenceLinks": [
         {
           "label": "自取及配送规则",
@@ -36,6 +46,10 @@
         {
           "label": "观塘门店与 A2 路线",
           "url": "https://hillmalaya.com.hk/pages/contact"
+        },
+        {
+          "label": "购物车支付优惠提示（需先加购）",
+          "url": "https://hillmalaya.com.hk/cart"
         }
       ]
     },
@@ -133,6 +147,98 @@
     },
     "overlander-cwb": {
       "sharedEvidenceStoreId": "overlander-mk"
+    },
+    "campzone": {
+      "note": "油麻地 A1 出口，等候备货通知后 10 天内免费到店自取。两款均可加入购物车；付款前请核对普通版 Raven Black 吊牌条码，实体店库存与店内同享折扣待确认。",
+      "26": {
+        "status": "candidate",
+        "price": 952,
+        "url": "https://www.campzoneoutdoor.com/products/osprey-hikelite-26-backpack-2026new",
+        "promotion": {
+          "single": 904.4,
+          "label": "指定商品单件额外95折；两件额外9折",
+          "verification": "购物车已复现",
+          "pairUnit": 856.8
+        }
+      },
+      "28": {
+        "status": "candidate",
+        "price": 1192,
+        "url": "https://www.campzoneoutdoor.com/products/osprey-hikelite-28-backpack-2026new",
+        "promotion": {
+          "single": 1132.4,
+          "label": "指定商品单件额外95折；两件额外9折",
+          "verification": "购物车已复现",
+          "pairUnit": 1072.8
+        }
+      },
+      "evidence": "独立访客浏览器逐一选 Raven Black：26 L 单件购物车 HK$904.40；28 L 单件 HK$1,132.40；26+28 两件合计 HK$1,929.60（减 HK$214.40，免费自取）。未提交订单、未付款；页面不显示条码。",
+      "evidenceLinks": [
+        {
+          "label": "门店路线与联系方式",
+          "url": "https://www.campzoneoutdoor.com/pages/direction"
+        },
+        {
+          "label": "免费自取及取货期限",
+          "url": "https://www.campzoneoutdoor.com/pages/delivery"
+        },
+        {
+          "label": "安利大厦坐标",
+          "url": "https://mapcarta.com/W695023076"
+        }
+      ]
+    },
+    "campingshare": {
+      "note": "2026新版 26 L 可选 Black 且成功加购；页面只标 Black，须核对普通 Raven Black 条码（非 LE）。28 L 仅蓝、紫。黑五活动以实际结算为准。",
+      "26": {
+        "status": "candidate",
+        "price": 952,
+        "url": "https://campingshare.com.hk/product/Osprey-Hikelite-26-%E7%99%BB%E5%B1%B1%E8%83%8C%E5%9B%8A-(2026%E6%96%B0%E7%89%88)-6PMsqV6KuPGi5okh",
+        "promotion": {
+          "single": 894.88,
+          "label": "黑五全单额外94折（页面公示6%优惠）",
+          "verification": "页面规则推算；结算待确认"
+        }
+      },
+      "28": {
+        "status": "unlisted",
+        "url": "https://campingshare.com.hk/product/Osprey-Hikelite-28-%E7%99%BB%E5%B1%B1%E8%83%8C%E5%9B%8A-(2026%E6%96%B0%E7%89%88)-gNNBkVMBHFaeq7wg"
+      },
+      "evidence": "选中 Black，购物车确认 26 L 黑色、单件 HK$952。页面公示6%折扣，计算 HK$894.88；本次购物车小计仍为 HK$952，未独立复现最终减价。Gemini 报告称已实测折后价，仍需店方或结算页面确认。",
+      "evidenceLinks": [
+        {
+          "label": "店方联系与地址",
+          "url": "https://campingshare.com.hk/"
+        },
+        {
+          "label": "华成工商中心坐标",
+          "url": "https://mapcarta.com/W223936819"
+        }
+      ]
+    },
+    "lifesports": {
+      "note": "旺角实体店，与雅兰中心 Backpacker 是不同商户。26 L 商品数据条码完全吻合；28 L 正文虽提 Raven Black，但规格数据仅列紫色。出发前确认店内备货。",
+      "26": {
+        "status": "in",
+        "price": 952,
+        "url": "https://backpackhk.com/en/products/osprey-hikelite-26?variant=56248372035906",
+        "sku": "810165747616"
+      },
+      "28": {
+        "status": "unlisted",
+        "url": "https://backpackhk.com/products/osprey-hikelite-28"
+      },
+      "evidence": "26 L 公开商品数据：Raven Black，barcode=810165747616，available=true，HK$952；28 L 只有 Graphite Purple，barcode=810165747685。未公布黑色26 L 件数。",
+      "evidenceLinks": [
+        {
+          "label": "门店与营业时间",
+          "url": "https://backpackhk.com/pages/%E9%96%80%E5%B7%BF%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93"
+        },
+        {
+          "label": "威达商业大厦坐标",
+          "url": "https://hkaddresses.com/en/building/10536"
+        }
+      ]
     }
   },
   "officialReference": {
@@ -156,6 +262,38 @@
         {
           "label": "28 / 32 L 商品线索",
           "url": "https://www.mtservice.com.hk/en/products/osprey-hikelite-28l32l"
+        }
+      ]
+    },
+    {
+      "name": "山型点 Hill Go Point",
+      "status": "网店候选；条码及具体库存待确认",
+      "note": "两款 2026 新版页面列 RAVEN BLACK；26 L HK$1,190／会员 HK$1,011.50，28 L HK$1,490／会员 HK$1,266.50。网页公示满 HK$1,500 减 HK$80，单件不达门槛。未核实会员资格、数量或实际叠加，不纳入地图现货和最低价。",
+      "address": "网店渠道，实体店自取未核实",
+      "contactUrl": "https://hillgopoint.com/",
+      "contactLabel": "网店",
+      "links": [
+        {
+          "label": "26 L 2026商品页",
+          "url": "https://hillgopoint.com/item/%E3%80%90%E5%A4%9A%E8%89%B2%E9%81%B8%E6%93%87%E3%80%91Osprey-Hikelite-26-%E7%99%BB%E5%B1%B1%E8%83%8C%E5%8C%85-%282026%E6%96%B0%E7%89%88%29/5907791314026496"
+        },
+        {
+          "label": "28 L 2026商品页",
+          "url": "https://hillgopoint.com/item/%E3%80%90%E5%A4%9A%E8%89%B2%E9%81%B8%E6%93%87%E3%80%91Osprey-Hikelite-28-%E7%99%BB%E5%B1%B1%E8%83%8C%E5%8C%85-%282026%E6%96%B0%E7%89%88%29/5115732122533888"
+        }
+      ]
+    },
+    {
+      "name": "友和 YOHO",
+      "status": "排除旧款／下架",
+      "note": "26 L HK$840 的详情明确显示已下架、可拆25毫米织带腰带、900克，与目标 S26 不符；不能拿低价作为新款行情。Gemini 的28 L 旧款线索亦不计入现货。",
+      "address": "网店；不建议为此专程前往",
+      "contactUrl": "https://www.yohohongkong.com/en-us/product/239641-OSPREY-HIKELITE-26-Hiking-Backpack-REG",
+      "contactLabel": "官网商品证据",
+      "links": [
+        {
+          "label": "26 L 旧款下架详情",
+          "url": "https://www.yohohongkong.com/en-us/product/239641-OSPREY-HIKELITE-26-Hiking-Backpack-REG"
         }
       ]
     }

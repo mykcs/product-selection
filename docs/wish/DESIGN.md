@@ -20,3 +20,6 @@ Owner goal: replace scattered buying research with one geographic decision surfa
 
 
 Evidence intake: external Agent reports are leads, not stock authority. Cross-check exact model generation, colour and barcode where available against the merchant's original variant or visible page. Preserve authoritative product links and dated evidence in the existing stock snapshot; keep official price baselines and other-version / uncertain leads distinct from verified target offers. Store pickup rules should use merchant policy rather than an unverified time guarantee. Do not change map stock status or minimum price based on an unrelated variant.
+
+
+Promotion evidence: keep the ordinary listed price, conditional single-item discount and multi-item allocation separate. A verified guest cart is not a paid order. A product with the exact requested color selectable and addable but without verified barcode is a distinct candidate (orange on the map), not a confirmed green offer. Keep source links, membership/payment conditions and no-order boundary; expired or unverified offers must not count toward confirmed stock or unconditional lowest price.

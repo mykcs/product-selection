@@ -37,7 +37,13 @@ test('Hong Kong dealer map and wishlist preserve independent filters',async({pag
   await page.goto('/osprey/');
   await expect(page.locator('#my-wishes')).toBeVisible();
   await page.locator('a[href="/osprey/hong-kong/"]').click();
-  await expect(page.locator('.shop')).toHaveCount(13);
+  await expect(page.locator('.shop')).toHaveCount(16);
+  await expect(page.locator('#campzone .stock-row[data-size="26"]')).toContainText('HK$904.40');
+  await expect(page.locator('#campzone .stock-row[data-size="28"]')).toContainText('HK$1,132.40');
+  await expect(page.locator('#campingshare .stock-row[data-size="26"]')).toHaveAttribute('data-status','candidate');
+  await expect(page.locator('#lifesports .stock-row[data-size="26"]')).toHaveAttribute('data-status','in');
+  await expect(page.locator('#lifesports .stock-row[data-size="28"]')).toHaveAttribute('data-status','unlisted');
+
   await expect(page.locator('.stock-overview')).toContainText('官网参考 HK$1,190');
   await expect(page.locator('.stock-overview')).toContainText('官网参考 HK$1,490');
   await page.locator('#other-channels summary').click();
@@ -47,12 +53,12 @@ test('Hong Kong dealer map and wishlist preserve independent filters',async({pag
   await expect(page.locator('#rc-mk .stock-row[data-size="28"]')).toHaveAttribute('data-status','unknown');
   await expect(page.locator('#overlander-mk .stock-row[data-size="26"]')).toHaveAttribute('data-status','unknown');
 
-  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(11);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(14);
   await expect(page.locator('#map-message')).toContainText('底图暂不可用');
   await page.locator('button[data-region="island"]').click();
   await expect(page.locator('.shop:visible')).toHaveCount(3);
   await page.locator('button[data-station="油麻地"]').click();
-  await expect(page.locator('.shop:visible')).toHaveCount(4);
+  await expect(page.locator('.shop:visible')).toHaveCount(5);
   await expect(page.locator('.shop:visible a').first()).toBeVisible();
   await expect(page.locator('.shop:visible a[href*="travelmode=transit"]').first()).toBeVisible();
   await page.locator('button[data-region="kwun-tong"]').click();
@@ -67,10 +73,14 @@ test('Hong Kong dealer map and wishlist preserve independent filters',async({pag
   await page.locator('button[data-region="kowloon"]').click();
   await expect(page.locator('#stock-empty')).toBeVisible();
   await expect(page.locator('.leaflet-marker-icon')).toHaveCount(0);
+  await page.locator('button[data-stock-filter="pending"]').click();
+  await expect(page.locator('#campzone')).toBeVisible();
+  await expect(page.locator('.leaflet-marker-icon .marker.candidate')).toHaveCount(1);
+
   await page.locator('button[data-stock-filter="all"]').click();
   await page.locator('button[data-size-filter="all"]').click();
-  await expect(page.locator('.shop:visible')).toHaveCount(8);
-  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(6);
+  await expect(page.locator('.shop:visible')).toHaveCount(10);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(8);
   await page.locator('.leaflet-marker-icon').filter({hasText:'02/09/10'}).click();
   await expect(page.locator('.leaflet-popup-content')).toContainText('Funshop');
   await expect(page.locator('.leaflet-popup-content')).toContainText('Ho Wa');
