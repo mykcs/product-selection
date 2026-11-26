@@ -46,3 +46,5 @@ Do not create synthetic probe commits, change commit authors, relax SSO, move ol
 | Governance | AGENTS, Wish, Dev, current local design owner and provider evidence. |
 
 This map is navigation to actual checks, not a full-compliance claim.
+
+Feature goals and current/better design: [Feature Design](../design/features/README.md). This is part of Design, not a separate governance owner.

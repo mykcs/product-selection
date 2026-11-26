@@ -53,3 +53,5 @@ python3 scripts/test_design_contract.py
 ## 采用的标准方法
 
 共享变量按 [W3C CSS Custom Properties](https://www.w3.org/TR/css-variables-1/) 的继承和级联机制连接真实消费者；日期使用 [HTML `<time>`](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element) 的机器值/显示值边界；验收采用 [Playwright viewport 和 colorScheme](https://playwright.dev/docs/emulation) 的真实渲染。本站保留静态部署，统一使用 Astro 页面组件。地图第三方运行时使用固定版本的本地 Leaflet，底图网络可用性与离线 UI 验收分别记录。
+
+Feature goals and current/better design: [Feature Design](../design/features/README.md). This is part of Design, not a separate governance owner.

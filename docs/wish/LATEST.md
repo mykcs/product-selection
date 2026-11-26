@@ -10,3 +10,5 @@ Protect:
 - a lightweight static site rather than a large product system;
 - route independence so one product decision does not unnecessarily rewrite the others;
 - the distinction between historical decisions, dated snapshots and current purchase guidance.
+
+Feature goals and current/better design: [Feature Design](../design/features/README.md). This is part of Design, not a separate governance owner.

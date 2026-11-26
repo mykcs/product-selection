@@ -29,3 +29,5 @@ The required cheap gate includes the source/date contract and its negative fixtu
 - Vercel hosting owner: `suiyue77-team/product-selection` (Hobby). Its Git connection points to `suiyue77/product-selection`, not the former `mykcs/product-selection`.
 - This passport defines the **GitHub merge gate**, not a Vercel deployment guarantee. Validate whether a `mykcs`-authored PR actually receives a Vercel Preview; do not infer that from successful GitHub Actions.
 - The evidence checklist and production/privacy boundaries are in [DESIGN.md](DESIGN.md#cross-account-preview-qualification).
+
+Feature goals and current/better design: [Feature Design](../design/features/README.md). This is part of Design, not a separate governance owner.
