@@ -128,8 +128,10 @@ def validate_osprey_hk() -> None:
     chooser = (SITE / "osprey/index.html").read_text(encoding="utf-8")
     page = (SITE / "osprey/hong-kong/index.html").read_text(encoding="utf-8")
     require(chooser, 'href="/osprey/hong-kong/"', "HK store-map entry")
-    if page.count('<article class="shop"') != 13:
-        fail("HK dealer map must preserve thirteen distinct store cards")
+    for fragment in ("电脑另用保护内胆", "不要求商务外观", "Hikelite 26 / 28 普通黑色", "不要求限定版"):
+        require(chooser, fragment, "Osprey current decision intent")
+    if page.count('<article class="shop"') != 16:
+        fail("HK dealer map must preserve sixteen distinct store cards")
     for fragment in (
         "Great Seasons Limited",
         "ospreypacks.com.hk",
@@ -175,15 +177,31 @@ def validate_osprey_hk() -> None:
     require(page, "mailto:info@acu.com.hk", "HK distributor public contact")
     inventory = json.loads((ROOT / "src/data/osprey-hk-stock.json").read_text(encoding="utf-8"))
     assert inventory["currency"] == "HKD" and inventory["model"] == "Hikelite S26 普通 Raven Black"
-    for store_id in ("hillmalaya", "wildholics", "howa", "funshop", "backnature", "ultra-hing"):
+    for store_id in ("hillmalaya", "wildholics", "howa", "funshop", "backnature", "ultra-hing", "campzone", "campingshare", "lifesports"):
         require(page, f'id="{store_id}"', "HK inventory store")
     for fragment in ('data-size-filter="26"', 'data-size-filter="28"', 'data-stock-filter="in"', "实体店库存：待确认", 'data-stock-store="hillmalaya"', 'data-stock-store="wildholics"'):
         require(page, fragment, "HK inventory and uncertainty contract")
+    assert inventory["officialReference"]["url"].startswith("https://www.osprey.com/hk/")
+    for fragment in ("官网参考 HK$1,190", "官网参考 HK$1,490", "其他购买线索与官方价格依据", "Mountain Services 名峰行", "旧款商品对照", "自取及配送规则"):
+        require(page, fragment, "HK secondary verification and official benchmark")
+    for store_id in ("rc-mk", "rc-cwb", "overlander-mk", "overlander-cwb"):
+        block = page.split(f'<article class="shop" id="{store_id}"',1)[1].split("</article>",1)[0]
+        assert block.count('data-status="unknown"') == 2, f"Non-target evidence must not change target stock: {store_id}"
+    for fragment in ("HK$904.40", "HK$1,132.40", "HK$894.88", "HK$928.20", "HK$1,162.20", "可加购 · 条码待核", "购物车已复现"):
+        require(page, fragment, "HK promotion evidence")
+    assert inventory["stores"]["lifesports"]["26"]["barcode"] == inventory["products"]["26"]["barcode"]
+    assert inventory["stores"]["lifesports"]["26"]["sku"] == "10007545"
+    assert inventory["stores"]["lifesports"]["26"]["status"] == "in"
+    assert inventory["stores"]["campzone"]["26"]["status"] == "candidate"
+    assert inventory["stores"]["campzone"]["28"]["status"] == "candidate"
+    assert inventory["stores"]["campingshare"]["26"]["status"] == "candidate"
+    assert inventory["stores"]["campingshare"]["28"]["status"] == "unlisted"
+    assert round(sum(inventory["stores"]["campzone"][size]["promotion"]["pairUnit"] for size in ("26","28")),2) == 1929.60
     for store_id, entries in inventory["stores"].items():
         for size in ("26", "28"):
             offer = entries.get(size, {})
             if offer:
-                assert offer["status"] in {"in", "out", "unavailable", "unlisted", "unknown"}
+                assert offer["status"] in {"in", "out", "unavailable", "unlisted", "unknown", "candidate"}
                 assert offer["url"].startswith("https://")
                 if offer.get("qty") is not None:
                     assert offer["status"] == "in" and offer["qty"] > 0

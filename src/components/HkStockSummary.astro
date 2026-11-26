@@ -2,23 +2,26 @@
 import stock from "../data/osprey-hk-stock.json";
 interface Props { storeId: string }
 const {storeId} = Astro.props;
-type Offer = {status:string; qty?:number; price?:number; url?:string; sku?:string};
-type Entry = {note?:string; evidence?:string; "26"?:Offer; "28"?:Offer};
-const record = (stock.stores as Record<string,Entry>)[storeId] || {};
+type Promotion = {single:number; label:string; verification:string; pairUnit?:number};
+type Offer = {status:string; promotion?:Promotion; qty?:number; price?:number; url?:string; sku?:string};
+type Entry = {note?:string; evidence?:string; evidenceLinks?:{label:string;url:string}[]; sharedEvidenceStoreId?:string; "26"?:Offer; "28"?:Offer};
+const stores = stock.stores as Record<string,Entry>;
+const entry = stores[storeId] || {};
+const record = entry.sharedEvidenceStoreId ? stores[entry.sharedEvidenceStoreId] || {} : entry;
 const dateText=stock.checkedAt.replace(/-(\d{2})-(\d{2})$/,(_,m,d)=>"年"+Number(m)+"月"+Number(d)+"日");
-const statusLabel: Record<string,string> = {in:"网店有货",out:"网店缺货",unavailable:"网店不可售",unlisted:"未列黑色",unknown:"待确认"};
+const statusLabel: Record<string,string> = {in:"网店有货",candidate:"可加购 · 条码待核",out:"网店缺货",unavailable:"网店不可售",unlisted:"未列黑色",unknown:"待确认"};
+const money=(v:number)=>"HK$"+v.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
 const offers = (["26","28"] as const).map(size => ({size, offer: record[size] || {status:"unknown"} as Offer}));
 ---
 <div class="stock-summary" data-stock-store={storeId}>
-  {offers.map(({size,offer}) => (
-    <div class="stock-row" data-size={size} data-status={offer.status}>
-      <strong>{size} L</strong>
-      <span class:list={["stock-state",offer.status]}>{statusLabel[offer.status]}{offer.qty !== undefined ? " · "+offer.qty+" 件" : ""}</span>
-      <span class="stock-price">{offer.price !== undefined ? "HK$"+offer.price.toLocaleString("en-US") : "—"}</span>
-      {offer.url && <a href={offer.url} target="_blank" rel="noopener noreferrer" aria-label={size+" L 商品证据"}>商品 ↗</a>}
-    </div>
-  ))}
-  <p class="branch-state">实体店库存：待确认</p>
-  {record.note && <p class="stock-note">{record.note}</p>}
-  {record.evidence && <details class="stock-evidence"><summary>库存依据 · <time datetime={stock.checkedAt}>{dateText}</time></summary><p>{record.evidence}</p></details>}
+  {offers.map(({size,offer}) => {
+    const verifiedCart=offer.promotion?.verification==="购物车已复现";
+    return <div class="stock-row" data-size={size} data-status={offer.status} data-price={offer.price}>
+      <div class="offer-top"><strong>{size} L</strong><span class:list={["stock-state",offer.status]}>{statusLabel[offer.status]}{offer.qty !== undefined ? " · "+offer.qty+" 件" : ""}</span></div>
+      <div class="offer-amount"><span class="stock-price">{verifiedCart && offer.promotion ? money(offer.promotion.single) : offer.price !== undefined ? "HK$"+offer.price.toLocaleString("en-US") : "—"}</span>{offer.price!==undefined && <span class="price-caption">{verifiedCart ? "购物车价" : "标价"}</span>}</div>
+      {offer.promotion && <div class="stock-deal">{verifiedCart ? <span class="listed-reference">{"标价 HK$"+offer.price?.toLocaleString("en-US")} · </span> : <><strong>预计 {money(offer.promotion.single)}</strong> · </>}<span>{offer.promotion.label} · {offer.promotion.verification}</span>{offer.promotion.pairUnit!==undefined && <span>；两件符合活动时每件 {money(offer.promotion.pairUnit)}</span>}</div>}
+      {offer.url && <a href={offer.url} target="_blank" rel="noopener noreferrer" aria-label={size+" L 商品证据"}>查看商品 ↗</a>}
+    </div>;
+  })}
+  {(record.note||record.evidence) && <details class="stock-evidence"><summary>优惠、取货与库存依据</summary><p class="branch-state">实体店库存：待确认</p>{record.note && <p class="stock-note">{record.note}</p>}{record.evidence && <p>{record.evidence} · <time datetime={stock.checkedAt}>{dateText}</time></p>}{record.evidenceLinks && <p class="evidence-links">{record.evidenceLinks.map(link=><a href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}</p>}</details>}
 </div>

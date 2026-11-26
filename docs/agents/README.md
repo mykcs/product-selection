@@ -10,7 +10,7 @@ This repository is intentionally small. This file is navigation-only and does no
 | Homepage/navigation | `src/pages/index.astro` |
 | Apple Watch comparison | `src/pages/watch/index.astro` |
 | Osprey backpack use-case chooser | `src/pages/osprey/index.astro` |
-| Hong Kong dealer and MTR guide (dated public merchant sources; not stock) | `src/pages/osprey/hong-kong/index.astro` |
+| Hong Kong Hikelite stock, discounts and MTR guide | [feature intent](../wish/DESIGN.md#hong-kong-hikelite-inventory-map-2026-11-26), `src/data/osprey-hk-stock.json` (dated HKD offers), `src/components/HkStockSummary.astro`, `src/pages/osprey/hong-kong/index.astro`; [refresh and verification](../dev/DESIGN.md#hong-kong-offer-verification) |
 | Osprey series and price catalogue | `src/pages/osprey/series/index.astro`, `app.js`, `catalog.json`; evidence: `docs/decisions/2026-10-14-osprey-series-us-prices.md` |
 | iPhone comparison | `src/pages/iphone/index.astro` |
 | iPhone 香港换机话术与分支 | `src/pages/iphone/trade-in-guide/index.astro`, `model.js`, `ui.js`, `app.js` |
