@@ -36,7 +36,8 @@ test('Hong Kong dealer map and wishlist preserve independent filters',async({pag
   await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
   await page.goto('/osprey/');
   await expect(page.locator('#my-wishes')).toBeVisible();
-  await page.locator('a[href="/osprey/hong-kong/"]').click();
+  await expect(page.locator('#my-wishes a[href="/osprey/hong-kong/"]')).toBeVisible();
+  await page.locator('a.mode[href="/osprey/hong-kong/"]').click();
   await expect(page.locator('.shop')).toHaveCount(16);
   await expect(page.locator('#campzone .stock-row[data-size="26"]')).toContainText('HK$904.40');
   await expect(page.locator('#campzone .stock-row[data-size="28"]')).toContainText('HK$1,132.40');

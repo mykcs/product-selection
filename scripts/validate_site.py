@@ -128,6 +128,8 @@ def validate_osprey_hk() -> None:
     chooser = (SITE / "osprey/index.html").read_text(encoding="utf-8")
     page = (SITE / "osprey/hong-kong/index.html").read_text(encoding="utf-8")
     require(chooser, 'href="/osprey/hong-kong/"', "HK store-map entry")
+    for fragment in ("电脑另用保护内胆", "不要求商务外观", "Hikelite 26 / 28 普通黑色", "不要求限定版"):
+        require(chooser, fragment, "Osprey current decision intent")
     if page.count('<article class="shop"') != 16:
         fail("HK dealer map must preserve sixteen distinct store cards")
     for fragment in (
