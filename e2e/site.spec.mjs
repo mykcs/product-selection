@@ -38,6 +38,15 @@ test('Hong Kong dealer map and wishlist preserve independent filters',async({pag
   await expect(page.locator('#my-wishes')).toBeVisible();
   await page.locator('a[href="/osprey/hong-kong/"]').click();
   await expect(page.locator('.shop')).toHaveCount(13);
+  await expect(page.locator('.stock-overview')).toContainText('官网参考 HK$1,190');
+  await expect(page.locator('.stock-overview')).toContainText('官网参考 HK$1,490');
+  await page.locator('#other-channels summary').click();
+  await expect(page.locator('#other-channels')).toContainText('Mountain Services 名峰行');
+  await expect(page.locator('#other-channels')).toContainText('不计入目标款最低价');
+  await page.locator('#other-channels summary').click();
+  await expect(page.locator('#rc-mk .stock-row[data-size="28"]')).toHaveAttribute('data-status','unknown');
+  await expect(page.locator('#overlander-mk .stock-row[data-size="26"]')).toHaveAttribute('data-status','unknown');
+
   await expect(page.locator('.leaflet-marker-icon')).toHaveCount(11);
   await expect(page.locator('#map-message')).toContainText('底图暂不可用');
   await page.locator('button[data-region="island"]').click();

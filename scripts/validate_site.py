@@ -179,6 +179,12 @@ def validate_osprey_hk() -> None:
         require(page, f'id="{store_id}"', "HK inventory store")
     for fragment in ('data-size-filter="26"', 'data-size-filter="28"', 'data-stock-filter="in"', "实体店库存：待确认", 'data-stock-store="hillmalaya"', 'data-stock-store="wildholics"'):
         require(page, fragment, "HK inventory and uncertainty contract")
+    assert inventory["officialReference"]["url"].startswith("https://www.osprey.com/hk/")
+    for fragment in ("官网参考 HK$1,190", "官网参考 HK$1,490", "其他购买线索与官方价格依据", "Mountain Services 名峰行", "旧款商品对照", "自取及配送规则"):
+        require(page, fragment, "HK secondary verification and official benchmark")
+    for store_id in ("rc-mk", "rc-cwb", "overlander-mk", "overlander-cwb"):
+        block = page.split(f'<article class="shop" id="{store_id}"',1)[1].split("</article>",1)[0]
+        assert block.count('data-status="unknown"') == 2, f"Non-target evidence must not change target stock: {store_id}"
     for store_id, entries in inventory["stores"].items():
         for size in ("26", "28"):
             offer = entries.get(size, {})

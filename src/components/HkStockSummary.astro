@@ -3,8 +3,10 @@ import stock from "../data/osprey-hk-stock.json";
 interface Props { storeId: string }
 const {storeId} = Astro.props;
 type Offer = {status:string; qty?:number; price?:number; url?:string; sku?:string};
-type Entry = {note?:string; evidence?:string; "26"?:Offer; "28"?:Offer};
-const record = (stock.stores as Record<string,Entry>)[storeId] || {};
+type Entry = {note?:string; evidence?:string; evidenceLinks?:{label:string;url:string}[]; sharedEvidenceStoreId?:string; "26"?:Offer; "28"?:Offer};
+const stores = stock.stores as Record<string,Entry>;
+const entry = stores[storeId] || {};
+const record = entry.sharedEvidenceStoreId ? stores[entry.sharedEvidenceStoreId] || {} : entry;
 const dateText=stock.checkedAt.replace(/-(\d{2})-(\d{2})$/,(_,m,d)=>"年"+Number(m)+"月"+Number(d)+"日");
 const statusLabel: Record<string,string> = {in:"网店有货",out:"网店缺货",unavailable:"网店不可售",unlisted:"未列黑色",unknown:"待确认"};
 const offers = (["26","28"] as const).map(size => ({size, offer: record[size] || {status:"unknown"} as Offer}));
@@ -20,5 +22,5 @@ const offers = (["26","28"] as const).map(size => ({size, offer: record[size] ||
   ))}
   <p class="branch-state">实体店库存：待确认</p>
   {record.note && <p class="stock-note">{record.note}</p>}
-  {record.evidence && <details class="stock-evidence"><summary>库存依据 · <time datetime={stock.checkedAt}>{dateText}</time></summary><p>{record.evidence}</p></details>}
+  {record.evidence && <details class="stock-evidence"><summary>库存依据 · <time datetime={stock.checkedAt}>{dateText}</time></summary><p>{record.evidence}</p>{record.evidenceLinks && <p class="evidence-links">{record.evidenceLinks.map(link=><a href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}</p>}</details>}
 </div>

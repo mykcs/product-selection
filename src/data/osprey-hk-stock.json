@@ -14,7 +14,7 @@
   },
   "stores": {
     "hillmalaya": {
-      "note": "网页显示具体黑色库存数量；支持网购及自取，出发前确认备货。",
+      "note": "网上下单自取：等候备货确认邮件，到店出示邮件；营业开始30分钟后可取。",
       "26": {
         "status": "in",
         "qty": 5,
@@ -27,10 +27,20 @@
         "price": 1192,
         "url": "https://hillmalaya.com.hk/zh/products/osprey-hikelite%E2%84%A2-28-hiking-backpack-2026?variant=48356580163813"
       },
-      "evidence": "选中烏鴉黑；公开商品规格与可见库存一致。"
+      "evidence": "第二次核验条码及烏鴉黑选项，商品规格与可见库存一致。",
+      "evidenceLinks": [
+        {
+          "label": "自取及配送规则",
+          "url": "https://hillmalaya.com.hk/policies/shipping-policy"
+        },
+        {
+          "label": "观塘门店与 A2 路线",
+          "url": "https://hillmalaya.com.hk/pages/contact"
+        }
+      ]
     },
     "wildholics": {
-      "note": "支持门店自取；确认取货时间。",
+      "note": "支持网上付款或到店购买；等候备货完成的邮件或短信后自取。",
       "26": {
         "status": "out",
         "price": 952,
@@ -41,7 +51,17 @@
         "price": 1192,
         "url": "https://wildholics.com/products/osprey-hikelite-28-backpack-2026-new-version?variant=49258473226477"
       },
-      "evidence": "Raven Black 规格；网页显示已售罄／有存货。28 L 未公布数量。"
+      "evidence": "第二次核验 Raven Black 条码；26 L 显示售罄，28 L 有存货（未公布数量）。",
+      "evidenceLinks": [
+        {
+          "label": "付款及自取 FAQ",
+          "url": "https://wildholics.com/en/pages/faq"
+        },
+        {
+          "label": "店方联系页面",
+          "url": "https://wildholics.com/en/pages/contact-us"
+        }
+      ]
     },
     "howa": {
       "note": "商品页标注八折；另有 Osprey 黑五七折专区，未确认本款适用。",
@@ -57,7 +77,7 @@
         "url": "https://www.howa.com.hk/GOHIKE28-26-Osprey-Hikelite-28L-Backpack%20",
         "sku": "GOHIKE28-26-BLK-28L"
       },
-      "evidence": "浏览器逐个点击黑色，两个 SKU 均显示缺货。"
+      "evidence": "第二次在浏览器逐个点击黑色，两个黑色 SKU 均显示缺货及八折。"
     },
     "funshop": {
       "note": "店方明确规定 Osprey 不设网店下单或留货，必须到店；请当天询问库存。",
@@ -71,7 +91,7 @@
         "price": 1192,
         "url": "https://funshopoutdoor.com.hk/products/osprey-hikelite-28?variant=52667443609918"
       },
-      "evidence": "两款 Raven Black S26 公开规格均 available=false；不等同实体店缺货。"
+      "evidence": "第二次核验两款 Raven Black S26 的精确条码；公开规格均为不可售，店方声明 Osprey 不设网店下单或留货，不等同实体店缺货。"
     },
     "backnature": {
       "note": "曾见 26 L 第三方报价 HK$904，未确认年份、黑色及有效性；不纳入已核实报价。",
@@ -86,13 +106,58 @@
       "evidence": "商品变体列表不含 Raven Black；未将其他颜色的库存或 USD 价格作为目标报价。"
     },
     "rc-mk": {
-      "note": "旧款商品不计入 2026 S26；问旺角门店。"
+      "note": "官网 HK$1,250 的 28 L 为旧规格 Chameleon/Black（S/M 背长），非目标款；2026 S26 实体库存待确认。",
+      "evidence": "商品详情显示旧规格及暂时缺货；不把旧款价格或库存归给目标黑色。",
+      "evidenceLinks": [
+        {
+          "label": "旧款商品对照",
+          "url": "https://rcoutfitters.net/products/hikelite-28"
+        }
+      ]
     },
     "overlander-mk": {
-      "note": "26 L 官网未列出目标黑色选项；指定门店库存待询。"
+      "note": "官网 HIKELITE 26 NEW 仅列 Cascade Blue、Graphite Purple，规格 0.79 kg、100D；不是已核实的目标 S26 黑色。",
+      "evidence": "浏览器打开具体商品详情并核对颜色与旧规格；目标款的分店库存仍待确认。",
+      "evidenceLinks": [
+        {
+          "label": "商品规格及颜色对照",
+          "url": "https://www.overlander.com.hk/cn/product/details?code=905110261&thumb=%2Fuploads%2FProductColor%2Fs%2F905110261-CASCADE+BLUE-360"
+        }
+      ]
     },
     "reecho-ymt": {
       "note": "品牌体验馆，询问本店与其他分店库存。"
+    },
+    "rc-cwb": {
+      "sharedEvidenceStoreId": "rc-mk"
+    },
+    "overlander-cwb": {
+      "sharedEvidenceStoreId": "overlander-mk"
     }
-  }
+  },
+  "officialReference": {
+    "url": "https://www.osprey.com/hk/en/featured/shop-by-suspension/airspeed-backpacks",
+    "checkedAt": "2026-11-26",
+    "note": "香港官方目录列有 Raven Black 与港币参考价；黑色独立库存、配送及自取未核实。直接访问详情时遇到网站安全验证。"
+  },
+  "otherLeads": [
+    {
+      "name": "Mountain Services 名峰行",
+      "status": "版本及黑色待核实",
+      "note": "较低报价来自旧规格或混合容量页面。18/26 L 页面显示 HK$792 和 Chameleon 等选项，28/32 L 页面显示 HK$1,000；两者均未确认目标条码，不计入目标款最低价和现货统计。",
+      "address": "香港英皇道56号（官网联系地址；零售自取待确认）",
+      "contactUrl": "https://wa.me/85265586869",
+      "contactLabel": "WhatsApp 6558 6869",
+      "links": [
+        {
+          "label": "18 / 26 L 商品线索",
+          "url": "https://www.mtservice.com.hk/products/osprey-hikelite-18"
+        },
+        {
+          "label": "28 / 32 L 商品线索",
+          "url": "https://www.mtservice.com.hk/en/products/osprey-hikelite-28l32l"
+        }
+      ]
+    }
+  ]
 }
