@@ -128,8 +128,8 @@ def validate_osprey_hk() -> None:
     chooser = (SITE / "osprey/index.html").read_text(encoding="utf-8")
     page = (SITE / "osprey/hong-kong/index.html").read_text(encoding="utf-8")
     require(chooser, 'href="/osprey/hong-kong/"', "HK store-map entry")
-    if page.count('<article class="shop"') != 8:
-        fail("HK dealer map must preserve eight distinct primary-store cards")
+    if page.count('<article class="shop"') != 13:
+        fail("HK dealer map must preserve thirteen distinct store cards")
     for fragment in (
         "Great Seasons Limited",
         "ospreypacks.com.hk",
@@ -173,6 +173,21 @@ def validate_osprey_hk() -> None:
             require(block, fragment, "HK verified contact " + store_id)
     require(page, "社交账号、统一客服、具体门店电话分别标注", "HK social source boundary")
     require(page, "mailto:info@acu.com.hk", "HK distributor public contact")
+    inventory = json.loads((ROOT / "src/data/osprey-hk-stock.json").read_text(encoding="utf-8"))
+    assert inventory["currency"] == "HKD" and inventory["model"] == "Hikelite S26 普通 Raven Black"
+    for store_id in ("hillmalaya", "wildholics", "howa", "funshop", "backnature", "ultra-hing"):
+        require(page, f'id="{store_id}"', "HK inventory store")
+    for fragment in ('data-size-filter="26"', 'data-size-filter="28"', 'data-stock-filter="in"', "实体店库存：待确认", 'data-stock-store="hillmalaya"', 'data-stock-store="wildholics"'):
+        require(page, fragment, "HK inventory and uncertainty contract")
+    for store_id, entries in inventory["stores"].items():
+        for size in ("26", "28"):
+            offer = entries.get(size, {})
+            if offer:
+                assert offer["status"] in {"in", "out", "unavailable", "unlisted", "unknown"}
+                assert offer["url"].startswith("https://")
+                if offer.get("qty") is not None:
+                    assert offer["status"] == "in" and offer["qty"] > 0
+
 
 
 def validate_osprey_series() -> None:
