@@ -46,3 +46,5 @@ Do not create synthetic probe commits, change commit authors, relax SSO, move ol
 | Governance | AGENTS, Wish, Dev, current local design owner and provider evidence. |
 
 This map is navigation to actual checks, not a full-compliance claim.
+
+Feature-level goals and protected semantics: [Intent](../intent/README.md). This file retains its existing ownership and history.
