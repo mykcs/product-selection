@@ -189,7 +189,8 @@ def validate_osprey_hk() -> None:
         assert block.count('data-status="unknown"') == 2, f"Non-target evidence must not change target stock: {store_id}"
     for fragment in ("HK$904.40", "HK$1,132.40", "HK$894.88", "HK$928.20", "HK$1,162.20", "可加购 · 条码待核", "购物车已复现"):
         require(page, fragment, "HK promotion evidence")
-    assert inventory["stores"]["lifesports"]["26"]["sku"] == inventory["products"]["26"]["barcode"]
+    assert inventory["stores"]["lifesports"]["26"]["barcode"] == inventory["products"]["26"]["barcode"]
+    assert inventory["stores"]["lifesports"]["26"]["sku"] == "10007545"
     assert inventory["stores"]["lifesports"]["26"]["status"] == "in"
     assert inventory["stores"]["campzone"]["26"]["status"] == "candidate"
     assert inventory["stores"]["campzone"]["28"]["status"] == "candidate"

@@ -14,7 +14,7 @@
   },
   "stores": {
     "hillmalaya": {
-      "note": "网上自取等备货确认邮件，营业开始30分钟后可取。购物车列 FPS 访客0.5%／登录后2.5%支付折扣；未登录、未付款，适用资格及最终叠加待确认。",
+      "note": "网上自取等备货确认邮件，营业开始30分钟后可取。购物车列 FPS 访客0.5%／登录后2.5%支付折扣；未登录、未付款，适用资格及最终叠加待确认。 另有指定商品会员单件95折／两件9折，未核实 Hikelite 适用，不与 FPS 支付折扣混算。",
       "26": {
         "status": "in",
         "qty": 5,
@@ -50,6 +50,10 @@
         {
           "label": "购物车支付优惠提示（需先加购）",
           "url": "https://hillmalaya.com.hk/cart"
+        },
+        {
+          "label": "指定商品会员折扣规则（非 FPS）",
+          "url": "https://hillmalaya.com.hk/zh/collections/member-discount/hillmalaya"
         }
       ]
     },
@@ -105,11 +109,21 @@
         "price": 1192,
         "url": "https://funshopoutdoor.com.hk/products/osprey-hikelite-28?variant=52667443609918"
       },
-      "evidence": "第二次核验两款 Raven Black S26 的精确条码；公开规格均为不可售，店方声明 Osprey 不设网店下单或留货，不等同实体店缺货。"
+      "evidence": "第二次核验两款 Raven Black S26 的精确条码；公开规格均为不可售，店方声明 Osprey 不设网店下单或留货，不等同实体店缺货。 复查精确26 L 商品链接仍返回200；其他链接失效不等于商品已下架。"
     },
     "backnature": {
-      "note": "曾见 26 L 第三方报价 HK$904，未确认年份、黑色及有效性；不纳入已核实报价。",
-      "evidence": "尚无目标颜色的可靠独立库存证据。"
+      "note": "官网仍未核实目标款库存。另有第三方到店笔记转述支付宝减 HK$30；若目标款店内八折 HK$952 且优惠适用，26 L 可估 HK$922，但两项前提均待商家确认。此前 HK$904 报价同样未核实版本、颜色及有效期。",
+      "evidence": "官网确认家乐坊1608室、营业时间12:30–20:30、WhatsApp 5744 2600、微信 Backnature；未确认支付宝减免条款或目标黑色现货，不计入最低价。",
+      "evidenceLinks": [
+        {
+          "label": "官网联系方式及营业时间",
+          "url": "https://www.backnature.hk/pages/contact"
+        },
+        {
+          "label": "官网商品搜索",
+          "url": "https://www.backnature.hk/search?q=Hikelite&type=product"
+        }
+      ]
     },
     "ultra-hing": {
       "note": "26 L 页面列出其他颜色，但没有普通黑色；28 L 待查询。到店前请预约。",
@@ -140,7 +154,18 @@
       ]
     },
     "reecho-ymt": {
-      "note": "品牌体验馆，询问本店与其他分店库存。"
+      "note": "可优先试背并询问黑色实物。第三方报告称首单满 HK$500 八折，未核实；转载的2026年9月30日店铺公开帖为正价满500九折、满3000八五折，不等于当前目标款优惠。",
+      "evidence": "总代理官网确认油麻地体验馆地址。目标黑色库存、会员优惠适用范围与当前折扣均待店方确认。",
+      "evidenceLinks": [
+        {
+          "label": "香港总代理门店名录",
+          "url": "https://www.ospreypacks.com.hk/"
+        },
+        {
+          "label": "历史店铺会员活动（转载，非当前报价）",
+          "url": "https://www.globuya.com/HK/Hong-Kong/1114548721920559/Reecho%E9%A6%99%E6%B8%AF%E5%B0%88%E6%A5%AD%E6%88%B6%E5%A4%96%E8%A3%9D%E5%82%99"
+        }
+      ]
     },
     "rc-cwb": {
       "sharedEvidenceStoreId": "rc-mk"
@@ -217,18 +242,19 @@
       ]
     },
     "lifesports": {
-      "note": "旺角实体店，与雅兰中心 Backpacker 是不同商户。26 L 商品数据条码完全吻合；28 L 正文虽提 Raven Black，但规格数据仅列紫色。出发前确认店内备货。",
+      "note": "旺角实体店，与雅兰中心 Backpacker 不同。官网介绍称旺角店现货、可试背，但黑色26 L 的门店单独库存及数量仍未证实。28 L 正文虽提 Raven Black，规格数据仅列紫色；出发前确认实物。",
       "26": {
         "status": "in",
         "price": 952,
         "url": "https://backpackhk.com/en/products/osprey-hikelite-26?variant=56248372035906",
-        "sku": "810165747616"
+        "sku": "10007545",
+        "barcode": "810165747616"
       },
       "28": {
         "status": "unlisted",
         "url": "https://backpackhk.com/products/osprey-hikelite-28"
       },
-      "evidence": "26 L 公开商品数据：Raven Black，barcode=810165747616，available=true，HK$952；28 L 只有 Graphite Purple，barcode=810165747685。未公布黑色26 L 件数。",
+      "evidence": "再次读取精确黑色变体：SKU 10007545，barcode=810165747616，available=true，HK$952。官网门店页列威达商业大厦22楼09室，周一至六13:00–19:30，周日及公众假期13:00–18:00，Signal / WhatsApp 9346 5333。",
       "evidenceLinks": [
         {
           "label": "门店与营业时间",
@@ -250,7 +276,7 @@
     {
       "name": "Mountain Services 名峰行",
       "status": "版本及黑色待核实",
-      "note": "较低报价来自旧规格或混合容量页面。18/26 L 页面显示 HK$792 和 Chameleon 等选项，28/32 L 页面显示 HK$1,000；两者均未确认目标条码，不计入目标款最低价和现货统计。",
+      "note": "较低报价来自旧规格或混合容量页面。18/26 L 页面显示 HK$792 和 Chameleon 等选项，28/32 L 页面显示 HK$1,000，复查列 Black、Pine Leaf Green、Tan Concrete 等旧色名；未确认目标 S26 条码，不计入目标款最低价和现货统计。",
       "address": "香港英皇道56号（官网联系地址；零售自取待确认）",
       "contactUrl": "https://wa.me/85265586869",
       "contactLabel": "WhatsApp 6558 6869",
@@ -268,7 +294,7 @@
     {
       "name": "山型点 Hill Go Point",
       "status": "网店候选；条码及具体库存待确认",
-      "note": "两款 2026 新版页面列 RAVEN BLACK；26 L HK$1,190／会员 HK$1,011.50，28 L HK$1,490／会员 HK$1,266.50。网页公示满 HK$1,500 减 HK$80，单件不达门槛。未核实会员资格、数量或实际叠加，不纳入地图现货和最低价。",
+      "note": "两款 2026 新版页面列 RAVEN BLACK；26 L HK$1,190／会员 HK$1,011.50，28 L HK$1,490／会员 HK$1,266.50。网页公示满 HK$1,500 减 HK$80，单件不达门槛。未核实会员资格、数量或实际叠加，不纳入地图现货和最低价。 再次打开26 L 精确商品链接，标题和描述均为 S26 新版并列 Raven Black；不要将同名旧款或 LE Black 当作这条商品链接。",
       "address": "网店渠道，实体店自取未核实",
       "contactUrl": "https://hillgopoint.com/",
       "contactLabel": "网店",
@@ -294,6 +320,38 @@
         {
           "label": "26 L 旧款下架详情",
           "url": "https://www.yohohongkong.com/en-us/product/239641-OSPREY-HIKELITE-26-Hiking-Backpack-REG"
+        }
+      ]
+    },
+    {
+      "name": "Re:echo 石门开仓",
+      "status": "限时活动 · 目标款待核实",
+      "note": "公开报道列活动截至2026年11月29日、户外背包低至三折，另有样板清货；未确认普通 Raven Black Hikelite 26/28 新款与条码，不作为现货或实际报价。出发前先问店方。",
+      "address": "沙田石门安心街19号汇贸中心11楼1101室，石门站C出口",
+      "contactUrl": "https://wa.me/85235800985",
+      "contactLabel": "WhatsApp 3580 0985",
+      "links": [
+        {
+          "label": "开仓活动及日期（媒体报道）",
+          "url": "https://hk.ulifestyle.com.hk/activity/detail/20120607/re-echo%E8%A1%8C%E5%B1%B1%E8%A3%9D%E5%82%99%E9%96%8B%E5%80%89%E4%BD%8E%E8%87%B3-%E6%8A%98-%E8%B5%B7%E8%B2%B7%E8%A1%8C%E5%B1%B1%E6%9C%8D%E9%A3%BE-%E9%85%8D%E4%BB%B6-%E8%83%8C%E5%9B%8A-%E8%A1%8C%E5%B1%B1-%E8%B6%8A%E9%87%8E%E8%B7%91%E9%9E%8B-%E5%B0%8D"
+        }
+      ]
+    },
+    {
+      "name": "Osprey @ LCX",
+      "status": "门店名录不一致 · 营业及库存待核实",
+      "note": "海港城官网商户列表仍列 Osprey，但 LCX 当前商户目录未列该品牌；历史开店资料不能证明当前营业。暂不加入确认门店地图，不建议专程前往。",
+      "address": "尖沙咀海港城海运大厦三层 LCX；具体铺号待确认",
+      "contactUrl": "https://www.lcx.com.hk/zh-hans/about-lcx/",
+      "contactLabel": "商场查询 3102 3668",
+      "links": [
+        {
+          "label": "海港城商户列表",
+          "url": "https://www.harbourcity.com.hk/en/shop-dine/shop/"
+        },
+        {
+          "label": "LCX 当前商户目录",
+          "url": "https://www.lcx.com.hk/store-directory/"
         }
       ]
     }
