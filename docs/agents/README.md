@@ -22,6 +22,10 @@ This repository is intentionally small. This file is navigation-only and does no
 | Exchange-rate conversion | the dated snapshot stated in `README.md` / route copy |
 | Deployment status | live Vercel state + public route |
 
+## Design Intent
+
+[全站 14 条路由意图索引与原始记录](../wish/DESIGN.md#全站逐页面-design-intent-索引2026-11-27)；候选解释不冒充用户确认。抓绒衣材料及测试标准初版见 src/data/fleece-quality.json 和 src/components/FleeceQuality.astro。
+
 ## Knowledge boundary
 
 The site contains both durable structure and time-sensitive purchasing facts.
@@ -46,7 +50,7 @@ Do not create a project-local copy of those shared rules.
 
 
 ### Fleece
-- [用户选购意图及待研究问题](../wish/DESIGN.md#选购品质与设计价值后续深化意图2026-11-27) — 修改抓绒衣页面前先读；研究与实现尚未启动。
+- [用户选购意图及待研究问题](../wish/DESIGN.md#选购品质与设计价值后续深化意图2026-11-27) — 修改抓绒衣页面前先读；已有标准和材料证据初版，最终试穿及品质实测仍未完成。
 - /fleece/ — src/pages/fleece/index.astro; dated product facts in src/data/fleece-comparison.json.
 - /fleece/hong-kong/ — src/pages/fleece/hong-kong/index.astro; store facts in src/data/lululemon-hk-stores.json.
 - Both share assets/fleece.css and existing site design tokens; use the same checks and preview workflow.

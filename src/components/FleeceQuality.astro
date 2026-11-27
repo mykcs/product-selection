@@ -1,0 +1,29 @@
+---
+import quality from "../data/fleece-quality.json";
+import data from "../data/fleece-comparison.json";
+const items=[data.target,...data.patagonia];
+const materials=quality.material as Record<string,{body:string;oz:number|null;cert:string;cut:string}>;
+const mass=(oz:number|null)=>oz===null?"未公开":Math.round(oz*33.9057)+" g/m²（约）";
+const dateText=quality.checkedAt.replace(/-(\d{2})-(\d{2})$/,(_,m,d)=>"年"+Number(m)+"月"+Number(d)+"日");
+---
+<section class="panel" id="quality">
+<p class="eyebrow">选购依据 · <time datetime={quality.checkedAt}>{dateText}</time></p>
+<h2>真材实料、设计好看、价格合理</h2>
+<p><strong>先问证据是什么，再看证据证明了什么。</strong> 暖不暖、透不透气、耐不耐穿，是不同问题；认证也有不同用途。本次未找到七款之间可直接比较的独立实测报告，所以不编造性能分数。</p>
+<div class="quality-columns">
+<div><h3>材料与工艺</h3><p>先核对成分和结构，再核对热阻、透湿阻力、耐磨、起球与洗后变化。</p></div>
+<div><h3>剪裁与审美</h3><p>看外观和真实试穿：肩袖、胸腰、衣长、领口及口袋。审美不是实验室测出来的。</p></div>
+<div><h3>价值与价格</h3><p>在适用用途和合身的前提下，比较同市场同配置到手价。没有香港报价的 Sojourn 不能直接与 HKD 比价。</p></div>
+</div>
+<h3>这七件衣服，品牌实际披露了什么</h3>
+<p class="caption">主体面料克重由品牌 oz/yd² 规格换算（1 oz/yd² ≈ 33.91 g/m²）；不含内衬、配件等成衣重量，也不等于保暖排名。</p>
+<div class="matrix" role="region" aria-label="材料与认证比较" tabindex="0"><table><thead><tr><th scope="col">型号</th><th scope="col">主体 / 内里</th><th scope="col">面料克重</th><th scope="col">认证披露（非独立核验）</th></tr></thead><tbody>{items.map(p=><tr><th scope="row"><a href={p.url}>{p.id==="sojourn"?"Sojourn":p.name}</a></th><td>{materials[p.id].body}</td><td>{mass(materials[p.id].oz)}</td><td>{materials[p.id].cert}</td></tr>)}</tbody></table></div>
+<p class="caption">面料厚重不等于更暖；空心纱、绒高、组织、风和叠穿都可能影响使用表现。</p>
+<details class="quality-details"><summary>各款剪裁和工艺的官方披露</summary><ul>{items.map(p=><li><strong>{p.id==="sojourn"?"Sojourn":p.name}：</strong>{materials[p.id].cut} <a href={p.url}>官方详情与图</a></li>)}</ul></details>
+<details class="quality-details" id="standards"><summary>性能测试标准：国际、美国、欧洲、法国、日本</summary><p>标准是测量的尺子，不是自动给产品授予奖章。不同标准、测试条件、样品范围和版本不能直接换算成绩。</p><div class="matrix" role="region" aria-label="性能测试标准表" tabindex="0"><table><thead><tr><th scope="col">官方标准</th><th scope="col">测什么</th><th scope="col">不能推出什么</th></tr></thead><tbody>{quality.standards.map(s=><tr><th scope="row"><a href={s.url}>{s.name}</a><p class="caption">{s.scope}</p></th><td>{s.measures}</td><td>{s.limit}</td></tr>)}</tbody></table></div></details>
+<details class="quality-details" id="certificates"><summary>认证与法规的含金量：查范围、报告、利益冲突</summary><p>国际标准通常通过多方参与和投票形成，但行业参与并不意味着完全没有利益冲突。商业收费不自动等于无效，也不自动证明公正；查看治理、证书范围、报告、认可与公开核验机制。认证制度的目标不同，不做统一排名。</p><div class="matrix" role="region" aria-label="认证及法规表" tabindex="0"><table><thead><tr><th scope="col">制度</th><th scope="col">有效信息</th><th scope="col">证据边界</th></tr></thead><tbody>{quality.labels.map(s=><tr><th scope="row"><a href={s.url}>{s.name}</a><p class="caption">{s.scope}</p></th><td>{s.measures}</td><td>{s.limit}</td></tr>)}</tbody></table></div><ul>{quality.methodSources.map(s=><li><a href={s.url}>{s.name}</a></li>)}</ul></details>
+<h3>当前怎么试、怎么买</h3>
+<p>优先试 Sojourn 骨白 L 与 Better Sweater Stonewash L；如果需要徒步，再试同价的 R1 Air。只在确认用途后判断更贵的防风款是否值得。Micro D 更便宜、但更轻薄且目前候选为黑色；没有同条件实测，不能认定某款一定更耐用。</p>
+<div class="quality-checks"><p><strong>试穿时逐项核对（仅本页临时选择，不上传、不保存个人数据）：</strong></p><label><input type="checkbox"/> 正面、侧面、背面看肩线、衣长和腰身比例</label><label><input type="checkbox"/> 抬臂、抱胸、坐下时袖口和下摆舒服</label><label><input type="checkbox"/> 拉链、领口、缝线、口袋与叠穿空间满意</label><label><input type="checkbox"/> 看吊牌材质、洗护、具体检测或认证范围</label><label><input type="checkbox"/> 确认目标颜色、尺码、单件实付与退换货条件</label></div>
+<p class="caption">{quality.evidenceBoundary}</p>
+</section>

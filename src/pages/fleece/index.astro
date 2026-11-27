@@ -2,6 +2,7 @@
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import MainContent from "../../components/MainContent.astro";
 import data from "../../data/fleece-comparison.json";
+import FleeceQuality from "../../components/FleeceQuality.astro";
 const {target,patagonia,checkedAt}=data;
 const choices=[
 {key:"daily",label:"日常通勤",title:"优先找 Sojourn 骨白 L；买不到就试 Better Sweater",detail:"两款都是针织外观、立领和全拉链。若主要是办公室、城市通勤与旅行，没必要为专业户外功能多付钱。"},
@@ -27,12 +28,13 @@ const dateText=checkedAt.replace(/-(\d{2})-(\d{2})$/,(_,m,d)=>"年"+Number(m)+"�
 <p class="muted">默认按日常通勤和浅色偏好推荐，可切换用途。以下是结构与用途判断，并非同条件实验排名。</p>
 <div class="choice-row" role="group" aria-label="主要用途">{choices.map((c,i)=><button class="choice" type="button" data-use={c.key} aria-pressed={i===0?"true":"false"}>{c.label}</button>)}</div>
 <div class="choice-result" aria-live="polite">{choices.map((c,i)=><div data-result={c.key} hidden={i!==0}><strong>{c.title}</strong><p>{c.detail}</p></div>)}</div>
-<div class="actions"><a class="primary" href="/fleece/hong-kong/">查全港 13 家 lululemon 门店</a><a href="#models">比较具体款式 ↓</a></div>
+<div class="actions"><a class="primary" href="/fleece/hong-kong/">查全港 13 家 lululemon 门店</a><a href="#models">比较具体款式 ↓</a><a href="#quality">查看材料与标准证据 ↓</a></div>
 </section>
 <section class="panel" id="sojourn-bone">
 <p class="eyebrow">目标商品 · <time datetime={checkedAt}>{dateText}</time> 快照</p><h2>Sojourn 拉绒内里针织夹克</h2>
 <div class="product-head"><div><p><strong>{target.color} · 男款 {target.size} 码</strong></p><p class="caption">款号 {target.style} · 香港页编号 {target.hkId}；不是普通 Warpstreme 薄款。</p><p class="price">香港价格待确认</p><p class="status" data-status="out">香港官网：售罄；实体门店库存与黑五优惠未确认。</p></div><a href={target.cnUrl}><img class="product-photo" src={target.image} alt="Sojourn 同款灰色版型参考图" width="112" height="112" loading="lazy" referrerpolicy="no-referrer"/></a></div>
 <p class="caption">{target.imageNote}</p><p>{target.feature}</p><p>{target.tradeoff}</p><p>大陆官网参考价 ¥{target.mainlandPriceCny.toLocaleString("en-US")}，非香港报价；大陆 Bone / L 库存未核验。</p>
+<details class="quality-details"><summary>黑五与门店库存核验依据</summary><p>{target.purchaseEvidence.markdownFinding} <a href={target.purchaseEvidence.markdownUrl}>官方 Sojourn 减价筛选</a></p><p>{target.purchaseEvidence.storeFinding} <a href={target.url}>官网商品页</a></p><p>{target.purchaseEvidence.returnsFinding} <a href={target.purchaseEvidence.returnsUrl}>官方退换货规则</a></p></details>
 <div class="actions"><a href={target.url}>香港官网</a><a href={target.cnUrl}>大陆 Bone 款式</a><a href="https://www.lululemon.com.hk/en-hk/content/contact-us/contact-us.html">香港官方客服</a></div>
 </section>
 <section id="models"><h2>Patagonia 具体款式</h2><p class="muted">香港官网 L 码指定配色及港币标价快照，<time datetime={checkedAt}>{dateText}</time>。可购指网站公开商品数据的该变体 available=true，并非购物车锁货、门店现货或黑五额外折扣。</p>
@@ -42,6 +44,7 @@ const dateText=checkedAt.replace(/-(\d{2})-(\d{2})$/,(_,m,d)=>"年"+Number(m)+"�
 <section><h2>放在一起比较</h2><p>所有主候选均为男士无帽全拉链夹克。版型、防风和排汗是不同维度；面料克重与成衣保暖不能直接等同。</p>
 <div class="matrix" role="region" aria-label="抓绒款式对比表" tabindex="0"><table><thead><tr><th scope="col">款式</th><th scope="col">更适合</th><th scope="col">版型</th><th scope="col">香港标价</th><th scope="col">L 码 / 配色</th></tr></thead><tbody><tr><th scope="row">Sojourn</th><td>{target.use}</td><td>{fit[target.fit]}</td><td>未知</td><td>Bone · 网店售罄，门店待查</td></tr>{patagonia.map(p=><tr><th scope="row"><a href={"#"+p.id}>{p.name}</a></th><td>{p.use}</td><td>{fit[p.fit]}</td><td>HK${p.hkPrice.toLocaleString("en-US")}</td><td>{p.color} · {p.stock==="in"?"可购":"不可购"}</td></tr>)}</tbody></table></div>
 </section>
+<FleeceQuality />
 <section class="panel"><h2>实际怎么买</h2><p>{data.sizeNote}</p><p>日常款先试 Sojourn 骨白 L 和 Better Sweater Stonewash L；如果希望浅色且更运动，再试 R1 Air Pelican L。检查胸围、袖长、抬臂和叠穿空间。Outlet 或减价商品先确认退换货。两品牌在又一城、新城市广场、K11 MUSEA 和太古城中心均有门店，可安排同一商场试穿；Patagonia 门店仍需单独确认目标款库存。</p><p class="caption">不把美国价格、大陆人民币价或其它颜色折扣当成香港同款现价。具体黑五活动仍需问商家。</p><div class="actions"><a href="/fleece/hong-kong/">lululemon 门店地图</a><a href="https://www.patagonia.com.hk/collections/mens-fleece-jackets">Patagonia 香港抓绒全系列</a><a href="https://www.patagonia.com.hk/pages/find-a-store">Patagonia 官网门店查询</a></div></section>
 <section><h2>数据来源与边界</h2><p class="muted">商品详情来自各品牌官方产品页，Patagonia 变体状态来自对应商品公开 JSON。产品图为品牌官方图片链接，未将图像拷贝入仓库。尺码、优惠与库存下单前刷新；没有进行实物试穿或统一保暖实验。</p><details><summary>Patagonia 变体原始来源</summary><ul>{patagonia.map(p=><li><a href={p.variantSource}>{p.name} · {p.color} / L</a></li>)}</ul></details></section>
 </MainContent>

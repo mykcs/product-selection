@@ -125,8 +125,15 @@ async function inspectPage({ probe = false } = {}) {
     }
     return null;
   }
-  const h1 = main.querySelector('.hero h1'), h2 = [...main.querySelectorAll('h2')].find(visible);
-  const prose = [...main.querySelectorAll('p')].find(element => visible(element) && !element.closest('.hero')) || [...main.querySelectorAll('p')].find(visible);
+  // Purchase-first pages intentionally use a compact header and a dense selector
+  // rather than the reading-page hero/panel rhythm. Probe the actual role and
+  // its winning shared token instead of accepting a missing element or
+  // introducing a visually unnecessary hero merely to satisfy this test.
+  const purchaseFirst = !!main.querySelector('.purchase-head');
+  const h1 = main.querySelector(purchaseFirst ? '.purchase-head h1' : '.hero h1');
+  if (!h1 || !visible(h1)) throw Error('Missing visible main page heading');
+  const h2 = [...main.querySelectorAll('h2')].find(visible);
+  const prose = (purchaseFirst ? main.querySelector('.purchase-caution') : null) || [...main.querySelectorAll('p')].find(element => visible(element) && !element.closest('.hero')) || [...main.querySelectorAll('p')].find(visible);
   probes.font = await change('--font-body', 'monospace', () => [h1, prose].map(element => getComputedStyle(element).fontFamily));
   probes.heroSize = await winning(h1, 'font-size', '--text-', '47px');
   probes.heroLeading = await winning(h1, 'line-height', '--leading-', '2.05');
@@ -134,10 +141,14 @@ async function inspectPage({ probe = false } = {}) {
   probes.proseSize = await winning(prose, 'font-size', '--text-', '19px');
   probes.proseLeading = await winning(prose, 'line-height', '--leading-', '2.125');
   probes.sectionSize = h2 ? await winning(h2, 'font-size', '--text-', '29px') : null;
-  const panel = [...main.querySelectorAll('.panel,.card,.detail,.game,.actual-route')].find(visible);
-  probes.panel = panel ? await change('--space-panel', '37px', () => getComputedStyle(panel).paddingLeft) : null;
-  const section = main.querySelector(':scope > section:not(.hero)');
-  probes.section = section ? await change('--space-section', '73px', () => getComputedStyle(section).marginBottom) : null;
+  const panel = purchaseFirst ? main.querySelector('.product-selector') : [...main.querySelectorAll('.panel,.card,.detail,.game,.actual-route')].find(visible);
+  // CSSOM does not expand var() in a padding shorthand into longhands
+  // consistently across engines. Explicitly perturb the compact layout's
+  // documented responsive spacing role and assert the real box changes.
+  const panelToken = purchaseFirst ? (matchMedia('(max-width:600px)').matches ? '--space-3' : '--space-4') : '--space-panel';
+  probes.panel = panel ? await change(panelToken, '37px', () => getComputedStyle(panel).paddingLeft) : null;
+  const section = purchaseFirst ? main.querySelector('.purchase-section') : main.querySelector(':scope > section:not(.hero)');
+  probes.section = section ? (purchaseFirst ? await winning(section, 'margin-bottom', '--space-', '73px') : await change('--space-section', '73px', () => getComputedStyle(section).marginBottom)) : null;
   probes.gutter = await change('--page-gutter', '23px', () => getComputedStyle(main).paddingLeft);
   const widthToken = document.body.dataset.pageRole === 'tool' ? '--width-tool' : '--width-content';
   probes.shellWidth = await change(widthToken, '320px', () => main.getBoundingClientRect().width);
@@ -190,15 +201,57 @@ async function interactions(page, route, record) {
       await capture('use-case-' + choice);
     }
   } else if (route === '/osprey/hong-kong/') {
-    assert.equal(await page.locator('.shop').count(), 8);
-    for (const [region,count] of [['island',3],['kowloon',5],['all',8]]) {
-      await page.locator('button[data-region="'+region+'"]').click();
-      assert.equal(await page.locator('.shop:visible').count(), count);
+    // PR #34 replaced the old eight-dealer selector with a purchase-first
+    // sixteen-store inventory view. Keep the current real controls and
+    // verify defaults, state transitions, empty results and map popups.
+    assert.equal(await page.locator('.shop').count(), 16);
+    assert.equal(await page.locator('.shop:visible').count(), 3);
+    assert.equal(await page.locator('#stock-filter').inputValue(), 'buyable');
+    assert.equal(await page.locator('[data-size-filter="28"]').getAttribute('aria-pressed'), 'true');
+    await page.locator('#stock-filter').selectOption('in');
+    assert.equal(await page.locator('.shop:visible').count(), 2);
+    await capture('confirmed-online-only');
+    await page.locator('#region-filter').selectOption('kowloon');
+    assert.equal(await page.locator('.shop:visible').count(), 0);
+    assert.ok(await page.locator('#stock-empty').isVisible());
+    await capture('empty-purchase-filter');
+    await page.locator('#region-filter').selectOption('all');
+    await page.locator('#stock-filter').selectOption('all');
+    await page.locator('[data-size-filter="all"]').click();
+    assert.equal(await page.locator('.shop:visible').count(), 16);
+    await capture('all-sixteen-dealers');
+    for (const region of ['island','kowloon','kwun-tong']) {
+      await page.locator('#region-filter').selectOption(region);
+      assert.equal(await page.locator('.shop:visible').count(), await page.locator('.shop[data-region="'+region+'"]').count());
       await capture('dealer-region-'+region);
     }
-    await page.locator('button[data-station="油麻地"]').click();
-    assert.equal(await page.locator('.shop:visible').count(), 2);
-    await capture('dealer-station');
+    await page.locator('#reset-filters').click();
+    assert.equal(await page.locator('.shop:visible').count(), 3);
+    await page.locator('#campzone .actions button').click();
+    assert.ok((await page.locator('.leaflet-popup-content').innerText()).includes('28 L'));
+    await capture('default-candidate-popup');
+  } else if (route === '/fleece/') {
+    for (const use of ['hike','wind','light','cozy','daily']) {
+      await page.locator('[data-use="'+use+'"]').click();
+      assert.ok(await page.locator('[data-result="'+use+'"]').isVisible());
+      await capture('fleece-use-'+use);
+    }
+    assert.equal(await page.locator('#quality .quality-checks input').count(), 5);
+    await page.locator('#quality .quality-checks input').first().check();
+    assert.ok(await page.locator('#quality .quality-checks input').first().isChecked());
+    await capture('fleece-checklist');
+  } else if (route === '/fleece/hong-kong/') {
+    assert.equal(await page.locator('[data-store]:visible').count(), 13);
+    assert.equal(await page.locator('.leaflet-marker-icon').count(), 13);
+    for (const [filter,count] of [['outlet',1],['airport',1],['港岛',6],['all',13]]) {
+      await page.locator('[data-region-filter="'+filter+'"]').click();
+      assert.equal(await page.locator('[data-store]:visible').count(), count);
+      assert.equal(await page.locator('.leaflet-marker-icon').count(), count);
+      await capture('fleece-store-'+filter);
+    }
+    await page.locator('#citygate [data-locate]').click();
+    assert.ok((await page.locator('.leaflet-popup-content').innerText()).includes('东荟城'));
+    await capture('fleece-outlet-popup');
   } else if (route === '/osprey/series/') {
     const families = await page.locator('[data-family]').evaluateAll(elements => elements.map(element => element.dataset.family));
     assert.equal(families.length, 18);
