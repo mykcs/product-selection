@@ -18,6 +18,8 @@
   - Mac mini 芯片选择：/mac/mac-mini/
   - SSD 容量与速度：/mac/storage/
 
+首页另设 [lululemon Sojourn 单品待购卡片](/#sojourn-bone)，记录骨白色 L 码的香港购买线索与日期化库存证据；不增加通用品类目录，也不导出至 Agent reader。
+
 ## 页面范围
 
 ### 小鹰背包 Osprey

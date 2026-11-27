@@ -490,11 +490,26 @@ def validate_vercel_git_deployment_policy() -> None:
         fail("Do not add unrelated Vercel build/runtime overrides to the lightweight deployment policy")
 
 
+def validate_sojourn_card() -> None:
+    home = (SITE / "index.html").read_text(encoding="utf-8")
+    require(home, 'id="sojourn-bone"', "Sojourn purchase card")
+    block = home.split('id="sojourn-bone"', 1)[1].split("</article>", 1)[0]
+    for fragment in (
+        "Bone 骨白色 · 男款 · L 码", "LM3EW9S", "prod11570301",
+        "香港官网：售罄", "港币价格及黑五优惠均未确认",
+        "L 码库存未验证", 'datetime="2026-11-27"',
+        "https://www.lululemon.com.hk/en-hk/p/sojourn-fleece-lined-knit-jacket/prod11570301.html",
+        "https://m.lululemon.cn/product-314742.html",
+    ):
+        require(block, fragment, "Sojourn dated like-for-like purchase evidence")
+
+
 def main() -> int:
     validate_design(SITE, PAGES, calendar_root=ROOT, allow_compiled_tailwind=True)
     validate_vercel_git_deployment_policy()
     validate_routes()
     validate_reader()
+    validate_sojourn_card()
     validate_osprey()
     validate_osprey_hk()
     validate_osprey_series()
