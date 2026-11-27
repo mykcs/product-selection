@@ -535,6 +535,8 @@ def validate_quality_and_intent() -> None:
     require(page, models["target"]["purchaseEvidence"]["returnsUrl"], "official return conditions")
     assert data["material"]["r2"]["oz"] == 7.8
     assert len(data["standards"]) >= 10 and len(data["labels"]) >= 6
+    afnor = next(r for r in data["standards"] if r["name"] == "NF EN ISO 11092")
+    assert "/norme/nf-en-iso-11092/" in afnor["url"] and "/pr-nf-" not in afnor["url"]
     for item in data["standards"] + data["labels"]:
         require(page, item["name"], "quality evidence label")
         require(page, item["url"], "official quality evidence link")
