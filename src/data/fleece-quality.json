@@ -1,0 +1,186 @@
+{
+  "checkedAt": "2026-11-27",
+  "standards": [
+    {
+      "name": "ISO 11092:2026",
+      "scope": "国际 / 热阻与透湿阻力",
+      "measures": "测量 Rct 与 Ret；同条件下 Rct 越高隔热越强，Ret 越低水蒸气传递阻力越小。",
+      "limit": "不规定舒适或保暖合格门槛，不是整件夹克的温标。2014 版已撤销。",
+      "url": "https://www.iso.org/standard/85998.html"
+    },
+    {
+      "name": "NF EN ISO 11092",
+      "scope": "欧洲 / 法国",
+      "measures": "AFNOR 发布同一主题的国家采用标准，欧洲 EN ISO 11092:2026 与 ISO 方法衔接。",
+      "limit": "不是比 ISO 更高一级的质量奖；核对实际报告采用的版本。",
+      "url": "https://norminfo.afnor.org/norme/pr-nf-en-iso-11092/textiles-effets-physiologiques-mesurage-de-la-resistance-thermique-et-de-la-resistance-a-la-vapeur-deau-en-regime/201819"
+    },
+    {
+      "name": "ISO 9237:1995",
+      "scope": "国际 / 透气",
+      "measures": "在规定压力条件下测试空气通过织物的能力。",
+      "limit": "空气透过率与水蒸气透过率不同；防风、排汗用途取舍不同。",
+      "url": "https://www.iso.org/standard/16869.html"
+    },
+    {
+      "name": "ISO 12945-2:2020",
+      "scope": "国际 / 起球",
+      "measures": "改良 Martindale 法比较表面起球、起毛与毡化。",
+      "limit": "需报告摩擦次数、样品条件和等级；不等于终身不起球。",
+      "url": "https://www.iso.org/standard/75375.html"
+    },
+    {
+      "name": "ISO 12947-2:2016",
+      "scope": "国际 / 耐磨",
+      "measures": "Martindale 磨耗至试样破损的测试。",
+      "limit": "该方法不适用于涂层及层压织物；不要把不同适用方法的数字直接比较。",
+      "url": "https://www.iso.org/standard/61058.html"
+    },
+    {
+      "name": "ASTM D4970/D4970M-22(2026)",
+      "scope": "美国 / 起球",
+      "measures": "Martindale 起球目测分级；5 级最好，1 级最严重。",
+      "limit": "ASTM 自身提醒跨实验室数据不足，不宜直接用作接收判定。",
+      "url": "https://store.astm.org/d4970_d4970m-22r26.html"
+    },
+    {
+      "name": "ASTM D4966-22(2026) / D3776",
+      "scope": "美国 / 耐磨及面密度",
+      "measures": "前者为 Martindale 耐磨方法，后者测面料单位面积质量。",
+      "limit": "克重不是整件重量，也不是保暖值；试验方法需适合所用织物。",
+      "url": "https://store.astm.org/products-services/standards-and-publications/standards/textile-standards.html"
+    },
+    {
+      "name": "JIS L 1076 / JIS L 1096",
+      "scope": "日本 / 起球及织物性能",
+      "measures": "QTEC 日本纺织检验机构说明起球及多种织物物性测试，具体方法按用途选择。",
+      "limit": "不能直接将 ICI 起球等级和 Martindale 等级互换；日本版本号待逐项核实。",
+      "url": "https://www.qtec.or.jp/search/test/butsusei/butsusei06/"
+    },
+    {
+      "name": "ISO 6330:2021 / ISO 5077:2007",
+      "scope": "国际 / 洗后尺寸",
+      "measures": "规定家庭洗涤、干燥条件及尺寸变化测定。",
+      "limit": "记录洗涤次数、程序及变化比例；不自动代表洗后保暖仍不变。",
+      "url": "https://www.iso.org/standard/41877.html"
+    },
+    {
+      "name": "ISO 105-C06:2010",
+      "scope": "国际 / 洗涤色牢度",
+      "measures": "检测规定洗涤条件下的褪色与沾色。",
+      "limit": "不是紫外线色牢度或整个服装耐用性的综合评分。",
+      "url": "https://www.iso.org/standard/51276.html"
+    }
+  ],
+  "labels": [
+    {
+      "name": "OEKO-TEX STANDARD 100",
+      "scope": "有害物质",
+      "measures": "按产品接触类别检测有害物质；可用证书号/二维码核验。",
+      "limit": "不测保暖、抗起球或版型；目前未取得这七款的有效证书号。",
+      "url": "https://www.oeko-tex.com/en/our-standards/oeko-tex-standard-100"
+    },
+    {
+      "name": "bluesign / bluepass",
+      "scope": "生产过程、化学品、资源及劳动安全",
+      "measures": "2026 年正由 APPROVED / PRODUCT 转向 bluepass；Article 指面料/配件，Consumer Product 指成衣对应的生产过程。",
+      "limit": "不能由某一辅料认证推定整衣认证；不证明热阻或耐磨。",
+      "url": "https://www.bluesign.com/what-is-bluesign-approved"
+    },
+    {
+      "name": "GRS / RCS",
+      "scope": "再生材料追溯",
+      "measures": "Textile Exchange 的再生成分与供应链验证；GRS 还有社会、环境与化学要求。",
+      "limit": "不是再生聚酯必然更强的证据；本次没有具体商品有效证书。",
+      "url": "https://hub.textileexchange.org/home/site-wide-content/standards-faqs"
+    },
+    {
+      "name": "Fair Trade Certified 工厂",
+      "scope": "劳动与生产责任",
+      "measures": "工厂生产标准及劳动者相关机制、额外收益。",
+      "limit": "不能由工厂认证推出成衣保暖或性价比高。",
+      "url": "https://www.fairtradecertified.org/what-we-do/what-we-certify/factory/"
+    },
+    {
+      "name": "ISO/IEC 17025:2017",
+      "scope": "检测实验室能力",
+      "measures": "用于实验室能力、公正性、运行一致性的认可依据。",
+      "limit": "需核对实验室认可范围是否包含相关方法与具体报告；不是服装品质认证。",
+      "url": "https://www.iso.org/standard/17025"
+    },
+    {
+      "name": "美国 16 CFR Part 1610",
+      "scope": "法规 / 易燃性底线",
+      "measures": "美国一般服装纺织品燃烧性能要求；部分材料有测试豁免，但仍受要求约束。",
+      "limit": "法规适用范围和合规不等于质量分级；香港商品的具体合规资料未取得。",
+      "url": "https://www.cpsc.gov/FAQ/Clothing"
+    }
+  ],
+  "material": {
+    "sojourn": {
+      "body": "外层 100% 聚酯；内里 86% 再生聚酯、14% 氨纶",
+      "oz": null,
+      "cert": "产品页未列明可核验的具体认证",
+      "cut": "经典版型，胸腰留量；针织外表、立领、胸袋及两侧拉链袋。"
+    },
+    "better": {
+      "body": "100% 再生聚酯针织抓绒",
+      "oz": 10,
+      "cert": "品牌声明：面料 bluesign approved；Fair Trade 工厂",
+      "cut": "常规版型，插肩袖，平缝，立领与毛衣感外表。"
+    },
+    "r1air": {
+      "body": "100% 再生聚酯，空心纱线提花抓绒",
+      "oz": 5.7,
+      "cert": "品牌声明：面料 bluesign approved；Fair Trade 工厂",
+      "cut": "修身，肩缝避开背带，低体积口袋，运动外观。"
+    },
+    "retro": {
+      "body": "Polartec 100% 再生聚酯双面羊羔绒",
+      "oz": 8.7,
+      "cert": "品牌声明：面料 bluesign approved；Fair Trade 工厂",
+      "cut": "常规版型，双面蓬松毛绒，平缝，外观更休闲。"
+    },
+    "micro": {
+      "body": "100% 再生聚酯细旦抓绒，双面抗起球整理",
+      "oz": 4.7,
+      "cert": "品牌声明：主体与辅料面料 bluesign approved；Fair Trade 工厂",
+      "cut": "常规版型，胸前贴袋，弹性袖口，轻薄。"
+    },
+    "r2": {
+      "body": "92% 再生聚酯、8% 氨纶双织；DWR",
+      "oz": 7.8,
+      "cert": "品牌声明：辅料面料 bluesign approved；Fair Trade 工厂",
+      "cut": "修身，高位手袋与背包/安全带兼容，外表平滑；黑色面料为 7.8 oz/yd²。"
+    },
+    "retrox": {
+      "body": "100% Repreve 再生聚酯长绒；聚酯塔夫绸内衬",
+      "oz": 10.3,
+      "cert": "品牌声明：主体 OceanCycle 认证原料；内衬/辅料 bluesign approved；Fair Trade 工厂",
+      "cut": "常规版型，长绒外表，撞色贴袋与包边，偏复古。"
+    }
+  },
+  "methodSources": [
+    {
+      "name": "ISO 标准制定：多利益相关方、草案与共识投票",
+      "url": "https://www.iso.org/developing-standards.html"
+    },
+    {
+      "name": "欧洲 EN ISO 11092:2026 采用说明（斯洛文尼亚国家标准机构）",
+      "url": "https://ecommerce.sist.si/catalog/standards/cen/345d3be7-e6db-4238-a6c3-08f9617a6ca5/en-iso-11092-2026"
+    },
+    {
+      "name": "QTEC：JIS L 1096 耐磨",
+      "url": "https://www.qtec.or.jp/search/test/butsusei/butsusei12/"
+    },
+    {
+      "name": "ISO 6330:2021 家用洗涤程序",
+      "url": "https://www.iso.org/standard/75934.html"
+    },
+    {
+      "name": "Textile Exchange 2026 年标准更新",
+      "url": "https://hub.textileexchange.org/home/site-wide-content/standards-policy-updates"
+    }
+  ],
+  "evidenceBoundary": "本次仅查阅官方公开摘要、标准机构与认证方说明及品牌商品页；未购买标准全文、未进行实验室检测或实际试穿。七款均未取得能在相同条件下比较的独立型号级热阻、透湿、起球、耐磨、洗后尺寸报告；不做真实性或质量数值评分。认证范围是品牌公开声明，未逐一获得证书号或独立证书，不能当作已独立验证。"
+}

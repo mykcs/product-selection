@@ -205,7 +205,27 @@ test('fleece Hong Kong: all thirteen markers, filters and store popup',async({pa
   await expect(page.locator('.leaflet-marker-icon')).toHaveCount(13);
   await page.locator('#citygate [data-locate]').click();
   await expect(page.locator('.leaflet-popup-content')).toContainText('东荟城');
+  await expect.poll(()=>page.locator('.leaflet-popup-content').evaluate(el=>{
+    const r=el.getBoundingClientRect(),m=document.querySelector('#store-map').getBoundingClientRect();
+    return r.left>=m.left-1&&r.right<=m.right+1;
+  })).toBe(true);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(await page.evaluate(()=>innerWidth+1));
   expect(errors).toEqual([]);
   await info.attach('fleece-map',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
+});
+
+test('fleece quality: evidence scope and local checklist',async({page})=>{
+  await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
+  await page.goto('/fleece/');
+  await expect(page.locator('#quality')).toContainText('未找到七款之间可直接比较的独立实测报告');
+  await expect(page.locator('#quality table').first().locator('tbody tr')).toHaveCount(7);
+  await expect(page.locator('#quality table').first().locator('tbody tr').first()).toContainText('未公开');
+  await page.locator('#standards summary').click();
+  await expect(page.locator('#standards a[href="https://www.iso.org/standard/85998.html"]')).toBeVisible();
+  await page.locator('#certificates summary').click();
+  await expect(page.locator('#certificates')).toContainText('不能由某一辅料认证推定整衣认证');
+  await page.locator('.quality-checks input').first().check();
+  await expect(page.locator('.quality-checks input').first()).toBeChecked();
+  await expect(page.locator('.quality-checks input')).toHaveCount(5);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(await page.evaluate(()=>innerWidth+1));
 });

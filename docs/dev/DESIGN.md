@@ -59,3 +59,8 @@ Delivery: retain the existing cross-account verification contract above. An inte
 ## Fleece comparison and Hong Kong lululemon directory
 
 The independent /fleece/ and /fleece/hong-kong/ routes reuse SiteLayout, MainContent, shared typography/spacing tokens and vendored Leaflet. Single sources: src/data/fleece-comparison.json (official product pages, exact color/L public variant JSON, dated HKD prices) and src/data/lululemon-hk-stores.json (brand directory, official detail pages and Get Directions coordinates). Store availability, sale terms and checkout success are not inferred from a web listing. Use official product image links with a text fallback; a gray Sojourn illustration is explicitly not Bone. Preserve the agent reader allowlist: generic category entry only. Validate static route/evidence integrity, responsive design, use selection and map filters in browser tests. No new deployment provider or production authority.
+
+
+## Fleece quality evidence and intent coverage
+
+The standards, certification scope and brand-disclosed material/cut facts have a single structured owner in src/data/fleece-quality.json, rendered by src/components/FleeceQuality.astro. The comparison is not a laboratory report, certificate verification, price ranking or personal aesthetic decision. Check links, scope/version and source dates before refresh. The route-level Design Intent index stays in docs/wish/DESIGN.md; source-derived interpretations are explicitly candidates.

@@ -525,12 +525,36 @@ def validate_fleece() -> None:
     print("PASS: fleece exact variants and all 13 Hong Kong store sources")
 
 
+def validate_quality_and_intent() -> None:
+    page = (SITE / "fleece/index.html").read_text(encoding="utf-8")
+    data = json.loads((ROOT / "src/data/fleece-quality.json").read_text())
+    models = json.loads((ROOT / "src/data/fleece-comparison.json").read_text())
+    assert set(data["material"]) == {models["target"]["id"], *(p["id"] for p in models["patagonia"])}
+    assert data["material"]["sojourn"]["oz"] is None
+    require(page, "Sojourn Jogger Shorter", "markdown variant is not the target")
+    require(page, models["target"]["purchaseEvidence"]["returnsUrl"], "official return conditions")
+    assert data["material"]["r2"]["oz"] == 7.8
+    assert len(data["standards"]) >= 10 and len(data["labels"]) >= 6
+    for item in data["standards"] + data["labels"]:
+        require(page, item["name"], "quality evidence label")
+        require(page, item["url"], "official quality evidence link")
+        assert item["url"].startswith("https://") and item["limit"]
+    for fragment in ('id="quality"', 'id="standards"', 'id="certificates"', "未找到七款之间可直接比较的独立实测报告", "不上传、不保存个人数据"):
+        require(page, fragment, "fleece quality evidence boundary")
+    intent = (ROOT / "docs/wish/DESIGN.md").read_text(encoding="utf-8")
+    for source in PAGES:
+        route = "/" + (str(source)[:-len("index.html")])
+        require(intent, f"| `{route}` |", "page design intent index")
+    print("PASS: 14 route intents; 7 product material disclosures; standards evidence boundaries")
+
+
 def main() -> int:
     validate_design(SITE, PAGES, calendar_root=ROOT, allow_compiled_tailwind=True)
     validate_vercel_git_deployment_policy()
     validate_routes()
     validate_reader()
     validate_fleece()
+    validate_quality_and_intent()
     validate_osprey()
     validate_osprey_hk()
     validate_osprey_series()

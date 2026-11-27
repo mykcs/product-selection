@@ -22,7 +22,7 @@
 ## 页面范围
 
 ### 抓绒衣
-比较 Sojourn 骨白 L 与 Patagonia 六款男士全拉链代表款，按通勤、徒步、挡风、保暖和预算选。香港报价、指定颜色 L 码网店状态、产品来源统一维护于 src/data/fleece-comparison.json。全港 13 家 lululemon 地点的地址、坐标、电话、营业时间、来源及门店类型统一维护于 src/data/lululemon-hk-stores.json。网店状态不代表实体库存；两份数据均为日期快照。
+比较 Sojourn 骨白 L 与 Patagonia 六款男士全拉链代表款，按通勤、徒步、挡风、保暖和预算选。香港报价、指定颜色 L 码网店状态、产品来源统一维护于 src/data/fleece-comparison.json。全港 13 家 lululemon 地点的地址、坐标、电话、营业时间、来源及门店类型统一维护于 src/data/lululemon-hk-stores.json。网店状态不代表实体库存；两份数据均为日期快照。材料、标准及认证的范围和试穿核对另见 src/data/fleece-quality.json；不将品牌宣传或克重当成实际性能排名。
 
 ### 小鹰背包 Osprey
 保留 `/osprey/` 四种使用场景的交互式路线（Daylite Plus、Talon 22、Farpoint 40、Kestrel 48），并新增 `/osprey/series/` 系列目录。后者按官网常见家族收录 **18 个系列、36 款代表型号**，支持按类型筛选、文字搜索、逐一展开系列介绍与产品价格，并与按用途路线互相跳转。目录是精选导览，不是所有 SKU。
