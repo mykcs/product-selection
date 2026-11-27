@@ -8,8 +8,9 @@
 
 2026-10-14 项目从 Apple Watch 专题升级为「选购商品」，并保留旧站点网址以保护已有外部链接。2026-11-23 仓库转移至 `suiyue77/product-selection`，新 Vercel 项目设在 `suiyue77-team`；两个旧公开域名仍由原 Vercel 项目服务，**不受新项目的登录保护**。仓库自身仍为 Public。部署与验收以 [Dev 说明](docs/dev/README.md) 和实时 GitHub/Vercel 状态为准。
 
-四个品类入口（原来的 Apple 页面和子页面均保留）：
+五个品类入口（原来的 Apple 页面和子页面均保留）：
 
+- 抓绒衣 lululemon / Patagonia：按用途选 /fleece/；全港 lululemon 门店地图 /fleece/hong-kong/
 - 小鹰背包 Osprey：按用途选 /osprey/；按系列看 /osprey/series/；香港门店库存、优惠及港铁导购 /osprey/hong-kong/
 - Apple Watch Series 12：/watch/
 - iPhone 18 Pro Max 256GB：/iphone/
@@ -19,6 +20,9 @@
   - SSD 容量与速度：/mac/storage/
 
 ## 页面范围
+
+### 抓绒衣
+比较 Sojourn 骨白 L 与 Patagonia 六款男士全拉链代表款，按通勤、徒步、挡风、保暖和预算选。香港报价、指定颜色 L 码网店状态、产品来源统一维护于 src/data/fleece-comparison.json。全港 13 家 lululemon 地点的地址、坐标、电话、营业时间、来源及门店类型统一维护于 src/data/lululemon-hk-stores.json。网店状态不代表实体库存；两份数据均为日期快照。
 
 ### 小鹰背包 Osprey
 保留 `/osprey/` 四种使用场景的交互式路线（Daylite Plus、Talon 22、Farpoint 40、Kestrel 48），并新增 `/osprey/series/` 系列目录。后者按官网常见家族收录 **18 个系列、36 款代表型号**，支持按类型筛选、文字搜索、逐一展开系列介绍与产品价格，并与按用途路线互相跳转。目录是精选导览，不是所有 SKU。

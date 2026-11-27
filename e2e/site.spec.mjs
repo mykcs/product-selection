@@ -160,3 +160,52 @@ test('Hong Kong purchase-first defaults, filters, URL and disclosures',async({pa
   expect(measure.scrollWidth).toBeLessThanOrEqual(measure.width+1);
   expect(errors).toEqual([]);
 });
+
+test('fleece comparison: use selection and exact variants', async({page},info)=>{
+  await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
+  await page.goto('/');
+  await page.locator('a[href="/fleece/"]').click();
+  await expect(page.locator('[data-result="daily"]')).toBeVisible();
+  await expect(page.locator('[data-result="daily"]')).toContainText('Better Sweater');
+  await expect(page.locator('#sojourn-bone')).toContainText('香港官网：售罄');
+  await expect(page.locator('#better')).toContainText('HK$1,450');
+  await expect(page.locator('#better')).toContainText('Stonewash / L');
+  await expect(page.locator('#models article')).toHaveCount(6);
+  await page.locator('[data-use="hike"]').click();
+  await expect(page.locator('[data-use="hike"]')).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('[data-result="hike"]')).toBeVisible();
+  await expect(page.locator('[data-result="hike"]')).toContainText('R1 Air');
+  await expect(page.locator('[data-result="daily"]')).toBeHidden();
+  await page.locator('[data-use="wind"]').click();
+  await expect(page.locator('[data-result="wind"]')).toContainText('Retro-X');
+  await expect(page.locator('[data-result="hike"]')).toBeHidden();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(await page.evaluate(()=>innerWidth+1));
+  await info.attach('fleece-comparison',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
+});
+
+test('fleece Hong Kong: all thirteen markers, filters and store popup',async({page},info)=>{
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
+  await page.goto('/fleece/hong-kong/');
+  await expect(page.locator('[data-store]:visible')).toHaveCount(13);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(13);
+  await page.locator('[data-region-filter="outlet"]').click();
+  await expect(page.locator('[data-store]:visible')).toHaveCount(1);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(1);
+  await expect(page.locator('#citygate')).toBeVisible();
+  await expect(page.locator('#citygate')).toContainText('库存及折扣待确认');
+  await page.locator('[data-region-filter="airport"]').click();
+  await expect(page.locator('[data-store]:visible')).toHaveCount(1);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(1);
+  await expect(page.locator('[data-kind="airport"]')).toContainText('禁区');
+  await page.locator('[data-region-filter="港岛"]').click();
+  await expect(page.locator('[data-store]:visible')).toHaveCount(6);
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(6);
+  await page.locator('[data-region-filter="all"]').click();
+  await expect(page.locator('.leaflet-marker-icon')).toHaveCount(13);
+  await page.locator('#citygate [data-locate]').click();
+  await expect(page.locator('.leaflet-popup-content')).toContainText('东荟城');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(await page.evaluate(()=>innerWidth+1));
+  expect(errors).toEqual([]);
+  await info.attach('fleece-map',{body:await page.screenshot({fullPage:true}),contentType:'image/png'});
+});

@@ -15,6 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "dist"
 PAGES = (
     Path("index.html"),
+    Path("fleece/index.html"),
+    Path("fleece/hong-kong/index.html"),
     Path("agent/index.html"),
     Path("watch/index.html"),
     Path("osprey/index.html"),
@@ -490,11 +492,45 @@ def validate_vercel_git_deployment_policy() -> None:
         fail("Do not add unrelated Vercel build/runtime overrides to the lightweight deployment policy")
 
 
+def validate_fleece() -> None:
+    import json
+    from collections import Counter
+    home = (SITE / "index.html").read_text(encoding="utf-8")
+    fleece = (SITE / "fleece/index.html").read_text(encoding="utf-8")
+    hk = (SITE / "fleece/hong-kong/index.html").read_text(encoding="utf-8")
+    data = json.loads((ROOT / "src/data/fleece-comparison.json").read_text())
+    stores = json.loads((ROOT / "src/data/lululemon-hk-stores.json").read_text())
+    require(home, 'href="/fleece/"', "fleece navigation")
+    require(fleece, 'href="/fleece/hong-kong/"', "store map navigation")
+    require(fleece, 'id="sojourn-bone"', "target garment")
+    target = data["target"]
+    assert target["hkPrice"] is None and target["storeStock"] == "unknown"
+    for fragment in (target["style"], target["hkId"], target["url"], target["cnUrl"], "Bone", "L", data["checkedAt"]):
+        require(fleece, fragment, "dated Sojourn evidence")
+    assert len(data["patagonia"]) == 6
+    assert len({p["id"] for p in data["patagonia"]}) == 6
+    for product in data["patagonia"]:
+        assert product["size"] == "L" and product["hkPrice"] > 0
+        for fragment in (product["url"], product["variantSource"], product["color"], f'{product["hkPrice"]:,}'):
+            require(fleece, fragment, "exact Patagonia variant evidence")
+    assert len(stores["stores"]) == 13
+    assert len({(p["lat"], p["lng"]) for p in stores["stores"]}) == 13
+    assert len({p["storeId"] for p in stores["stores"]}) == 13
+    assert Counter(p["kind"] for p in stores["stores"]) == {"regular": 11, "outlet": 1, "airport": 1}
+    for store in stores["stores"]:
+        assert store["stock"] == "unknown" and 22 < store["lat"] < 23 and 113 < store["lng"] < 115
+        for fragment in (store["url"], store["name"], store["address"], store["phone"]):
+            require(hk, fragment, "official store evidence")
+    require(hk, stores["checkedAt"], "dated store directory")
+    print("PASS: fleece exact variants and all 13 Hong Kong store sources")
+
+
 def main() -> int:
     validate_design(SITE, PAGES, calendar_root=ROOT, allow_compiled_tailwind=True)
     validate_vercel_git_deployment_policy()
     validate_routes()
     validate_reader()
+    validate_fleece()
     validate_osprey()
     validate_osprey_hk()
     validate_osprey_series()

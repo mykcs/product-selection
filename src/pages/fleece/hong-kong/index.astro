@@ -1,0 +1,46 @@
+---
+import SiteLayout from "../../../layouts/SiteLayout.astro";
+import MainContent from "../../../components/MainContent.astro";
+import data from "../../../data/lululemon-hk-stores.json";
+import comparison from "../../../data/fleece-comparison.json";
+const dateText=data.checkedAt.replace(/-(\d{2})-(\d{2})$/,(_,m,d)=>"年"+Number(m)+"月"+Number(d)+"日");
+const filters=[{key:"all",label:"全部门店"},{key:"港岛",label:"港岛"},{key:"九龙",label:"九龙"},{key:"新界",label:"新界"},{key:"大屿山",label:"大屿山"},{key:"outlet",label:"Outlet"},{key:"airport",label:"机场禁区"}];
+const type:Record<string,string>={regular:"普通门店",outlet:"Outlet 折扣店",airport:"机场禁区店"};
+const target=comparison.target;
+---
+<SiteLayout lang="zh-CN"><Fragment slot="head">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>香港 lululemon 全港门店地图 · 抓绒衣选购</title>
+<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="/assets/fleece.css">
+<script is:inline src="/assets/vendor/leaflet/leaflet.js" defer></script>
+</Fragment>
+<MainContent>
+<nav class="top"><a href="/fleece/">← 抓绒衣选购</a><a href="/">选购商品首页</a></nav>
+<section class="hero"><p class="eyebrow">香港门店 · 到店导购</p><h1>lululemon 香港门店地图</h1><p>13 个品牌官方列出的地点：11 家普通门店、1 家东荟城 Outlet、1 家机场禁区店。地图位置来自各店官网导航坐标。</p></section>
+<section class="panel"><h2>先查目标款，不要白跑</h2><p><strong>Sojourn 拉绒内里针织夹克 · {target.color} / {target.size} · {target.style}</strong></p><p>香港官网商品页显示售罄，但实体库存、价格和黑五活动未确认。建议先通过品牌客服查全港库存；Outlet 另问该款是否有货及具体折扣。机场店位于禁区，不作为普通逛店目的地。</p><div class="actions"><a class="primary" href="https://www.lululemon.com.hk/en-hk/content/contact-us/contact-us.html">香港官方客服</a><a href={target.url}>香港商品页</a><a href="#citygate">东荟城 Outlet</a></div></section>
+<section class="panel" id="map-panel"><h2>门店分布</h2><p class="caption"><time datetime={data.checkedAt}>{dateText}</time> 门店资料快照；地图不表示实时库存。绿：普通店；红：Outlet；棕：机场禁区。</p>
+<div class="choice-row" role="group" aria-label="地区或门店类型">{filters.map((f,i)=><button class="choice" type="button" data-region-filter={f.key} aria-pressed={i===0?"true":"false"}>{f.label}</button>)}</div>
+<p id="store-count" aria-live="polite">共 {data.stores.length} 家门店</p>
+<div id="store-map" aria-label="香港 lululemon 地理地图"></div>
+<p id="map-status" class="map-status" role="status">地图加载中；下方列表独立可用。</p><p class="caption">{data.coordMethod} 底图来源：<a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>。</p>
+</section>
+<section><h2>全部门店与联系方式</h2><p class="muted">点击定位在地图中放大，或打开地图导航。以下港铁站为邻近站，不承诺步行时间；营业时间与库存到店前再确认。</p>
+<div class="store-grid" id="store-list">{data.stores.map(s=><article class="card" id={s.id} data-store={s.id} data-region={s.region} data-kind={s.kind} data-lat={s.lat} data-lng={s.lng} data-number={s.number}>
+<p class="store-kind">{String(s.number).padStart(2,"0")} · {s.region} · {type[s.kind]}</p><h3>{s.name}</h3><address>{s.address}</address><p>港铁：{s.station} · {s.hours}</p><p class="status" data-status="unknown">Bone / L：库存及折扣待确认</p><div class="actions"><a href={"tel:+852"+s.phone}>+852 {s.phone.slice(0,4)} {s.phone.slice(4)}</a><button class="choice" type="button" data-locate={s.id}>地图定位</button><a href={"https://www.google.com/maps/dir/?api=1&destination="+s.lat+","+s.lng+"&travelmode=transit"}>港铁导航 ↗</a><a href={s.url}>官方门店 ↗</a></div></article>)}</div></section>
+<section class="panel"><h2>资料来源</h2><p>门店全集与香港官网各店单独页面交叉核对；香港官网地址及 Get Directions 坐标优先。K11 是 MUSEA，不是 K11 Art Mall。时间采用门店详情而非将统一目录时段当作实时营业状态。</p><div class="actions"><a href={data.directory}>品牌官方门店名录</a><a href={data.locator}>香港官网门店查询</a><a href="/fleece/">返回抓绒衣比较</a></div></section>
+</MainContent>
+<script is:inline>
+document.addEventListener('DOMContentLoaded',()=>{
+ const cards=[...document.querySelectorAll('[data-store]')], buttons=[...document.querySelectorAll('[data-region-filter]')], status=document.getElementById('map-status'), count=document.getElementById('store-count');
+ let map, layer, region='all'; const markers=new Map();
+ const coords=c=>[Number(c.dataset.lat),Number(c.dataset.lng)];
+ function chooseCard(c,fromMap){cards.forEach(x=>x.classList.toggle('active',x===c));if(fromMap){c.scrollIntoView({block:'center',behavior:'smooth'});c.querySelector('button').focus({preventScroll:true})}else if(map){map.setView(coords(c),17);markers.get(c.dataset.store)?.openPopup();document.getElementById('map-panel').scrollIntoView({block:'start',behavior:'smooth'})}}
+ function refresh(){const visible=cards.filter(c=>region==='all'||c.dataset.region===region||c.dataset.kind===region);cards.forEach(c=>c.hidden=!visible.includes(c));buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.regionFilter===region)));count.textContent='共 '+visible.length+' 家门店';if(layer){layer.clearLayers();visible.forEach(c=>markers.get(c.dataset.store).addTo(layer));if(visible.length===1)map.setView(coords(visible[0]),15);else map.fitBounds(visible.map(coords),{padding:[32,32],maxZoom:14})}}
+ buttons.forEach(b=>b.addEventListener('click',()=>{region=b.dataset.regionFilter;refresh()}));
+ cards.forEach(c=>c.querySelector('[data-locate]').addEventListener('click',()=>chooseCard(c,false)));
+ try{if(!window.L)throw Error('Leaflet unavailable');map=L.map('store-map',{scrollWheelZoom:false}).setView([22.33,114.12],11);layer=L.layerGroup().addTo(map);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).on('tileerror',()=>{status.textContent='部分底图暂不可用；编号标记、地址及导航仍可使用。'}).addTo(map);
+ cards.forEach(c=>{const name=c.querySelector('h3').textContent;const icon=L.divIcon({className:'fleece-map-marker',html:'<span aria-hidden="true" class="pin-dot '+c.dataset.kind+'">'+c.dataset.number+'</span>',iconSize:[30,30],iconAnchor:[15,15]});const marker=L.marker(coords(c),{icon,title:name,alt:name,keyboard:true});const popup=document.createElement('div');const strong=document.createElement('strong');strong.textContent=name;const p=document.createElement('p');p.textContent=c.querySelector('address').textContent;const b=document.createElement('button');b.type='button';b.className='choice';b.textContent='查看电话和门店详情';b.addEventListener('click',()=>chooseCard(c,true));popup.append(strong,p,b);marker.bindPopup(popup);markers.set(c.dataset.store,marker)});status.textContent='点击地图编号查看门店；列表可按地区筛选。';
+ }catch(e){map=null;layer=null;status.textContent='街道底图无法加载；完整门店列表与导航仍可使用。'}refresh();
+});
+</script>
+</SiteLayout>

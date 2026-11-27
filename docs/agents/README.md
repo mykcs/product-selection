@@ -43,3 +43,9 @@ Shared cross-tool Agent architecture and handoff semantics live in:
 - `mykcs/.agents/docs/agents/HANDOFF_PATTERN.md`
 
 Do not create a project-local copy of those shared rules.
+
+
+### Fleece
+- /fleece/ — src/pages/fleece/index.astro; dated product facts in src/data/fleece-comparison.json.
+- /fleece/hong-kong/ — src/pages/fleece/hong-kong/index.astro; store facts in src/data/lululemon-hk-stores.json.
+- Both share assets/fleece.css and existing site design tokens; use the same checks and preview workflow.
