@@ -46,6 +46,7 @@ Do not create a project-local copy of those shared rules.
 
 
 ### Fleece
+- [用户选购意图及待研究问题](../wish/DESIGN.md#选购品质与设计价值后续深化意图2026-11-27) — 修改抓绒衣页面前先读；研究与实现尚未启动。
 - /fleece/ — src/pages/fleece/index.astro; dated product facts in src/data/fleece-comparison.json.
 - /fleece/hong-kong/ — src/pages/fleece/hong-kong/index.astro; store facts in src/data/lululemon-hk-stores.json.
 - Both share assets/fleece.css and existing site design tokens; use the same checks and preview workflow.
