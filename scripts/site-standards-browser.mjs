@@ -29,7 +29,7 @@ async function htmlFiles(directory) {
 }
 const servingRoot = join(root, 'dist');
 const routes = (await htmlFiles(servingRoot)).sort().map(file => '/' + relative(servingRoot, file).replaceAll(sep, '/').replace(/index\.html$/, ''));
-assert.equal(routes.length, 12, 'register every new served route in the price/route validator and browser contract');
+assert.equal(routes.length, 14, 'register every new served route in the price/route validator and browser contract');
 const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png' };
 const server = createServer(async (request, response) => {
   try {

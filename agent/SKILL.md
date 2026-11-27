@@ -9,6 +9,7 @@ description: Read-only generic category navigation for the product selection sit
 
 ## 品类导航
 - Mac：https://product-selection-delta.vercel.app/mac/
+- 抓绒衣：https://product-selection-delta.vercel.app/fleece/
 - iPhone：https://product-selection-delta.vercel.app/iphone/
 - Osprey 背包：https://product-selection-delta.vercel.app/osprey/
 - Apple Watch：https://product-selection-delta.vercel.app/watch/

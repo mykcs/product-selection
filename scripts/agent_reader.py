@@ -18,6 +18,7 @@ SITE = "https://product-selection-delta.vercel.app"
 # from homepage copy, purchases, private records, or individual product pages.
 CATEGORIES = (
     ("/mac/", "Mac"),
+    ("/fleece/", "抓绒衣"),
     ("/iphone/", "iPhone"),
     ("/osprey/", "Osprey 背包"),
     ("/watch/", "Apple Watch"),
